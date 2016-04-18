@@ -4,29 +4,26 @@ This is the third project as part of the Udacity Senior Web Developer Nano Degre
 
 This is restaurant reviews application that collects reviews from users and provides them alongside basic information about each restaurant (restaurant names, a photograph, address and operating hours).
 
-*Accessible:* The focus of this project is to ensure that this site is current with web accissiblity standards.  This site demonstrates accessiblity across several areas.
+**Accessible:** The focus of this project is to ensure that this site is current with web accissiblity standards.  This site demonstrates accessiblity across several areas.
 
 ## Features
 **Accesibility Features**
-1. Images
-	
+
+1. **Images**
 	All content-related images include appropriate alternate text.
 
-2. Focus
-	
+2. **Focus**
 	Focus is appropriately managed allowing users to noticeably tab through each of the important elements of the page. Modal or interstitial windows appropriately lock focus.
 
-3. Elements
-	
+3. **Elements**
 	Elements on the page use the appropriate semantic elements. For those elements in which a semantic element is not available, appropriate `ARIA roles` are defined.
 
-4. Design
-	
+4. **Design**
 	Color selections and contrast are made with accessibility in mind.
 
 **Basic Features**
-1. Responsiveness
-	
+
+1. **Responsiveness**
 	App is equally functional on mobile and desktop, using responsive design to ensure its displayed in a useable state.
 
 ## Instructions
