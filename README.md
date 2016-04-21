@@ -36,7 +36,9 @@ TODO: Add this later.
 
 ## Credits
 
-TODO: Add this later.
+Thank you to [Swiip](https://github.com/Swiip) and the [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) team.  I enjoyed using the angular-gulp generator to get my project up and running.
+
+TODO: Add more later.
 
 ## License
 
