@@ -6,23 +6,29 @@
  * Controller of the transitApp
  */
 export class RestaurantController {
-  constructor ($log/*, Address, Hours*/) {
+  constructor ($log/*, address, Hours*/) {
     'ngInject';
     var vm = this;
-    //log a test
-    $log.info('in the RestaurantController');
-
-    //declare and initialize local variables
-    vm.name = '';
-    //TODO: ADD THE IMAGE HERE
-    vm.address = {};//new Address();	//TODO: Add a constructor
-    vm.cuisine = '';
-    vm.hours = {}; //new Hours();	//TODO: add a constructor
-
-    //vm methods
-    vm.submitReview = function() {
-       //this function submits the form
+    
+    //declare and initialize the vm variables
+    vm.model = {
+        name: '',
+        imageSrc: '',
+        address: {},    //new address();    //TODO: Add a constructor
+        cuisine: '',
+        hours: {}   //new Hours();  //TODO: add a constructor
     };
 
+    $log.info('in the restaurant controller');
+    vm.loadModel();
   }
+
+  submitReview () {
+
+  }
+
+  loadModel () {
+    //this should go out to the service and get the model
+  }
+
 }
