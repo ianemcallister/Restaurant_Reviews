@@ -10,5 +10,6 @@ export class ReviewController {
     'ngInject';
 
     $log.info('in the ReviewController');
+    this.test = 1;
   }
 }
