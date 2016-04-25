@@ -3,7 +3,7 @@
 import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
-import { MainController } from './main/main.controller';
+import { LandingController } from './components/landing/landing.controller';
 import { AllRestaurantsController } from './components/all/AllRestaurants.Controller';
 import { RestaurantController } from './components/aRestaurant/aRestaurant.Controller';
 import { ReviewController } from './components/aReview/aReview.Controller'
@@ -22,7 +22,7 @@ angular.module('chowpal', ['ngAnimate', 'ngTouch', 'ngAria', 'ngResource', 'ui.r
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
   .service('restaurantProfileSvc', RestaurantProfileService)
-  .controller('MainController', MainController)
+  .controller('LandingController', LandingController)
   .controller('AllRestaurantsController', AllRestaurantsController)
   .controller('RestaurantController', RestaurantController)
   .controller('ReviewController', ReviewController)

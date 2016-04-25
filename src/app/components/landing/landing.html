@@ -1,0 +1,42 @@
+<h1>Find your favorite food right here</h1>
+
+<div class="form-group">
+	<!--Search by name-->
+	<label for="nameInput"></label>
+	<input 	type="text" 
+			class="form-control" 
+			id="nameInput" 
+			placeholder="by name e.g. McDonalds, etc..."
+			ng-model="landing.seachBy.name">
+	
+	<!--Search by cuisine-->
+	<label for="cuisineInput"></label>
+	<input 	type="text" 
+			class="form-control" 
+			id="cuisineInput" 
+			placeholder="by cuisine e.g. Italian, etc..."
+			ng-model="landing.seachBy.cuisine">
+
+	<!--Search by location-->
+	<label for="cityInput"></label>
+	<input 	type="text" 
+			class="form-control" 
+			id="cityInput" 
+			placeholder="by city e.g. Los Angeles, etc..."
+			ng-model="landing.seachBy.city">
+
+	<label for="zipInput"></label>
+	<input 	type="text" 
+			class="form-control" 
+			id="zipInput" 
+			placeholder="by zip e.g. 90007, etc..."
+			ng-model="landing.seachBy.zip">
+
+	<!--Submission button-->
+	<label for="submit"></label>
+	<input 	class="btn btn-success btn-block" 
+			type="submit" 
+			id="submit" 
+			value="Submit"
+			ng-click="landing.seachNow(landing.seachBy)">
+</div>

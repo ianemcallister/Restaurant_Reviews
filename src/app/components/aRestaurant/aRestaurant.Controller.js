@@ -18,6 +18,7 @@ class RestaurantController {
 
     //view model variables
     vm.model = {}
+    vm.id = id;
 
     //run services
     SERVICE.set(this, restaurantProfileSvc);
