@@ -15,8 +15,8 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'AllRestaurantsController',
       controllerAs: 'restaurantsList'
     })
-    .state('restaurant', {
-      url: '/restaurant/:id',
+    .state('home.restaurant', {
+      url: 'restaurant/:id',
       templateUrl: 'app/components/aRestaurant/restaurantProfile.html',
       controller: 'RestaurantController',
       controllerAs: 'restaurant'

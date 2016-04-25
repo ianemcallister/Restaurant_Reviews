@@ -9,7 +9,7 @@ class RestaurantProfileService {
 		this.restaurantList;
 	}
 
-	getRestaurantProfile(restaurantId) {
+	getRestaurantProfile() {
 		//check for it locally first
 		if(angular.isObject(this.restaurantList)) {
 			//if we have it locally return it immediately as a resolved promise

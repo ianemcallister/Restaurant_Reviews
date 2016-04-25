@@ -1,3 +1,22 @@
-<p>This is a restaurant profile</p>
+<H1>{{restaurant.model.name}} </H1>
+<p>{{restaurant.model.cuisine}} cusine.</p>
+<p>Open: {{restaurant.model.hours.opens[0]}} </p>
+<p>	{{restaurant.model.address.street1}}
+	{{restaurant.model.address.street2}}
+	{{restaurant.model.address.street3}}
+	{{restaurant.model.address.city}}, 
+	{{restaurant.model.address.state}} 
+	{{restaurant.model.address.zip}}
+</p>
+<img ng-src='{{restaurant.model.imageSrc}}' alt="">
 
+
+
+<h3>Reveiws</h3>
+<div class="row" ng-repeat='review in restaurant.model.reviews'>
+	{{review.name}}
+	{{review.date}}
+	{{review.rating}}
+	{{review.comments}}
+</div>
 <div ui-view></div>

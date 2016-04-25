@@ -1,7 +1,7 @@
 {
 	"900484800": {
 		"name": "Sushi by H",
-		"imageSrc": "assets/90048480.jpg",
+		"imageSrc": "assets/images/90048480.jpg",
 		"address": {
 			"street1": "480 S San Vicente Blvd",
 			"street2": "",
@@ -15,6 +15,14 @@
 		"hours": {
 			"opens": [690, 1050],
 			"closes": [870, 1320]
+		},
+		"reviews": {
+			"09191983": {
+				"name": "Ian McAllister",
+				"date": "19284875382",
+				"rating": 5,
+				"comments": "This is the best sushi I have ever tasted!!! We'll definitely be back."
+			}
 		}
 	}
 }

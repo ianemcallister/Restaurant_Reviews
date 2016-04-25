@@ -24,7 +24,7 @@ class RestaurantController {
     INIT.set(this, () => {
 
       //get specific restaurant
-      SERVICE.get(this).getRestaurantProfile(id)
+      SERVICE.get(this).getRestaurantProfile()
       .then(response => {
         $log.log(response);
         vm.model = response[id];
