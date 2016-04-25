@@ -1,5 +1,7 @@
+const SERVICE = new WeakMap();
+
 export class MainController {
-  constructor ($timeout, webDevTec, toastr/*, address*/) {
+  constructor ($timeout, webDevTec, toastr, restaurantProfileSvc) {
     'ngInject';
 
     this.awesomeThings = [];
@@ -7,7 +9,12 @@ export class MainController {
     this.creationDate = 1461276980608;
     this.toastr = toastr;
 
+    SERVICE.set(this, restaurantProfileSvc);
+
     this.activate($timeout, webDevTec/*, address*/);
+
+    //load restaurant list
+    SERVICE.get(this).loadModel();
   }
 
   activate($timeout, webDevTec/*, address*/) {

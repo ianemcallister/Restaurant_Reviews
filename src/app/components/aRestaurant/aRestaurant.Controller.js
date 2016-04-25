@@ -1,34 +1,48 @@
-/**TODO: UPDATE THIS INFORMATION
+/**
  * @ngdoc function
- * @name transitApp.controller:TrainscheduleCtrl
+ * @name chowPal.controller:RestaurantController
  * @description
- * # TrainscheduleCtrl
- * Controller of the transitApp
+ * # RestaurantController
+ * Controller of the chowPalApp
  */
-export class RestaurantController {
-  constructor ($log/*, address, Hours*/) {
-    'ngInject';
-    var vm = this;
-    
-    //declare and initialize the vm variables
-    vm.model = {
-        name: '',
-        imageSrc: '',
-        address: {},    //new address();    //TODO: Add a constructor
-        cuisine: '',
-        hours: {}   //new Hours();  //TODO: add a constructor
-    };
 
-    $log.info('in the restaurant controller');
-    vm.loadModel();
+const INIT = new WeakMap();
+const SERVICE = new WeakMap();
+
+class RestaurantController {
+  constructor ($log, $stateParams, restaurantProfileSvc) {
+    'ngInject';
+    //local variables
+    var vm = this;
+    var id = $stateParams.id;
+
+    //view model variables
+    vm.model = {}
+
+    //run services
+    SERVICE.set(this, restaurantProfileSvc);
+    INIT.set(this, () => {
+
+      //get specific restaurant
+      SERVICE.get(this).getRestaurantProfile(id)
+      .then(response => {
+        $log.log(response);
+        vm.model = response[id];
+        $log.log(vm.model);
+      });
+
+    });
+
+    INIT.get(this)();
+    
   }
 
   submitReview () {
 
   }
 
-  loadModel () {
-    //this should go out to the service and get the model
-  }
-
 }
+
+RestaurantController.$inject = ['$log', '$stateParams', 'restaurantProfileSvc'];
+
+export { RestaurantController }

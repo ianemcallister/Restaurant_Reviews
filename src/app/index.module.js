@@ -9,7 +9,7 @@ import { RestaurantController } from './components/aRestaurant/aRestaurant.Contr
 import { ReviewController } from './components/aReview/aReview.Controller'
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-import { AddressService } from '../app/components/address/address.service';
+import { RestaurantProfileService } from '../app/components/restaurantProfile/restaurantProfile.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
@@ -21,7 +21,7 @@ angular.module('chowpal', ['ngAnimate', 'ngTouch', 'ngAria', 'ngResource', 'ui.r
   .run(runBlock)
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
-  .service('venueAddress', AddressService)
+  .service('restaurantProfileSvc', RestaurantProfileService)
   .controller('MainController', MainController)
   .controller('AllRestaurantsController', AllRestaurantsController)
   .controller('RestaurantController', RestaurantController)

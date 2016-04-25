@@ -1,0 +1,20 @@
+{
+	"900484800": {
+		"name": "Sushi by H",
+		"imageSrc": "assets/90048480.jpg",
+		"address": {
+			"street1": "480 S San Vicente Blvd",
+			"street2": "",
+			"street3": "",
+			"unit": "",
+			"city": "Los Angeles",
+			"state": "CA",
+			"zip": "90048"
+		},
+		"cuisine": "Japanese",
+		"hours": {
+			"opens": [690, 1050],
+			"closes": [870, 1320]
+		}
+	}
+}
