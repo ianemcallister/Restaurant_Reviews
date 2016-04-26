@@ -10,6 +10,7 @@ import { ReviewController } from './components/aReview/aReview.Controller'
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { RestaurantProfileService } from '../app/components/restaurantProfile/restaurantProfile.service';
+import { ListSorterService } from '../app/components/listSorter/listSorter.service';
 import { ReviewManager } from '../app/components/reviewManager/reviewManager.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
@@ -25,6 +26,7 @@ angular.module('chowpal', ['ngAnimate', 'ngTouch', 'ngAria', 'ngResource', 'ui.r
   .service('webDevTec', WebDevTecService)
   .service('restaurantProfileSvc', RestaurantProfileService)
   .service('reviewMngrSvc', ReviewManager)
+  .factory('listSorterSvc', ListSorterService.listSorterFactory)
   .controller('LandingController', LandingController)
   .controller('AllRestaurantsController', AllRestaurantsController)
   .controller('RestaurantController', RestaurantController)
