@@ -19,17 +19,17 @@
 </div>
 
 <!--content-->
-<div class="row" ng-repeat="(key, value) in list.model track by $index" ng-click='list.viewRestaurant(key)'>
+<div class="row" ng-repeat="spot in list.list track by $index" ng-click='list.viewRestaurant($index)'>
 	<div class="col-xs-12 col-sm-12">
 		<!--Name and Cuisine-->
 		<div class="col-xs-8 col-sm-8">
-			<strong>{{value.name}}</strong> <br>
-			<span>{{value.cuisine}}</span>
+			<strong>{{spot.name}}</strong> <br>
+			<span>{{spot.cuisine}}</span>
 		</div>
 		<!--Ratings-->
 		<div class="col-xs-4 col-sm-4">
-			<strong class="pull-right">{{value.rating}} Stars</strong> <br>
-			<span class="pull-right">{{value.noOfReviews}} Reviews</span>
+			<strong class="pull-right">{{spot.rating}} Stars</strong> <br>
+			<span class="pull-right">{{spot.noOfReviews}} Reviews</span>
 		</div>	
 	</div>
 </div>

@@ -12,62 +12,66 @@ class ListSorterService {
 	}
 
 	sortByAlpha(collection, reverse) {
+		var list = collection
 		//sort the collection alphbetically 
 		
-		collection.sort(function(a, b) { 
+		list.sort(function(a, b) { 
 			if(a.name > b.name) { return 1 }
 			if(a.name < b.name) { return -1 }
 			return 0;
 		});
 
-		if (reverse) collection.reverse();
+		if (reverse) list.reverse();
 		
-		return collection;
+		return list;
 	}
 
 	sortByCuisine(collection, reverse) {
+		var list = collection
 		//sort the collection by cuisine 
 				
-		collection.sort(function(a, b) { 
+		list.sort(function(a, b) { 
 			if(a.cuisine > b.cuisine) { return 1 }
 			if(a.cuisine < b.cuisine) { return -1 }
 			return 0;
 		});
 
-		if (reverse) collection.reverse();
+		if (reverse) list.reverse();
 		
-		return collection;
+		return list;
 	}
 
 	sortByReivews(collection, reverse) {
+		var list = collection
 		//sort the collection by cuisine 
 				
-		collection.sort(function(a, b) { 
+		list.sort(function(a, b) { 
 			if(a.noOfReviews > b.noOfReviews) { return 1 }
 			if(a.noOfReviews < b.noOfReviews) { return -1 }
 			return 0;
 		});
 
-		if (reverse) collection.reverse();
+		if (reverse) list.reverse();
 		
-		return collection;
+		return list;
 	}
 
 	sortByRating(collection, reverse) {
+		var list = collection
 		//flip the reverse value
 		reverse = !reverse;
 		
 		//sort the collection by cuisine 
 				
-		collection.sort(function(a, b) { 
+		list.sort(function(a, b) { 
 			if(a.rating > b.rating) { return 1 }
 			if(a.rating < b.rating) { return -1 }
 			return 0;
 		});
 
-		if (reverse) collection.reverse();
+		if (reverse) list.reverse();
 		
-		return collection;
+		return list;
 	}
 
 	selectSort(method, reverse, collection) {
@@ -77,19 +81,13 @@ class ListSorterService {
 
 		switch (sort) {
 			case 0:
-				local.sortByAlpha(collection, reverse);
-				break;
+				return local.sortByAlpha(collection, reverse);
 			case 1:
-				local.sortByCuisine(collection, reverse);
-				break;
+				return local.sortByCuisine(collection, reverse);
 			case 2:
-				local.sortByReivews(collection, reverse);
-				break;
+				return local.sortByReivews(collection, reverse);
 			case 3:
-				local.sortByRating(collection, reverse);
-				break;
-			default:
-				break;
+				return local.sortByRating(collection, reverse);
 		}
 
 	}

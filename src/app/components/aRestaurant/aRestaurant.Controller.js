@@ -27,7 +27,7 @@ class RestaurantController {
       //get specific restaurant
       SERVICE.get(this).getRestaurantProfile()
       .then(response => {
-        //$log.log(response);
+        $log.log(response);
         vm.model = response[id];
         //$log.log(vm.model);
       });
