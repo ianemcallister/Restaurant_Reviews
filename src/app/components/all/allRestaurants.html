@@ -1,1 +1,35 @@
-<p>This is the all restaurants list</p>
+<h1>Find A Restaurant</h1>
+
+<div class="row">Filters Here</div>
+
+<!--header-->
+<div class="row listHeader">
+	<div class="col-xs-12 col-sm-12">
+		<!--Name and Cuisine-->
+		<div class="col-xs-8 col-sm-8">
+			<strong>Restaurant</strong> <br>
+			<span>Cuisine</span>
+		</div>
+		<!--Ratings-->
+		<div class="col-xs-4 col-sm-4">
+			<strong class="pull-right">Star Rating</strong> <br>
+			<span class="pull-right"># of Reviews</span>
+		</div>	
+	</div>
+</div>
+
+<!--content-->
+<div class="row" ng-repeat="(key, value) in list.model track by $index" ng-click='list.viewRestaurant(key)'>
+	<div class="col-xs-12 col-sm-12">
+		<!--Name and Cuisine-->
+		<div class="col-xs-8 col-sm-8">
+			<strong>{{value.name}}</strong> <br>
+			<span>{{value.cuisine}}</span>
+		</div>
+		<!--Ratings-->
+		<div class="col-xs-4 col-sm-4">
+			<strong class="pull-right">{{value.rating}} Stars</strong> <br>
+			<span class="pull-right">{{value.noOfReviews}} Reviews</span>
+		</div>	
+	</div>
+</div>

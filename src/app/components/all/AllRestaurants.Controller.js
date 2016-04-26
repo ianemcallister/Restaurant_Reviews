@@ -9,6 +9,7 @@
 const INIT = new WeakMap();
 const SERVICE = new WeakMap();
 const STATE = new WeakMap();
+const LOGGER = new WeakMap();
 
 class AllRestaurantsController {
   constructor ($log, $state, restaurantProfileSvc) {
@@ -21,18 +22,19 @@ class AllRestaurantsController {
     //log the state
     //$log.log(vm.order);
 
+    LOGGER.set(this, $log);
     STATE.set(this, $state);
     SERVICE.set(this, restaurantProfileSvc);
     INIT.set(this, () => {
 
 		//get the search criteria
-		$log.log(SERVICE.get(this).getSearchCriteria());
+		//$log.log(SERVICE.get(this).getSearchCriteria());
 		//get specific restaurant
 		SERVICE.get(this).getRestaurantList()
 		.then(response => {
-        $log.log(response);
+        //$log.log(response);
         vm.model = response;
-        $log.log(vm.model);
+        //$log.log(vm.model);
 
       });
 
@@ -42,6 +44,20 @@ class AllRestaurantsController {
     INIT.get(this)();
 
   }
+
+  //sort the list based on the user preference
+  sortBy() {
+
+  }
+
+  viewRestaurant(key) {
+    //log the findings
+    //LOGGER.get(this).log(key);
+
+    //redirect to that page
+    STATE.get(this).go('restaurant', {id: key});
+  }
+
 }
 
 AllRestaurantsController.$inject = ['$log', '$state', 'restaurantProfileSvc'];

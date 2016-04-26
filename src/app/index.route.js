@@ -13,7 +13,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       url: '/list/:sort',
       templateUrl: 'app/components/all/allRestaurants.html',
       controller: 'AllRestaurantsController',
-      controllerAs: 'restaurantsList'
+      controllerAs: 'list'
     })
     .state('restaurant', {
       url: '/restaurant/:id',
