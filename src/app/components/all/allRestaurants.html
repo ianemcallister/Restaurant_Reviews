@@ -19,7 +19,7 @@
 </div>
 
 <!--content-->
-<div class="row" ng-repeat="spot in list.list track by $index" ng-click='list.viewRestaurant($index)'>
+<div class="row" ng-repeat="spot in list.restaurantList track by $index" ng-click='list.viewRestaurant($index)'>
 	<div class="col-xs-12 col-sm-12">
 		<!--Name and Cuisine-->
 		<div class="col-xs-8 col-sm-8">
@@ -33,3 +33,4 @@
 		</div>	
 	</div>
 </div>
+

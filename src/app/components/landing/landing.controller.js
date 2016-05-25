@@ -26,7 +26,7 @@ class LandingController {
     FRONTENDDATA.set(this, frontendDataSvc);
     INIT.set(this, () => {
 
-      //get specific restaurant
+      //load models from the server
       FRONTENDDATA.get(this).loadFrontendModels(['restaurants', 'reviews']);
 
     });

@@ -1,53 +1,53 @@
-
-<!--Resturant Name-->
-<div class="row" id="header">
-	<H1>{{restaurant.model.name}} </H1>
-</div>
-
-<!--Type of cuisine-->
-<div class="row" id="cuisine">
-	{{restaurant.model.cuisine}} cusine 
-	<span class='pull-right'>{{restaurant.model.rating}}</span>
-</div>
-
-<!--Hours of operation-->
-<div class="row" id="hours">
-	Open: {{restaurant.model.hours.opens[0]}} 
-	- {{restaurant.model.hours.closes[0]}}
-</div>
-	
-<!--Address-->
-<div class="row" id="address">
-	{{restaurant.model.address.street1}}
-	{{restaurant.model.address.street2}}
-	{{restaurant.model.address.street3}}
-	{{restaurant.model.address.city}}, 
-	{{restaurant.model.address.state}} 
-	{{restaurant.model.address.zip}}
-</div>
-
-<!--Image-->
-<div class="row">
-	<img ng-src='{{restaurant.model.imageSrc}}' alt=""></img>
-</div>
-
-<!--Add a review-->
-<div class="row">
-	<a class="btn btn-primary" href="#/restaurant/{{restaurant.id}}/new/11">Add a new Review</a>
-	<div ui-view></div>
-</div>
-
-<!--List of Reviews-->
-<div class="row">
-	<h3>Reveiws</h3>
-	<div class="container">
-		<div class="row" ng-repeat='review in restaurant.model.reviews'>
-			{{review.name}}
-			{{review.date}}
-			{{review.rating}}
-			{{review.comments}}
-		</div>	
+<div class="container">
+	<!--Resturant Name-->
+	<div class="row" id="header">
+		<H1>{{restaurant.model.name}} </H1>
 	</div>
+
+	<!--Type of cuisine-->
+	<div class="row" id="cuisine">
+		{{restaurant.model.cuisine}} cusine 
+		<span class='pull-right'>{{restaurant.model.rating}}</span>
+	</div>
+
+	<!--Hours of operation-->
+	<div class="row" id="hours">
+		Open: {{restaurant.model.hours.opens[0]}} 
+		- {{restaurant.model.hours.closes[0]}}
+	</div>
+		
+	<!--Address-->
+	<div class="row" id="address">
+		{{restaurant.model.address.street1}}
+		{{restaurant.model.address.street2}}
+		{{restaurant.model.address.street3}}
+		{{restaurant.model.address.city}}, 
+		{{restaurant.model.address.state}} 
+		{{restaurant.model.address.zip}}
+	</div>
+
+	<!--Image-->
+	<div class="row">
+		<img ng-src='{{restaurant.model.imageSrc}}' alt=""></img>
+	</div>
+
+	<!--Add a review-->
+	<div class="row">
+		<a class="btn btn-primary" href="#/restaurant/{{restaurant.id}}/new/11">Add a new Review</a>
+		<div ui-view></div>
+	</div>
+
+	<!--List of Reviews-->
+	<div class="row">
+		<h3>Reveiws</h3>
+		<div class="container">
+			<div class="row" ng-repeat='review in restaurant.model.reviews'>
+				{{review.name}}
+				{{review.date}}
+				{{review.rating}}
+				{{review.comments}}
+			</div>	
+		</div>
+	</div>
+
 </div>
-
-

@@ -7,35 +7,27 @@
  */
 
 const INIT = new WeakMap();
-const SERVICE = new WeakMap();
+//const SERVICE = new WeakMap();
+const FRONTENDDATA = new WeakMap();
+const LOGGER = new WeakMap();
 
 class RestaurantController {
-  constructor ($log, $stateParams, restaurantProfileSvc) {
+  constructor ($log, $stateParams, frontendDataSvc, restaurant) {
     'ngInject';
     //local variables
-    var vm = this;
-    var id = $stateParams.id;
+    let vm = this;
+    let id = $stateParams.id;
 
     //view model variables
-    vm.model = {}
+    vm.model = restaurant;
     vm.id = id;
 
     //run services
-    SERVICE.set(this, restaurantProfileSvc);
+    FRONTENDDATA.set(this,frontendDataSvc); 
+    //SERVICE.set(this, restaurantProfileSvc);
+    LOGGER.set(this, $log);
     INIT.set(this, () => {
-
-      //get specific restaurant
-      SERVICE.get(this).getRestaurantProfile()
-      .then(response => {
-        $log.log(response);
-        vm.model = response[id];
-
-        /*response.forEach(rest => {
-          //console.log(rest);
-          if(rest.id == vm.id) vm.model = rest;
-        });*/
-        //$log.log(vm.model);
-      });
+        
 
     });
 
@@ -49,6 +41,6 @@ class RestaurantController {
 
 }
 
-RestaurantController.$inject = ['$log', '$stateParams', 'restaurantProfileSvc'];
+RestaurantController.$inject = ['$log', '$stateParams', 'frontendDataSvc', 'restaurant'];
 
 export { RestaurantController }

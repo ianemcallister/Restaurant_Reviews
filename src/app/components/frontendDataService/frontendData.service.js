@@ -27,20 +27,23 @@ class FrontendDataService {
 	}
 
 	//GETTER METHODS
-	getData(model) {
-
+	getData(model, record) {
+		LOGGER.get(this).log(model, record);
 		//if a request comes in for data, first look at the local variables
 		if(this._objectLength(this.localModels[model]) > 0) {
 			//if there are values in the local variable use those
 			return new Promise(resolve => {
-				resolve(this.localModels[model]);
+				
+				if(typeof record !== 'undefined') resolve(this.localModels[model][record]);
+				else resolve(this.localModels[model]);
 			});
 		} else {
 			//if nothing is found locally, go to the backend service
 			return new Promise(resolve => {
 				BACKEND.get(this).loadAModel(this.assetsPath, this.backendModels[model])
 				.then(response => {
-					resolve(response);
+					if(typeof record !== 'undefined') resolve(response[record]);
+					else resolve(response);
 				}).catch(error => {
 					LOGGER.get(this).log('Error: ', error);
 				});

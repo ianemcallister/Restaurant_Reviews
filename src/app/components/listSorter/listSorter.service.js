@@ -78,7 +78,7 @@ class ListSorterService {
 		//flip the reverse value
 		reverse = !reverse;
 		
-		//sort the collection by cuisine 
+		//sort the collection by rating 
 				
 		list.sort(function(a, b) { 
 			if(a.rating > b.rating) { return 1 }
@@ -91,7 +91,7 @@ class ListSorterService {
 		return list;
 	}
 
-	selectSort(method, reverse, collection) {
+	selectSort(collection, method, reverse) {
 
 		let local = this;
 		let sort = SortOrder[method];

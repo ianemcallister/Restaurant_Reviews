@@ -13,13 +13,25 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       url: '/list/:sort',
       templateUrl: 'app/components/all/allRestaurants.html',
       controller: 'AllRestaurantsController',
-      controllerAs: 'list'
+      controllerAs: 'list',
+      resolve: {
+        restaurants: function(frontendDataSvc) {
+          return frontendDataSvc.getData('restaurants');
+        }
+      }
     })
     .state('restaurant', {
       url: '/restaurant/:id',
       templateUrl: 'app/components/aRestaurant/restaurantProfile.html',
       controller: 'RestaurantController',
-      controllerAs: 'restaurant'
+      controllerAs: 'restaurant',
+      resolve: {
+        restaurant: function(frontendDataSvc, $stateParams) {
+          let id = $stateParams.id;
+
+          return frontendDataSvc.getData('restaurants', id);
+        }
+      }
     })
     /*.state('restaurant.postedReview', {
       url: '/:id',
