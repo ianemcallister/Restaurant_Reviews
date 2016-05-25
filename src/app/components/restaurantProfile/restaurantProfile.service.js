@@ -1,19 +1,20 @@
-const HTTP = new WeakMap();
-const PROMISE = new WeakMap();
+const LOGGER = new WeakMap();
+const DATASVC = new WeakMap();
 
 class RestaurantProfileService {
-	constructor ($http, $q) {
+	constructor ($log, backendDataSvc) {
 		'ngInject';
 		//define service
-		HTTP.set(this, $http);
-		PROMISE.set(this, $q);
+		LOGGER.set(this, $log);
+		DATASVC.set(this, backendDataSvc);
 		//define local model
 		this.restaurantList = [];
 		this.searchCriteria = { name: "", cuisine: "", city: "", zip: ""};
 	}
 
 	getRestaurantList() {
-		return HTTP.get(this).get('assets/json/restaurantList.json').then(response => response.data);
+		return DATASVC.get(this).loadAModel('assets/json/', 'restaurantList.json');
+		//return HTTP.get(this).get().then(response => response.data);
 	}	
 
 	getSortedList() {
@@ -24,16 +25,18 @@ class RestaurantProfileService {
 		this.restaurantList = collection;
 	}
 
-	getRestaurantProfile() {
+	getRestaurantProfile(id) {
+		let rps = this;
+
 		//check for it locally first
-		if(angular.isObject(this.restaurantList)) {
+		if(rps.restaurantList.length > 0) {
 			//if we have it locally return it immediately as a resolved promise
 			return new Promise(function(resolve) {
-				resolve(this.restaurantList);
+				resolve(rps.restaurantList[id]);
 			});
 		} else {
 			//if not,get it and return
-			return HTTP.get(this).get('assets/json/restaurantList.json').then(response => response.data);
+			//return HTTP.get(this).get('assets/json/restaurantList.json').then(response => response.data);
 		}
 	}
 
@@ -46,14 +49,14 @@ class RestaurantProfileService {
 	}
 
 	loadModel() {
-		HTTP.get(this).get('assets/json/restaurantList.json').then(response => {
-			console.log(response.data);
-			this.restaurantList = response.data;
-		})
-		.catch(e => { console.log('there was an error: ' + e); });
+		//HTTP.get(this).get('assets/json/restaurantList.json').then(response => {
+		//	console.log(response.data);
+		//	this.restaurantList = response.data;
+		//})
+		//.catch(e => { console.log('there was an error: ' + e); });
 	}
 }
 
-RestaurantProfileService.$inject = ['$http', '$log', '$q'];
+RestaurantProfileService.$inject = ['$log', 'backendDataSvc'];
 
 export { RestaurantProfileService }

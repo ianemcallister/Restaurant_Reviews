@@ -7,11 +7,11 @@
  */
  
 const INIT = new WeakMap();
-const SERVICE = new WeakMap();
+const FRONTENDDATA = new WeakMap();
 const STATE = new WeakMap();
 
 class LandingController {
-  constructor ($log, $state, restaurantProfileSvc) {
+  constructor ($log, $state, frontendDataSvc) {
     'ngInject';
     //declare local variables
     var vm = this;
@@ -23,11 +23,11 @@ class LandingController {
     
     //setup constants
     STATE.set(this, $state);
-    SERVICE.set(this, restaurantProfileSvc);
+    FRONTENDDATA.set(this, frontendDataSvc);
     INIT.set(this, () => {
 
       //get specific restaurant
-      SERVICE.get(this).loadModel();
+      FRONTENDDATA.get(this).loadFrontendModels(['restaurants', 'reviews']);
 
     });
 
@@ -36,9 +36,9 @@ class LandingController {
 
   }
 
-  seachNow(terms) {
+  seachNow(/*terms*/) {
     //pass the values to the service
-    SERVICE.get(this).setSearchCriteria(terms);
+    //SERVICE.get(this).setSearchCriteria(terms);
 
     //move to the list view, default to alpha sort
     STATE.get(this).go('list', {sort: "alpha"});
@@ -46,6 +46,6 @@ class LandingController {
 
 }
 
-LandingController.$inject = ['$log', '$state', 'restaurantProfileSvc'];
+LandingController.$inject = ['$log', '$state', 'frontendDataSvc'];
 
 export { LandingController }

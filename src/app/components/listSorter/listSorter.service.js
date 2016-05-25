@@ -11,8 +11,19 @@ class ListSorterService {
 
 	}
 
-	sortByAlpha(collection, reverse) {
-		var list = collection
+	_buildArrayFromObject(object) {
+		let newArray = [];
+
+		Object.keys(object).forEach(rest => {
+			newArray.push(object[rest]);
+		});
+
+		return newArray;
+	}
+
+	_sortByAlpha(collection, reverse) {
+		let list = collection;
+		let reference = {}
 		//sort the collection alphbetically 
 		
 		list.sort(function(a, b) { 
@@ -21,12 +32,18 @@ class ListSorterService {
 			return 0;
 		});
 
+		//run through the list and build a reference hash
+		let i = 0;
+		list.forEach(rest => {
+			reference[i] = rest.id;
+		});
+
 		if (reverse) list.reverse();
 		
-		return list;
+		return {list: list, ref: reference};
 	}
 
-	sortByCuisine(collection, reverse) {
+	_sortByCuisine(collection, reverse) {
 		var list = collection
 		//sort the collection by cuisine 
 				
@@ -41,7 +58,7 @@ class ListSorterService {
 		return list;
 	}
 
-	sortByReivews(collection, reverse) {
+	_sortByReivews(collection, reverse) {
 		var list = collection
 		//sort the collection by cuisine 
 				
@@ -56,7 +73,7 @@ class ListSorterService {
 		return list;
 	}
 
-	sortByRating(collection, reverse) {
+	_sortByRating(collection, reverse) {
 		var list = collection
 		//flip the reverse value
 		reverse = !reverse;
@@ -76,18 +93,21 @@ class ListSorterService {
 
 	selectSort(method, reverse, collection) {
 
-		var local = this;
-		var sort = SortOrder[method];
+		let local = this;
+		let sort = SortOrder[method];
+
+		//convert the collection from an object to a list
+		collection = local._buildArrayFromObject(collection);
 
 		switch (sort) {
 			case 0:
-				return local.sortByAlpha(collection, reverse);
+				return local._sortByAlpha(collection, reverse);
 			case 1:
-				return local.sortByCuisine(collection, reverse);
+				return local._sortByCuisine(collection, reverse);
 			case 2:
-				return local.sortByReivews(collection, reverse);
+				return local._sortByReivews(collection, reverse);
 			case 3:
-				return local.sortByRating(collection, reverse);
+				return local._sortByRating(collection, reverse);
 		}
 
 	}

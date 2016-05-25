@@ -29,6 +29,11 @@ class RestaurantController {
       .then(response => {
         $log.log(response);
         vm.model = response[id];
+
+        /*response.forEach(rest => {
+          //console.log(rest);
+          if(rest.id == vm.id) vm.model = rest;
+        });*/
         //$log.log(vm.model);
       });
 
