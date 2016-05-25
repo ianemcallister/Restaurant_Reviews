@@ -13,10 +13,7 @@
 			"zip": "90048"
 		},
 		"cuisine": "Japanese",
-		"hours": {
-			"opens": [690, 1050],
-			"closes": [870, 1320]
-		},
+		"hours": [{"open":690, "close":870}, {"open":1050, "close":1320}],
 		"rating": 4.5,
 		"noOfReviews": 145,
 		"reviews": {
@@ -42,10 +39,7 @@
 			"zip": "90046"
 		},
 		"cuisine": "Mexican",
-		"hours": {
-			"opens": [690],
-			"closes": [1560]
-		},
+		"hours": [{"open":690, "close":1560}],
 		"rating": 4.5,
 		"noOfReviews": 300,
 		"reviews": {
@@ -71,10 +65,7 @@
 			"zip": "90028"
 		},
 		"cuisine": "Breakfast",
-		"hours": {
-			"opens": [0],
-			"closes": [1440]
-		},
+		"hours": [{"always":true, "message":"24 Hours"}],
 		"rating": 4.1,
 		"noOfReviews": 90,
 		"reviews": {
@@ -100,10 +91,7 @@
 			"zip": "90036"
 		},
 		"cuisine": "Thai",
-		"hours": {
-			"opens": [690, 1020],
-			"closes": [930, 1320]
-		},
+		"hours": [{"open":690, "close":930}, {"open":1020, "close":1320}],
 		"rating": 4.2,
 		"noOfReviews": 190,
 		"reviews": {

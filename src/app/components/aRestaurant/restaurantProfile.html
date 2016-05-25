@@ -11,9 +11,10 @@
 	</div>
 
 	<!--Hours of operation-->
-	<div class="row" id="hours">
-		Open: {{restaurant.model.hours.opens[0]}} 
-		- {{restaurant.model.hours.closes[0]}}
+	Hours of operation:
+	<div class="row" id="hours" ng-repeat='service in restaurant.model.hours'>
+		<span ng-if='service.always !== undefined'>{{service.message}}</span>
+		<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
 	</div>
 		
 	<!--Address-->
