@@ -14,6 +14,8 @@ class FrontendDataService {
 		this.assetsPath = 'assets/json/';
 		this.backendModels = {'restaurants':'allRestaurants.json', 'reviews':'allReviews.json' };		
 
+		//specalized lists
+		this.reviewsByRestaurant = {};
 	}
 
 	_objectLength(object) {
@@ -28,7 +30,7 @@ class FrontendDataService {
 
 	//GETTER METHODS
 	getData(model, record) {
-		LOGGER.get(this).log(model, record);
+
 		//if a request comes in for data, first look at the local variables
 		if(this._objectLength(this.localModels[model]) > 0) {
 			//if there are values in the local variable use those

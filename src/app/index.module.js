@@ -10,6 +10,7 @@ import { ReviewController } from './components/aReview/aReview.Controller'
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { FrontendDataService } from '../app/components/FrontendDataService/frontendData.service';
+import { ReviewsService } from '../app/components/ReviewsService/reviews.service';
 import { BackendDataService } from '../app/components/BackendDataService/backendData.service';
 import { RestaurantProfileService } from '../app/components/restaurantProfile/restaurantProfile.service';
 import { ListSorterService } from '../app/components/listSorter/listSorter.service';
@@ -28,6 +29,7 @@ angular.module('chowpal', ['ngAnimate', 'ngTouch', 'ngAria', 'ngResource', 'ui.r
   .service('webDevTec', WebDevTecService)
   .service('backendDataSvc', BackendDataService)
   .service('frontendDataSvc', FrontendDataService)
+  .service('reviewsSvc', ReviewsService)
   .service('restaurantProfileSvc', RestaurantProfileService)
   .service('reviewMngrSvc', ReviewManager)
   .factory('listSorterSvc', ListSorterService.listSorterFactory)

@@ -16,14 +16,7 @@
 		"hours": [{"open":690, "close":870}, {"open":1050, "close":1320}],
 		"rating": 4.5,
 		"noOfReviews": 145,
-		"reviews": {
-			"09191983": {
-				"name": "Ian McAllister",
-				"date": "19284875382",
-				"rating": 5,
-				"comments": "This is the best sushi I have ever tasted!!! We'll definitely be back."
-			}
-		}
+		"reviews": ["900484800SWFuIE1jQWxsaXN0ZXI=7028"]
 	},
 	"9004674080":{
 		"id": 9004674080,
@@ -42,14 +35,7 @@
 		"hours": [{"open":690, "close":1560}],
 		"rating": 4.5,
 		"noOfReviews": 300,
-		"reviews": {
-			"09191983": {
-				"name": "Ian McAllister",
-				"date": "19284875382",
-				"rating": 5,
-				"comments": "This is the best sushi I have ever tasted!!! We'll definitely be back."
-			}
-		}
+		"reviews": ["9004674080SWFuIE1jQWxsaXN0ZXI=7752"]
 	},
 	"9002816080":{
 		"id": 9002816080,
@@ -68,14 +54,7 @@
 		"hours": [{"always":true, "message":"24 Hours"}],
 		"rating": 4.1,
 		"noOfReviews": 90,
-		"reviews": {
-			"09191983": {
-				"name": "Ian McAllister",
-				"date": "19284875382",
-				"rating": 5,
-				"comments": "This is the best sushi I have ever tasted!!! We'll definitely be back."
-			}
-		}
+		"reviews": ["9002816080SWFuIE1jQWxsaXN0ZXI=7844"]
 	},
 	"9003671680":{
 		"id": 9003671680,
@@ -94,13 +73,6 @@
 		"hours": [{"open":690, "close":930}, {"open":1020, "close":1320}],
 		"rating": 4.2,
 		"noOfReviews": 190,
-		"reviews": {
-			"09191983": {
-				"name": "Ian McAllister",
-				"date": "19284875382",
-				"rating": 5,
-				"comments": "This is the best sushi I have ever tasted!!! We'll definitely be back."
-			}
-		}
+		"reviews": ["9003671680SWFuIE1jQWxsaXN0ZXI=7904"]
 	}
 }

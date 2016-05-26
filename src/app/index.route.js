@@ -30,6 +30,10 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
           let id = $stateParams.id;
 
           return frontendDataSvc.getData('restaurants', id);
+        },
+        reviews: function(frontendDataSvc) {
+
+          return frontendDataSvc.getData('reviews');
         }
       }
     })

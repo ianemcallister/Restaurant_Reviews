@@ -1,35 +1,35 @@
 <div class="container">
 	<!--Resturant Name-->
 	<div class="row" id="header">
-		<H1>{{restaurant.model.name}} </H1>
+		<H1>{{restaurant.shop.name}} </H1>
 	</div>
 
 	<!--Type of cuisine-->
 	<div class="row" id="cuisine">
-		{{restaurant.model.cuisine}} cusine 
-		<span class='pull-right'>{{restaurant.model.rating}}</span>
+		{{restaurant.shop.cuisine}} cusine 
+		<span class='pull-right'>{{restaurant.shop.rating}}</span>
 	</div>
 
 	<!--Hours of operation-->
 	Hours of operation:
-	<div class="row" id="hours" ng-repeat='service in restaurant.model.hours'>
+	<div class="row" id="hours" ng-repeat='service in restaurant.shop.hours'>
 		<span ng-if='service.always !== undefined'>{{service.message}}</span>
 		<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
 	</div>
 		
 	<!--Address-->
 	<div class="row" id="address">
-		{{restaurant.model.address.street1}}
-		{{restaurant.model.address.street2}}
-		{{restaurant.model.address.street3}}
-		{{restaurant.model.address.city}}, 
-		{{restaurant.model.address.state}} 
-		{{restaurant.model.address.zip}}
+		{{restaurant.shop.address.street1}} 
+		{{restaurant.shop.address.street2}} 
+		{{restaurant.shop.address.street3}} 
+		{{restaurant.shop.address.city}}, 
+		{{restaurant.shop.address.state}} 
+		{{restaurant.shop.address.zip}}
 	</div>
 
 	<!--Image-->
 	<div class="row">
-		<img ng-src='{{restaurant.model.imageSrc}}' alt=""></img>
+		<img ng-src='{{restaurant.shop.imageSrc}}' alt=""></img>
 	</div>
 
 	<!--Add a review-->
@@ -41,13 +41,10 @@
 	<!--List of Reviews-->
 	<div class="row">
 		<h3>Reveiws</h3>
-		<div class="container">
-			<div class="row" ng-repeat='review in restaurant.model.reviews'>
-				{{review.name}}
-				{{review.date}}
-				{{review.rating}}
-				{{review.comments}}
-			</div>	
+		<div ng-repeat="review in restaurant.reviews">
+			{{review.rating}} ({{review.date}})<br>
+			{{review.comments}} <br>
+			-{{review.name}}
 		</div>
 	</div>
 
