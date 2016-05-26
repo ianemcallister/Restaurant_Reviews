@@ -36,7 +36,7 @@ class AllRestaurantsController {
         //sort it as required
         vm.restaurantList = this.sortBy(vm.allRestaurants, 'alpha');
 
-        LOGGER.get(this).log(vm.restaurantList);
+        //LOGGER.get(this).log(vm.restaurantList);
 
     });
 
@@ -61,7 +61,7 @@ class AllRestaurantsController {
   viewRestaurant(key) {
     //console.log(key);
     //log the findings
-    LOGGER.get(this).log(this.restaurantList[key].id);
+    //LOGGER.get(this).log(this.restaurantList[key].id);
 
     //redirect to that page
     STATE.get(this).go('restaurant', {id: this.restaurantList[key].id});

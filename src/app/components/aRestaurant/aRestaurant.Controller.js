@@ -17,7 +17,7 @@ class RestaurantController {
     'ngInject';
     //local variables
     let vm = this;
-    let id = $stateParams.id;
+    //let id = $stateParams.id;
 
     //view model variables
     vm.shop = restaurant;
@@ -36,9 +36,9 @@ class RestaurantController {
 
     INIT.get(this)();
     
-    LOGGER.get(this).log(vm.shop);
-    LOGGER.get(this).log(vm.reviews);
-    LOGGER.get(this).log(REVIEWSSVC.get(this).buildRecordId(9003671680, 'Ian McAllister'));
+    //LOGGER.get(this).log(vm.shop);
+    //LOGGER.get(this).log(vm.reviews);
+    //LOGGER.get(this).log(REVIEWSSVC.get(this).buildRecordId(9003671680, 'Ian McAllister'));
   }
 
   _formatTime(minutes) {

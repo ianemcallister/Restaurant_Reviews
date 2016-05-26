@@ -5,7 +5,7 @@ class FrontendDataService {
 	constructor ($log, backendDataSvc) {
 		'ngInject';
 		//define services
-		LOGGER.set(this, $log);
+		//LOGGER.set(this, $log);
 		BACKEND.set(this, backendDataSvc);
 		//define local variables
 		this.allReviews = {};
@@ -64,7 +64,7 @@ class FrontendDataService {
 			});
 
 		});
-		LOGGER.get(this).log('this was loaded', this.localModels);
+		//LOGGER.get(this).log('this was loaded', this.localModels);
 	}
 
 	//SETTER METHODS

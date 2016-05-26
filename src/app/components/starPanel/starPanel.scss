@@ -1,0 +1,24 @@
+.star-rating {
+	list-style: none;
+}
+
+.star {
+	display: inline;
+	/*width: 50px;*/
+}
+
+.starImg {
+	width: 40px;
+}
+
+@media (max-width: 330px) {
+	.starImg {
+		width: 20px;
+	}
+}
+
+@media (max-width: 420px) {
+	.starImg {
+		width: 20px;
+	}
+}

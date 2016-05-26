@@ -1,4 +1,4 @@
-export function StarPanelDirective(malarkey) {
+export function StarPanelDirective() {
   'ngInject';
 
   let directive = {
@@ -6,65 +6,50 @@ export function StarPanelDirective(malarkey) {
     scope: {
         starRating: '='
     },
-    templateUrl: 'starPanel.html',
+    templateUrl: 'app/components/starPanel/starPanel.html',
     link: linkFunc,
     controller: StarPanelController,
-    controllerAs: 'vm'
+    controllerAs: 'vm',
+    bindToController: true
   };
 
   return directive;
 
-  function linkFunc(scope, el, attr, vm) {
-    let watcher;
-    let typist = malarkey(el[0], {
-      typeSpeed: 40,
-      deleteSpeed: 40,
-      pauseDelay: 800,
-      loop: true,
-      postfix: ' '
-    });
-    console.log(scope.starRating);
-    el.addClass('acme-malarkey');
-
-    angular.forEach(scope.extraValues, (value) => {
-      typist.type(value).pause().delete();
-    });
-
-    watcher = scope.$watch('vm.contributors', () => {
-      angular.forEach(vm.contributors, (contributor) => {
-        typist.type(contributor.login).pause().delete();
-      });
-    });
-
-    scope.$on('$destroy', () => {
-      watcher();
-    });
+  function linkFunc(/*scope, el, attr, vm*/) {
   }
 
 }
 
 class StarPanelController {
-  constructor ($log, githubContributor) {
+  constructor ($log) {
     'ngInject';
 
     this.$log = $log;
     this.contributors = [];
 
-    this.activate(githubContributor);
     $log.log(this.starRating);
+
+    //build stars into an array
+    this.starsArray = this._buildStarsArray(this.starRating);
+
+    $log.log(this.starsArray);
   }
 
-  activate(githubContributor) {
-    return this.getContributors(githubContributor).then(() => {
-      this.$log.info('Activated Contributors View');
-    });
-  }
+  _buildStarsArray(rating) {
+    let remaing = rating;
+    let returnObject = [];
 
-  getContributors(githubContributor) {
-    return githubContributor.getContributors(10).then((data) => {
-      this.contributors = data;
+    while(remaing > 0) {
+      //add the proper term
+      if(remaing >= 1) returnObject.push('full');
+      else if(remaing < 1 && remaing >= 0.75) returnObject.push('threeQuarter');
+      else if(remaing < 0.75 && remaing >= 0.50) returnObject.push('half');
+      else if(remaing < 0.50 && remaing >= 0.25) returnObject.push('oneQuarter');
+      else if(remaing < 0.25 && remaing >= 0) returnObject.push('sliver');
+      remaing--;
+    }
+    
 
-      return this.contributors;
-    });
+    return returnObject;
   }
 }

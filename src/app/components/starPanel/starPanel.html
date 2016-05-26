@@ -1,8 +1,12 @@
 <ul class="star-rating" ng-class="">
-	<li ng-repeat="star in stars" 
-		class="star" 
+	<li class="star" 
 		ng-class="{filled: star.filled}" 
+		ng-repeat="star in vm.starsArray track by $index"
 		ng-click="toggle($index)">
-			<i class="fa fa-star"></i>
+			<img class='starImg' ng-if="star == 'full'" src='assets/images/FullStar_50_48.png'>
+			<img class='starImg' ng-if="star == 'threeQuarter' " src='assets/images/3_4_Star_50_48_gray.png'>
+			<img class='starImg' ng-if="star == 'half'" src='assets/images/1_2_Star_50_48_gray.png'>
+			<img class='starImg' ng-if="star == 'oneQuarter'" src='assets/images/1_4_Star_50_48_gray.png'>
+			<img class='starImg' ng-if="star == 'sliver'" src='assets/images/sliver_Star_50_48_gray.png'>
 	</li>
 </ul>

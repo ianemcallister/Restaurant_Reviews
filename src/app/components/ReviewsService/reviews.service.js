@@ -6,7 +6,7 @@ class ReviewsService {
 		//define services
 		LOGGER.set(this, $log);
 
-		LOGGER.get(this).log('in the reviews service');
+		//LOGGER.get(this).log('in the reviews service');
 	}
 
 	_utf8_to_b64(str) {
