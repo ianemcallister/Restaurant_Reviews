@@ -1,1 +1,58 @@
-<p>this is a new review</p>
+<div class="form-group">
+	
+	<!--First Name-->
+	<label for="firstName">First Name:
+		<input 	type="text" 
+				id='firstName' 
+				name="firstName"
+				ng-model='review.firstName'
+				>
+	</label>
+	
+	<!--Last Name-->
+	<label for="lastName">Last Name:
+		<input 	type="text" 
+				id='lastName' 
+				name="lastName"
+				ng-model='review.lastName'
+				>
+	</label>
+	
+	<!--Date-->
+	<label for="date">Date:
+		<input 	type="date" 
+				id='date' 
+				name ='date'
+				ng-model='review.date'
+				>
+	</label>
+	
+	<!--Rating-->
+	<label for="ratingNum">Rating:
+		<input 	type="number" 
+				id='ratingNum' 
+				name ='ratingNum'
+				ng-model='review.ratingNum'
+				>
+	</label>
+	
+	<!--Review-->
+	<label for="reviewMessage">Review:
+		<input 	type="text" 
+				id='reviewMessage' 
+				name='reviewMessage'
+				ng-model='review.reviewMessage'
+				>
+	</label>
+	
+	<!--Submission Button-->
+	<label for="submit">
+		<input 	type="subit" 
+				class='btn btn-success' 
+				id='submit' 
+				name='submit' 
+				value='Submit'
+				ng-click="review.submitForm()"
+				>
+	</label>
+</div>

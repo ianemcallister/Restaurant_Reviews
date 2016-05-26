@@ -11,21 +11,24 @@ const INIT = new WeakMap();
 const FRONTENDDATA = new WeakMap();
 const LOGGER = new WeakMap();
 const REVIEWSSVC = new WeakMap();
+const STATE = new WeakMap();
 
 class RestaurantController {
-  constructor ($log, $stateParams, frontendDataSvc, reviewsSvc, restaurant, reviews) {
+  constructor ($log, $state, $stateParams, frontendDataSvc, reviewsSvc, restaurant, reviews) {
     'ngInject';
     //local variables
     let vm = this;
     //let id = $stateParams.id;
 
     //view model variables
+    vm.id = $state.params['id'];
     vm.shop = restaurant;
     vm.reviews = reviews;
 
     //run services
     FRONTENDDATA.set(this,frontendDataSvc); 
     REVIEWSSVC.set(this, reviewsSvc);
+    STATE.set(this, $state);
     LOGGER.set(this, $log);
     INIT.set(this, () => {
         //format the times
@@ -89,12 +92,20 @@ class RestaurantController {
     return timesObject;
   }
 
-  submitReview () {
+  writeReview () {
+    let vm = this;
+    
+    //as long as we're not already in the review section add a new review
+    //TODO: TEST FOR STATE
+    
+    //calculate a review id
+    let reviewId = REVIEWSSVC.get(this).buildRecordId(vm.id, 'anonymous');
 
+    STATE.get(this).go('.newReview', {revId: reviewId});
   }
 
 }
 
-RestaurantController.$inject = ['$log', '$stateParams', 'frontendDataSvc', 'reviewsSvc', 'restaurant', 'reviews'];
+RestaurantController.$inject = ['$log', "$state",'$stateParams', 'frontendDataSvc', 'reviewsSvc', 'restaurant', 'reviews'];
 
 export { RestaurantController }

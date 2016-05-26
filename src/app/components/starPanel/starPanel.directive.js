@@ -27,12 +27,12 @@ class StarPanelController {
     this.$log = $log;
     this.contributors = [];
 
-    $log.log(this.starRating);
+    //$log.log(this.starRating);
 
     //build stars into an array
     this.starsArray = this._buildStarsArray(this.starRating);
 
-    $log.log(this.starsArray);
+    //$log.log(this.starsArray);
   }
 
   _buildStarsArray(rating) {

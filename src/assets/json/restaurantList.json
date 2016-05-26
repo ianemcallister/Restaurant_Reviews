@@ -2,7 +2,10 @@
 	"900484800":{
 		"id":900484800,
 		"name": "Sushi by H",
-		"imageSrc": "assets/images/90048480.jpg",
+		"image": {
+			"Src": "assets/images/90048480.jpg",
+			"title": "Exterior Image of Sushi by H"
+		},
 		"address": {
 			"street1": "480 S San Vicente Blvd",
 			"street2": "",
@@ -31,7 +34,10 @@
 	"9004674080":{
 		"id": 9004674080,
 		"name": "El Compadre Restaurant",
-		"imageSrc": "assets/images/900467408.jpg",
+		"image": {
+			"Src": "assets/images/900467408.jpg",
+			"title": "Exterior Image of Sushi by H"
+		},
 		"address": {
 			"street1": "7408 Sunset Blvd",
 			"street2": "",
@@ -60,7 +66,10 @@
 	"9002816080":{
 		"id": 9002816080,
 		"name": "Kitchen 24",
-		"imageSrc": "assets/images/900281608.jpg",
+		"image": {
+			"Src": "assets/images/900281608.jpg",
+			"title": "Interior Image of Kitchen 24"
+		},
 		"address": {
 			"street1": "1608 N Cahuenga Blvd",
 			"street2": "",
@@ -89,7 +98,10 @@
 	"9003671680":{
 		"id": 9003671680,
 		"name": "Bulan Thai Vegetarian Kitchen",
-		"imageSrc": "assets/images/900367168.png",
+		"image": {
+			"Src": "assets/images/900367168.png",
+			"title": "Exterior Image of Bulan Thai"
+		},
 		"address": {
 			"street1": "7168 Melrose Ave",
 			"street2": "",

@@ -44,10 +44,10 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controllerAs: 'restaurant'
     })*/
     .state('restaurant.newReview', {
-      url: '/new/:id',
+      url: '/newReview/:revId',
       templateUrl: 'app/components/aReview/newReview.html',
-      controller: 'RestaurantController',//'ReviewController',
-      controllerAs: 'restaurant'//'review'
+      controller: 'ReviewController',
+      controllerAs: 'review'
     })
     ;
 
