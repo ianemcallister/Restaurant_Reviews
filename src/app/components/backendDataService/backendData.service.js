@@ -9,6 +9,7 @@ class BackendDataService {
 		HTTP.set(this, $http);
 		PROMISE.set(this, $q);
 		LOGGER.set(this, $log);
+		//this._apiCall();
 	}
 
 	_get(url) {
@@ -21,6 +22,12 @@ class BackendDataService {
 		});
 	}
 
+	_apiCall() {
+		HTTP.get(this).get('/api/test').then(response => {
+			LOGGER.get(this).log(response.data);
+		});
+	}
+
 	loadAModel(path, file) { /*'assets/json/restaurantList.json'*/
 		//use the local methods to pass back the value
 		return this._getJSON(path + file);
@@ -28,6 +35,6 @@ class BackendDataService {
 	}
 }
 
-BackendDataService.$inject = ['$http', '$log', '$q'];
+BackendDataService.$inject = ['$http', '$q', '$log'];
 
 export { BackendDataService }

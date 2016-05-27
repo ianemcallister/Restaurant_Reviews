@@ -1,7 +1,10 @@
 {
   "name": "chowpal",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "expres": "0.0.5",
+    "gulp-nodemon": "^2.0.7"
+  },
   "scripts": {
     "test": "gulp test"
   },

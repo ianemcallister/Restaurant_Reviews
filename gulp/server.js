@@ -7,6 +7,9 @@ var conf = require('./conf');
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
 
+//SERVER FILES
+var nodemon = require('gulp-nodemon');
+
 var util = require('util');
 
 var proxyMiddleware = require('http-proxy-middleware');
@@ -33,7 +36,8 @@ function browserSyncInit(baseDir, browser) {
    *
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.9.0/README.md
    */
-  // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', changeOrigin: true});
+   //server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', changeOrigin: true});
+   server.middleware = proxyMiddleware('/api/test', {target: 'http://localhost:5000', changeOrigin: false});
 
   browserSync.instance = browserSync.init({
     startPath: '/',
@@ -46,7 +50,7 @@ browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
-gulp.task('serve', ['watch'], function () {
+gulp.task('serve', ['watch', 'nodemon'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
@@ -60,4 +64,14 @@ gulp.task('serve:e2e', ['inject'], function () {
 
 gulp.task('serve:e2e-dist', ['build'], function () {
   browserSyncInit(conf.paths.dist, []);
+});
+
+gulp.task('nodemon', function (cb) {
+  var called = false;
+  return nodemon({script: './src/server/app.js'}).on('start', function () {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  });
 });
