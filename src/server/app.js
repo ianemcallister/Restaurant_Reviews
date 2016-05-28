@@ -1,20 +1,30 @@
 var express = require('express');
 
+//define the express server
 var app = express.createServer();
-//var router = express.router();
-//var hbs = require('hbs');
 
-//app.set('view engine', 'html');
-//app.engine('html', hbs.__express);
+//define the routes
+app.get('/api/get/:file', function(req, res) {
+	console.log(req);
+	res.send({'getTest':'good test'});
+});
 
-//app.use(express.json());
-//app.use(express.urlencoded());
-//app.use(express.static('public'));
+app.get('/api/set/:file', function(req, res) {
+	console.log(req);
+	res.send({'setTest':'good test'});
+});
 
-app.get('/api/test', function(req, res) {
+app.get('/api/newReview/:id', function(req, res) {
 	console.log('sending a response');
-	res.send({'apiTEst':'good test'});
+	res.send({'newReview':'good test'});
 	//res.sendfile();
 });
 
+app.get('/api/test', function(req, res) {
+	console.log('sending a response');
+	res.send({'testTest':'good test'});
+	//res.sendfile();
+});
+
+//start listening
 app.listen(5000);

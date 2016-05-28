@@ -23,7 +23,7 @@ class BackendDataService {
 	}
 
 	_apiCall() {
-		HTTP.get(this).get('/api/test').then(response => {
+		HTTP.get(this).get('/api/set/1234').then(response => {
 			LOGGER.get(this).log(response.data);
 		});
 	}
