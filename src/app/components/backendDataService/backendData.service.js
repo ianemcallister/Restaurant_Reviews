@@ -29,6 +29,7 @@ class BackendDataService {
 	}
 
 	loadAModel(path, file) { /*'assets/json/restaurantList.json'*/
+		//LOGGER.get(this).log(path, file);
 		//use the local methods to pass back the value
 		return this._getJSON(path + file);
 		

@@ -5,13 +5,13 @@ class FrontendDataService {
 	constructor ($log, backendDataSvc) {
 		'ngInject';
 		//define services
-		//LOGGER.set(this, $log);
+		LOGGER.set(this, $log);
 		BACKEND.set(this, backendDataSvc);
 		//define local variables
 		this.allReviews = {};
 		this.allRestaurants = {};
 		this.localModels = { 'restaurants':this.allRestaurants, 'reviews':this.allReviews };
-		this.assetsPath = 'assets/json/';
+		this.assetsPath = 'api/get/';
 		this.backendModels = {'restaurants':'allRestaurants.json', 'reviews':'allReviews.json' };		
 
 		//specalized lists
@@ -44,6 +44,7 @@ class FrontendDataService {
 			return new Promise(resolve => {
 				BACKEND.get(this).loadAModel(this.assetsPath, this.backendModels[model])
 				.then(response => {
+					LOGGER.get(this).log(response);
 					if(typeof record !== 'undefined') resolve(response[record]);
 					else resolve(response);
 				}).catch(error => {
