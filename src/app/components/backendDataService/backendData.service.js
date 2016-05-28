@@ -23,9 +23,9 @@ class BackendDataService {
 	}
 
 	_apiCall() {
-		HTTP.get(this).get('/api/set/1234').then(response => {
+		/*HTTP.get(this).get('/api/set/1234').then(response => {
 			LOGGER.get(this).log(response.data);
-		});
+		});*/
 	}
 
 	loadAModel(path, file) { /*'assets/json/restaurantList.json'*/
@@ -33,6 +33,32 @@ class BackendDataService {
 		//use the local methods to pass back the value
 		return this._getJSON(path + file);
 		
+	}
+
+	saveNewReview(newReview) {
+		let bds = this;
+
+		//return a promise for async work
+		return new Promise(function(resolve, rej) {
+
+			var reviewId = newReview.reviewId;
+			var postPath = '/api/newReview/' + reviewId;
+
+			var params = angular.toJson(newReview);
+
+			HTTP.get(bds).post(postPath, params).then(response => {
+				
+				//logg and return
+				LOGGER.get(bds).log('got this back', response);
+				resolve(response);
+			
+			}).catch(error => {
+				//pass the error back
+				rej(error);
+			});
+
+		});
+
 	}
 }
 

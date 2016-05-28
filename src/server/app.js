@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var dataManager = require('./dataManagement.js');
 var path = require('path');
 	
@@ -8,6 +9,10 @@ var path = require('path');
 
 //define the express server
 var app = express.createServer();
+
+//define our body parsers
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 //define the routes
 app.get('/api/get/:file', function(req, res) {
@@ -22,12 +27,19 @@ app.get('/api/get/:file', function(req, res) {
 });
 
 app.get('/api/set/:file', function(req, res) {
-	console.log(req);
+	console.log(req.params.file, 'sent over');
+
+	//when we 
 	res.send({'setTest':'good test'});
 });
 
-app.get('/api/newReview/:id', function(req, res) {
-	console.log('sending a response');
+app.post('/api/newReview/:id', function(req, res) {
+	var reviewId = req.params.id;
+	var reviewData = req.body;
+	
+	//if a new review comes in, save it
+	dataManager.createFile('review', reviewId, reviewData);
+
 	res.send({'newReview':'good test'});
 	//res.sendfile();
 });

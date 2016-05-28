@@ -69,7 +69,28 @@ class FrontendDataService {
 	}
 
 	//SETTER METHODS
-	setData() {}
+	setNewReview(newReview) {
+		let fds = this;
+
+		//return a promise for async work
+		return new Promise(function(resolve, reject) {
+			//add the new review to the local model to reflect it now
+			//TODO: ADD THIS LATER
+
+			//then pass it the the server and return the respone
+			BACKEND.get(fds).saveNewReview(newReview).then(function(response) {
+				
+				//pass the response back
+				resolve(response);
+			
+			}).catch(error => {
+				//pass the error back
+				reject(error);
+			});
+
+		});
+		
+	}
 
 }
 

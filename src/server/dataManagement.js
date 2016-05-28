@@ -3,28 +3,30 @@
 //declare dependencies
 var fs = require('fs');
 var readline = require('readline');
+var path = require('path');
+var fileTypes = {'review': 0, 'restaurant':1};
 
 //define the object
 var DataManagement = {
-	getServerFile: getServerFile
+	createFile: createFile
 }
 
+function createFile(type, record, data) {
 
-
-function getServerFile(fileName) {
-	var dm = this;
-
-	var returnObject = {};
-
-	//define the readstream
-	var rl = readline.createInterface({
-		input: fs.createReadStream('./json/' + fileName)
-	});
-
-	//read the data
-	rl.on('line', function(line) {
-
-	});
-}	
+	//create the proper file type
+	switch(fileTypes[type]) {
+		case 0:
+			var thisPath = path.join(__dirname, './json/reviews/', record + '.json');
+			
+			//create a seperate file
+			var writable = fs.createWriteStream(thisPath);
+			writable.write(JSON.stringify(data, null, '\t'));
+			break;
+		case 1:
+			break;
+		default:
+			break;
+	}
+}
 
 module.exports = DataManagement;
