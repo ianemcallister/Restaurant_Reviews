@@ -41,15 +41,12 @@ class ReviewController {
 			comments: rc.reviewMessage
 		}
 
-		LOGGER.get(this).log(newReview);
-
 		//pass this review back to 
-		
 		FRONTENDDATA.get(this).setNewReview(newReview).then(response => {
 			
 			//log the response
 			LOGGER.get(this).log(response);
-			
+
 		});
 
 		STATE.get(this).go('restaurant', {id: rc.id});
