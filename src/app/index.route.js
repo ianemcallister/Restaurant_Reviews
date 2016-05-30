@@ -46,8 +46,20 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('restaurant.newReview', {
       url: '/newReview/:revId',
       templateUrl: 'app/components/aReview/newReview.html',
+      parent: 'restaurant',
       controller: 'ReviewController',
-      controllerAs: 'review'
+      controllerAs: 'review',
+      resolve: {
+        restaurant: function(frontendDataSvc, $stateParams) {
+          let id = $stateParams.id;
+
+          return frontendDataSvc.getData('restaurants', id);
+        },
+        reviews: function(frontendDataSvc) {
+
+          return frontendDataSvc.getData('reviews');
+        }
+      }
     })
     ;
 

@@ -41,16 +41,15 @@ class BackendDataService {
 		//return a promise for async work
 		return new Promise(function(resolve, rej) {
 
-			var reviewId = newReview.reviewId;
-			var postPath = '/api/newReview/' + reviewId;
+			var postPath = '/api/newReview';
 
 			var params = angular.toJson(newReview);
 
 			HTTP.get(bds).post(postPath, params).then(response => {
 				
-				//logg and return
-				LOGGER.get(bds).log('got this back', response);
-				resolve(response);
+				//log and return
+				LOGGER.get(bds).log('got this back', response.data);
+				resolve(response.data);
 			
 			}).catch(error => {
 				//pass the error back

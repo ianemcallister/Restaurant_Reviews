@@ -33,12 +33,11 @@ app.get('/api/set/:file', function(req, res) {
 	res.send({'setTest':'good test'});
 });
 
-app.post('/api/newReview/:id', function(req, res) {
-	var reviewId = req.params.id;
+app.post('/api/newReview', function(req, res) {
 	var reviewData = req.body;
 	
 	//if a new review comes in, save it
-	dataManager.createFile('review', reviewId, reviewData).then(function(response) {
+	dataManager.createFile('review', reviewData).then(function(response) {
 
 		res.send(response);
 	});

@@ -6,54 +6,83 @@
  * Controller of the transitApp
  */
 
-const LOGGER = new WeakMap();
 const STATE = new WeakMap();
+const LOGGER = new WeakMap();
+const SCOPE = new WeakMap();
 const FRONTENDDATA = new WeakMap();
+const REVIEWSSVC = new WeakMap();
 
 class ReviewController {
-	constructor ($state, $log, frontendDataSvc) {
+	constructor ($state, $log, $scope, frontendDataSvc, reviewsSvc) {
 		'ngInject';
 		let rc = this;
 
-		rc.id = $state.params['id'];
-
-		LOGGER.set(this, $log);
-		FRONTENDDATA.set(this, frontendDataSvc);
+		//define services
 		STATE.set(this, $state);
+		LOGGER.set(this, $log);
+		SCOPE.set(this, $scope);
+		FRONTENDDATA.set(this, frontendDataSvc);
+		REVIEWSSVC.set(this, reviewsSvc);
+		
+		//define scope values
+		rc.id = $state.params['id'];
+		rc.parentReviews = SCOPE.get(rc).restaurant.reviews;
+		//this.test = 1;
 
-		LOGGER.get(this).log('in the ReviewController');
-		this.test = 1;
+		//log required states
+		//LOGGER.get(this).log('in the ReviewController');
+		//LOGGER.get(this).log(SCOPE.get(rc));
+		//LOGGER.get(this).log(SCOPE.get(rc).restaurant.reviews);
+	}
+
+	_distillResponse(response) {
+		let reviewId = null;
+
+		Object.keys(response).forEach(function(key) {
+			reviewId = key;
+		});
+
+		return response[reviewId];
 	}
 
 	submitForm() {
 		let rc = this;
 
+		//define local variables
+		let dateString = REVIEWSSVC.get(this).getSecondsTime();
+
 		//build the review object
 		let newReview = {
-			reviewId: rc.id,
 			restaurant: 900484800,
 			name: {
 				first: rc.firstName,
 				last: rc.lastName
 			},
-			date: rc.date,
+			date: dateString,
 			rating: rc.ratingNum,
 			comments: rc.reviewMessage
 		}
 
 		//pass this review back to 
-		FRONTENDDATA.get(this).setNewReview(newReview).then(response => {
-			
-			//log the response
-			LOGGER.get(this).log(response);
+		FRONTENDDATA.get(this).setNewRemoteReview(newReview).then(response => {
+
+			let newReview = rc._distillResponse(response);
+
+			//add the new review to the local model
+			FRONTENDDATA.get(rc).setNewLocalReview(response);
+
+			//update the value in the parent scope
+			rc.parentReviews.push(newReview);
+
+			//reload the page
+			STATE.get(rc).go('restaurant', {id: rc.id});
 
 		});
 
-		STATE.get(this).go('restaurant', {id: rc.id});
 	}	
 
 }
 
-ReviewController.$inject = ['$state', '$log', 'frontendDataSvc'];
+ReviewController.$inject = ['$state', '$log', '$scope', 'frontendDataSvc', 'reviewsSvc'];
 
 export { ReviewController };

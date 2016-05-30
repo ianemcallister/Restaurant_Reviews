@@ -35,12 +35,13 @@ class RestaurantController {
         vm.shop.hours = vm._formatAllTimes(vm.shop.hours);
         //format the reviews
         vm.reviews = REVIEWSSVC.get(this).pullSelects(vm.reviews, vm.shop.reviews);
+
+        LOGGER.get(this).log(vm.shop);
+        LOGGER.get(this).log(vm.reviews);
     });
 
     INIT.get(this)();
     
-    //LOGGER.get(this).log(vm.shop);
-    //LOGGER.get(this).log(vm.reviews);
     //LOGGER.get(this).log(REVIEWSSVC.get(this).buildRecordId(9003671680, 'Ian McAllister'));
   }
 
@@ -92,6 +93,14 @@ class RestaurantController {
     return timesObject;
   }
 
+  addReviewToList(newReview) {
+    let vm = this;
+
+    LOGGER.get(this).log('got this in addReviewToList', newReview);
+    
+    vm.reviews.push(newReview);
+  }
+
   writeReview () {
     let vm = this;
     
@@ -99,7 +108,7 @@ class RestaurantController {
     //TODO: TEST FOR STATE
     
     //calculate a review id
-    let reviewId = REVIEWSSVC.get(this).buildRecordId(vm.id, 'anonymous');
+    let reviewId = REVIEWSSVC.get(this).buildTempRecordId(vm.id, 'anonymous');
 
     STATE.get(this).go('.newReview', {revId: reviewId});
   }

@@ -23,7 +23,11 @@ class ReviewsService {
 		return secondsOnly;
 	}
 
-	buildRecordId(restaurantId, userName) {
+	getSecondsTime() {
+		return this._currentTime();
+	}
+
+	buildTempRecordId(restaurantId, userName) {
 		let rs = this;
 
 		//get the current time

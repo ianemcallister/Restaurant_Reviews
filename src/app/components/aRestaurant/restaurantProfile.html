@@ -54,6 +54,6 @@
 	<div ng-repeat="review in restaurant.reviews">
 		<star-panel star-rating='review.rating'></star-panel> ({{review.date}})<br>
 		{{review.comments}} <br>
-		-{{review.name}}
+		-{{review.name.first}} {{review.name.last}}
 	</div>
 </div>

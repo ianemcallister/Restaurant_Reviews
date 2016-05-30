@@ -11,8 +11,6 @@ class ReviewManager {
 		//define local model
 	}
 
-	
-
 }
 
 ReviewManager.$inject = ['$http', '$log'];
