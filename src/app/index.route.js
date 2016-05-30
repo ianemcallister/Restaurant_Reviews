@@ -44,7 +44,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controllerAs: 'restaurant'
     })*/
     .state('restaurant.newReview', {
-      url: '/newReview/:revId',
+      url: '/newReview/:time',
       templateUrl: 'app/components/aReview/newReview.html',
       parent: 'restaurant',
       controller: 'ReviewController',

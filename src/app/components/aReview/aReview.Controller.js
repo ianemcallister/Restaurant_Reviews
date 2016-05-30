@@ -25,12 +25,13 @@ class ReviewController {
 		REVIEWSSVC.set(this, reviewsSvc);
 		
 		//define scope values
-		rc.id = $state.params['id'];
+		rc.restaurantId = $state.params['id'];
+		rc.time = $state.params['time'];
 		rc.parentReviews = SCOPE.get(rc).restaurant.reviews;
 		//this.test = 1;
 
 		//log required states
-		//LOGGER.get(this).log('in the ReviewController');
+		LOGGER.get(this).log(rc.restaurantId, rc.time);
 		//LOGGER.get(this).log(SCOPE.get(rc));
 		//LOGGER.get(this).log(SCOPE.get(rc).restaurant.reviews);
 	}
@@ -48,17 +49,14 @@ class ReviewController {
 	submitForm() {
 		let rc = this;
 
-		//define local variables
-		let dateString = REVIEWSSVC.get(this).getSecondsTime();
-
 		//build the review object
 		let newReview = {
-			restaurant: 900484800,
+			restaurant: rc.restaurantId,
 			name: {
 				first: rc.firstName,
 				last: rc.lastName
 			},
-			date: dateString,
+			date: rc.time,
 			rating: rc.ratingNum,
 			comments: rc.reviewMessage
 		}
@@ -75,7 +73,7 @@ class ReviewController {
 			rc.parentReviews.push(newReview);
 
 			//reload the page
-			STATE.get(rc).go('restaurant', {id: rc.id});
+			STATE.get(rc).go('restaurant', {id: rc.restaurantId});
 
 		});
 

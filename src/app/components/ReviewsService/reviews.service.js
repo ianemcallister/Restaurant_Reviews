@@ -15,29 +15,20 @@ class ReviewsService {
 
 	_currentTime() {
 		let newTime = new Date();
+		/*let year = newTime.getYear();
+		//let week = newTime.getWeek();
+		let day = newTime.getDay();
 		let hours = newTime.getHours();
 		let mins = newTime.getMinutes();
 		let seconds = newTime.getSeconds();
-		let secondsOnly = ((hours * 360) + (mins * 60) + seconds);
-
-		return secondsOnly;
+		let secondsOnly = ((year * 0) + (day * 360 * 24 *0) + (hours * 360) + (mins * 60) + seconds);
+		*/
+		return Date.parse(newTime);
+		//return secondsOnly;
 	}
 
-	getSecondsTime() {
+	buildTempRecordId() {
 		return this._currentTime();
-	}
-
-	buildTempRecordId(restaurantId, userName) {
-		let rs = this;
-
-		//get the current time
-		let currentTime = rs._currentTime();
-
-		let recordId = restaurantId + rs._utf8_to_b64(userName) + currentTime;
-
-		//convert to b64 and return
-		//return rs._utf8_to_b64(recordId);
-		return recordId;
 	}
 
 	pullSelects(collection, neededReviews) {

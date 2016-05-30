@@ -93,24 +93,16 @@ class RestaurantController {
     return timesObject;
   }
 
-  addReviewToList(newReview) {
-    let vm = this;
-
-    LOGGER.get(this).log('got this in addReviewToList', newReview);
-    
-    vm.reviews.push(newReview);
-  }
-
   writeReview () {
-    let vm = this;
+    //let vm = this;
     
     //as long as we're not already in the review section add a new review
     //TODO: TEST FOR STATE
     
     //calculate a review id
-    let reviewId = REVIEWSSVC.get(this).buildTempRecordId(vm.id, 'anonymous');
+    let reviewTime = REVIEWSSVC.get(this).buildTempRecordId();
 
-    STATE.get(this).go('.newReview', {revId: reviewId});
+    STATE.get(this).go('.newReview', {time: reviewTime});
   }
 
 }
