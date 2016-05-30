@@ -1,7 +1,7 @@
 
 <!--Resturant Name-->
 <div class="row" id="header">
-	<H1>{{restaurant.shop.name}} </H1>
+	<H1 class="col-xs-12 col-sm-12 col-md-8 col-lg-8">{{restaurant.shop.name}} </H1>
 </div>
 
 <!--Rating-->
@@ -20,40 +20,60 @@
 
 <!--Address-->
 <div class="row" id="address">
-	{{restaurant.shop.address.street1}} <br ng-if='restaurant.shop.address.street2 !== ""'>
-	{{restaurant.shop.address.street2}} <br ng-if='restaurant.shop.address.street3 !== ""'>
-	{{restaurant.shop.address.street3}} <br ng-if='restaurant.shop.address.city !== ""'>
-	{{restaurant.shop.address.city}}, 
-	{{restaurant.shop.address.state}} 
-	{{restaurant.shop.address.zip}}
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		{{restaurant.shop.address.street1}} <br ng-if='restaurant.shop.address.street2 !== ""'>
+		{{restaurant.shop.address.street2}} <br ng-if='restaurant.shop.address.street3 !== ""'>
+		{{restaurant.shop.address.street3}} <br ng-if='restaurant.shop.address.city !== ""'>
+		{{restaurant.shop.address.city}}, 
+		{{restaurant.shop.address.state}} 
+		{{restaurant.shop.address.zip}}
+	</div>
+	
 </div>
 
 <!--Hours of operation-->
 <div class="row" id="hours">
-	Hours of operation:
-	<div ng-repeat='service in restaurant.shop.hours'>
-		<span ng-if='service.always !== undefined'>{{service.message}}</span>
-		<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		Hours of operation:
+		<div ng-repeat='service in restaurant.shop.hours'>
+			<span ng-if='service.always !== undefined'>{{service.message}}</span>
+			<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
+		</div>
 	</div>
 </div>
 
 <!--Image-->
 <div class="row">
-	<img ng-src='{{restaurant.shop.image.Src}}' title="{{restaurant.shop.image.title}}"></img>
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		<img ng-src='{{restaurant.shop.image.Src}}' title="{{restaurant.shop.image.title}}"></img>
+	</div>
 </div>
 
 <!--Add a review   href="#/restaurant/9003671680/new/11"-->
 <div class="row">
-	<a class="btn btn-primary" ng-click='restaurant.writeReview()'>Add a new Review</a>
-	<div ui-view></div>
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		<a class="btn btn-primary" ng-click='restaurant.writeReview()'>Add a new Review</a>
+		<div ui-view></div>
+	</div>
 </div>
 
 <!--List of Reviews-->
 <div class="row">
-	<h3>Reveiws</h3>
-	<div ng-repeat="review in restaurant.reviews">
-		<star-panel star-rating='review.rating'></star-panel> ({{review.date | date: 'MMM d, yyyy'}})<br>
-		{{review.comments}} <br>
-		-{{review.name.first}} {{review.name.last}}
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		<h3>Reveiws</h3>
+		<div ng-repeat="review in restaurant.reviews">
+			<div class='col-xs-3 col-sm-3 col-md-3' >
+			{{review.name.first}} {{review.name.last}}
+			</div>
+			<div class='col-xs-9 col-sm-9 col-md-9' >
+				<p>
+					<star-panel star-rating='review.rating'></star-panel>
+					<span class='reviewDate'>{{review.date | date: 'M/d/yy'}}</span>
+				</p>
+				<p>
+					{{review.comments}}	
+				</p>
+			</div>
+		</div>
 	</div>
 </div>
