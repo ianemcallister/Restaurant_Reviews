@@ -1,9 +1,11 @@
 <div class="form-group">
-	
+	<!--Heading-->
+	<h4>New Review</h4>
 	<!--First Name-->
 	<label for="firstName">First Name:
 		<input 	type="text" 
 				id='firstName' 
+				class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
 				name="firstName"
 				ng-model='review.firstName'
 				>
@@ -12,7 +14,8 @@
 	<!--Last Name-->
 	<label for="lastName">Last Name:
 		<input 	type="text" 
-				id='lastName' 
+				id='lastName'
+				class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
 				name="lastName"
 				ng-model='review.lastName'
 				>
@@ -22,6 +25,7 @@
 	<label for="ratingNum">Rating:
 		<input 	type="number" 
 				id='ratingNum' 
+				class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
 				name ='ratingNum'
 				ng-model='review.ratingNum'
 				>
@@ -29,11 +33,18 @@
 	
 	<!--Review-->
 	<label for="reviewMessage">Review:
-		<input 	type="text" 
+		<textarea 	name="reviewMessage" 
+					id="reviewMessage"
+					class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
+					ng-model='review.reviewMessage'
+					cols="30" 
+					rows="10">
+		</textarea>
+		<!--<input 	type="text" 
 				id='reviewMessage' 
 				name='reviewMessage'
-				ng-model='review.reviewMessage'
-				>
+				
+				>-->
 	</label>
 	
 	<!--Submission Button-->

@@ -1,3 +1,53 @@
+.restName {
+	padding-left: 0px;
+}
+
+.newReviewBtn {
+	padding-right: 0px;
+}
+
+.addressAndHours {
+	padding-left: 0px;
+}
+
+.imageBlock {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.reviewsList {
+	padding-left: 0px;
+	list-style-type:none
+}
+
+.reviewsListBlock {
+	padding-top: 10px;
+	/*border-top: 1px;
+	border-top-style: solid;
+	border-top-color: #e5e5e1;*/
+}
+
+.cuisineBlock {
+	padding-left: 0px;
+}
+
+.noOfReviews {
+	padding-left: 10px;
+}
+
+.reviewerName {
+	padding-left: 0px;
+}
+
+.starsAndReview {
+	padding-right: 0px;
+}
+
+.ratingAndReviews {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 .aReview {
 	padding-top: 10px;
 	border-width: 1px;
@@ -11,6 +61,11 @@
 	padding-top: 10px;
 }
 
+.footer {
+	margin-top: 50px;
+}
+
 #cuisine {
 	margin: 0px;
+	color: blue;
 }
