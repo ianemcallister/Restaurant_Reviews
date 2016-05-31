@@ -1,36 +1,25 @@
 <h1>Find A Restaurant</h1>
 
-<div class="row">Filters Here</div>
-
-<!--header-->
-<div class="row listHeader">
-	<div class="col-xs-12 col-sm-12">
-		<!--Name and Cuisine-->
-		<div class="col-xs-8 col-sm-8">
-			<strong>Restaurant</strong> <br>
-			<span>Cuisine</span>
-		</div>
-		<!--Ratings-->
-		<div class="col-xs-4 col-sm-4">
-			<strong class="pull-right">Star Rating</strong> <br>
-			<span class="pull-right"># of Reviews</span>
-		</div>	
-	</div>
+<!--Filter Subview Goes Here-->
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="row">Filters Here</div>
 </div>
 
-<!--content-->
-<div class="row" ng-repeat="spot in list.restaurantList track by $index" ng-click='list.viewRestaurant($index)'>
-	<div class="col-xs-12 col-sm-12">
-		<!--Name and Cuisine-->
-		<div class="col-xs-8 col-sm-8">
-			<strong>{{spot.name}}</strong> <br>
-			<span>{{spot.cuisine}}</span>
-		</div>
-		<!--Ratings-->
-		<div class="col-xs-4 col-sm-4">
-			<strong class="pull-right">{{spot.rating}} Stars</strong> <br>
-			<span class="pull-right">{{spot.noOfReviews}} Reviews</span>
-		</div>	
-	</div>
-</div>
+<!--Results Table-->
+<table class='table table-striped'>
+	<thead class="thead-inverse">
+		<th>Restaurant<span class="pull-right glyphicon glyphicon-triangle-bottom"></span></th>
+		<th>Cuisine<span class="pull-right glyphicon glyphicon-triangle-top"></span></th>
+		<th>Reviews<span class="pull-right glyphicon glyphicon-triangle-bottom"></span></th>
+		<th>Rating<span class="pull-right glyphicon glyphicon-triangle-top"></span></th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="spot in list.restaurantList track by $index" ng-click='list.viewRestaurant($index)'>
+			<td>{{spot.name}}</td>
+			<td>{{spot.cuisine}}</td>
+			<td>{{spot.noOfReviews}}</td>
+			<td>{{spot.rating}}</td>	
+		</tr>
+	</tbody>
+</table>
 

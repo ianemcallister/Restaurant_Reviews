@@ -1,3 +1,7 @@
+@function calc-hero-img($target-px, $context) {
+	@return ($target-px / $context) * 1em;
+}
+
 .restName {
 	padding-left: 0px;
 }
@@ -13,6 +17,10 @@
 .imageBlock {
 	padding-right: 0px;
 	padding-left: 0px;
+}
+
+.heroImage {
+	width: 100%;
 }
 
 .reviewsList {
