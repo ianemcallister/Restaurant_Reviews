@@ -2,16 +2,36 @@
 
 <!--Filter Subview Goes Here-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<div class="row">Filters Here</div>
+	filter goes here
 </div>
 
 <!--Results Table-->
 <table class='table table-striped'>
 	<thead class="thead-inverse">
-		<th>Restaurant<span class="pull-right glyphicon glyphicon-triangle-bottom"></span></th>
-		<th>Cuisine<span class="pull-right glyphicon glyphicon-triangle-top"></span></th>
-		<th>Reviews<span class="pull-right glyphicon glyphicon-triangle-bottom"></span></th>
-		<th>Rating<span class="pull-right glyphicon glyphicon-triangle-top"></span></th>
+		<th ng-click='list.sortProps.setActiveSort("restaurant")'>Restaurant
+			<span 	ng-class="list.sortProps.restaurant.class" 
+					ng-style='list.sortProps.restaurant.style'
+					>
+			</span>
+		</th>
+		<th ng-click='list.sortProps.setActiveSort("cuisine")'>Cuisine
+			<span 	ng-class="list.sortProps.cuisine.class" 
+					ng-style='list.sortProps.cuisine.style'
+					>
+			</span>
+		</th>
+		<th ng-click='list.sortProps.setActiveSort("reviews")'>Reviews
+			<span 	ng-class="list.sortProps.reviews.class" 
+					ng-style='list.sortProps.reviews.style'
+					>
+			</span>
+		</th>
+		<th ng-click='list.sortProps.setActiveSort("rating")'>Rating
+			<span 	ng-class="list.sortProps.rating.class" 
+					ng-style='list.sortProps.rating.style'
+					>
+			</span>
+		</th>
 	</thead>
 	<tbody>
 		<tr ng-repeat="spot in list.restaurantList track by $index" ng-click='list.viewRestaurant($index)'>

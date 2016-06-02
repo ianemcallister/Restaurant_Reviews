@@ -43,7 +43,7 @@ class LandingController {
     //SERVICE.get(this).setSearchCriteria(terms);
     BACKENDDATA.get(this)._apiCall();                        //TAKE THIS OUT LATER
     //move to the list view, default to alpha sort
-    STATE.get(this).go('list', {sort: "alpha"});
+    STATE.get(this).go('list', {sort: "restaurant"});
   }
 
 }

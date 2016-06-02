@@ -14,6 +14,7 @@ import { ReviewsService } from '../app/components/ReviewsService/reviews.service
 import { BackendDataService } from '../app/components/BackendDataService/backendData.service';
 import { RestaurantProfileService } from '../app/components/restaurantProfile/restaurantProfile.service';
 import { ListSorterService } from '../app/components/listSorter/listSorter.service';
+import { SortPropsGenerator } from '../app/components/sortProps/SortProps.Generator';
 import { ReviewManager } from '../app/components/reviewManager/reviewManager.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
@@ -33,6 +34,7 @@ angular.module('chowpal', ['ngAnimate', 'ngTouch', 'ngAria', 'ngResource', 'ui.r
   .service('restaurantProfileSvc', RestaurantProfileService)
   .service('reviewMngrSvc', ReviewManager)
   .factory('listSorterSvc', ListSorterService.listSorterFactory)
+  .factory('SortPropsGenerator', SortPropsGenerator.sortPropsFactory)
   .controller('LandingController', LandingController)
   .controller('AllRestaurantsController', AllRestaurantsController)
   .controller('RestaurantController', RestaurantController)

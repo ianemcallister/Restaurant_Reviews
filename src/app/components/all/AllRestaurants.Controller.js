@@ -14,15 +14,10 @@ const LOGGER = new WeakMap();
 const SORTER = new WeakMap();
 
 class AllRestaurantsController {
-  constructor ($log, $state, restaurants, frontendDataSvc, listSorterSvc) {
+  constructor ($log, $state, $scope, restaurants, frontendDataSvc, listSorterSvc) {
     'ngInject';
     let vm = this;
 
-    //define local variables
-    vm.state = $state.current.name;
-    vm.order = $state.params['sort'];
-    vm.allRestaurants = restaurants;           //load the 
-    
     //define local services
     LOGGER.set(this, $log);
     STATE.set(this, $state);
@@ -30,11 +25,20 @@ class AllRestaurantsController {
     //SERVICE.set(this, restaurantProfileSvc);
     SORTER.set(this, listSorterSvc)
 
+    //define local variables
+    vm.state = $state.current.name;
+    vm.order = $state.params['sort'];
+    vm.allRestaurants = restaurants;                        //load the restaurants
+    vm.sortProps = FRONTENDDATA.get(this).getSortProps();   //define the sort props
+
+    //load the sort order
+    vm.sortProps.defineSort(vm.order);
+
     //init on page load
     INIT.set(this, () => {
 
         //sort it as required
-        vm.restaurantList = this.sortBy(vm.allRestaurants, 'alpha');
+        vm.restaurantList = this.sortBy(vm.allRestaurants, 'restaurant');
 
         //LOGGER.get(this).log(vm.restaurantList);
 
@@ -69,6 +73,6 @@ class AllRestaurantsController {
 
 }
 
-AllRestaurantsController.$inject = ['$log', '$state', 'restaurants', 'frontendDataSvc', 'listSorterSvc'];
+AllRestaurantsController.$inject = ['$log', '$state', '$scope', 'restaurants', 'frontendDataSvc', 'listSorterSvc'];
 
 export { AllRestaurantsController }

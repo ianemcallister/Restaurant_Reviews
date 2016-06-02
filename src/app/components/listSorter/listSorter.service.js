@@ -1,6 +1,6 @@
 //const INIT = new WeakMap();
 const LOGGER = new WeakMap();
-const SortOrder = { "alpha": 0, "cuisine": 1, "total_reviews": 2, "rating": 3 };
+const SortOrder = { "restaurant": 0, "cuisine": 1, "reviews": 2, "rating": 3 };
 
 class ListSorterService {
 	constructor ($log) {

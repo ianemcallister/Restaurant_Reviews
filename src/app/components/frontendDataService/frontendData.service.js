@@ -2,17 +2,19 @@ const LOGGER = new WeakMap();
 const BACKEND = new WeakMap();
 
 class FrontendDataService {
-	constructor ($log, backendDataSvc) {
+	constructor ($log, backendDataSvc, SortPropsGenerator) {
 		'ngInject';
 		//define services
 		LOGGER.set(this, $log);
 		BACKEND.set(this, backendDataSvc);
+		
 		//define local variables
 		this.allReviews = {};
 		this.allRestaurants = {};
 		this.localModels = { 'restaurants':this.allRestaurants, 'reviews':this.allReviews };
 		this.assetsPath = 'api/get/';
 		this.backendModels = {'restaurants':'allRestaurants.json', 'reviews':'allReviews.json' };		
+		this.sortProps = SortPropsGenerator;
 
 		//specalized lists
 		this.reviewsByRestaurant = {};
@@ -29,6 +31,8 @@ class FrontendDataService {
 	}
 
 	//GETTER METHODS
+	getSortProps() { return this.sortProps }
+
 	getData(model, record) {
 		let fdService = this;
 
@@ -131,6 +135,6 @@ class FrontendDataService {
 
 }
 
-FrontendDataService.$inject = ['$log', 'backendDataSvc'];
+FrontendDataService.$inject = ['$log', 'backendDataSvc', 'SortPropsGenerator'];
 
 export { FrontendDataService }
