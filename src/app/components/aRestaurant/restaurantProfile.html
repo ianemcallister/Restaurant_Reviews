@@ -1,37 +1,42 @@
 
-<!--Resturant Name-->
+<!--Resturant Name // tabindex starts at 20-->
 <div class="row" id="header">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<H1 class="restName col-xs-7 col-sm-7 col-md-7 col-lg-7">{{restaurant.shop.name}}</H1>
+		<H1 class="restName col-xs-7 col-sm-7 col-md-7 col-lg-7"
+			tabindex=20>{{restaurant.shop.name}}</H1>
 		<div class="newReviewBtn col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			<a class="btn btn-danger pull-right" ng-click='restaurant.writeReview()'>Add a new Review</a>
+			<a 	class="btn btn-danger pull-right"
+				tabindex="21" 
+				ng-click='restaurant.writeReview()'>Add a new Review</a>
 		</div>
 	</div>
 </div>
 
-<!--Rating & Number of Reviews-->
+<!--Rating & Number of Reviews  // tabindex starts at 30-->
 <div class="row">
 	<div class="ratingAndReviews col-xs-12 col-sm-12 col-md-8 col-lg-8">
-		<star-panel star-rating='restaurant.shop.rating'></star-panel>
-		<span class='noOfReviews'>{{restaurant.shop.noOfReviews}} reviews</span>
+		<star-panel star-rating='restaurant.shop.rating'
+					tabindex='30'></star-panel>
+		<span 	class='noOfReviews'
+				tabindex="31">{{restaurant.shop.noOfReviews}} reviews</span>
 	</div>
 </div>
 
-<!--Type of cuisine-->
+<!--Type of cuisine // tabindex starts at 40-->
 <div class="row" id="cuisine">
 	<div class="cuisineBlock col-xs-12 col-sm-12 col-md-4 col-lg-4">
-		<h5>{{restaurant.shop.cuisine}}</h5>
+		<h5 tabindex="40">{{restaurant.shop.cuisine}}</h5>
 	</div>	
 </div>
 
-<!--Location, Hours & Images-->
+<!--Location, Hours & Images // tabindex starts at 50-->
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 		
 		<!--Address & Hours-->
 		<div class=" addressAndHours col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<!--Address-->
-			<div><strong>
+			<div tabindex="50"><strong>
 				{{restaurant.shop.address.street1}} <br ng-if='restaurant.shop.address.street2 !== ""'>
 				{{restaurant.shop.address.street2}} <br ng-if='restaurant.shop.address.street3 !== ""'>
 				{{restaurant.shop.address.street3}} <br ng-if='restaurant.shop.address.city !== ""'>
@@ -42,8 +47,9 @@
 			<br>
 			<!--Hours of Opperation-->
 			<div>
-				Hours of operation:
-				<div ng-repeat='service in restaurant.shop.hours'>
+				<span tabindex="55">Hours of operation:</span>
+				<div 	ng-repeat='service in restaurant.shop.hours'
+						tabindex="56">
 					<span ng-if='service.always !== undefined'>{{service.message}}</span>
 					<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
 				</div>
@@ -52,24 +58,29 @@
 		
 		<!--Images-->
 		<div class="imageBlock col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<img class='heroImage' ng-src='{{restaurant.shop.image.Src}}' title="{{restaurant.shop.image.title}}"></img>
+			<img 	class='heroImage' 
+					ng-src='{{restaurant.shop.image.Src}}'
+					tabindex="60" 
+					title="{{restaurant.shop.image.title}}"></img>
 		</div>
 	</div>
 </div>
 
-<!--Add a review   href="#/restaurant/9003671680/new/11"-->
+<!--Add a review    // tabindex starts at 70-->
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 		<div ui-view></div>
 	</div>
 </div>
 
-<!--List of Reviews-->
+<!--List of Reviews // tabindex starts at 80-->
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-		<h3>Reveiws</h3>
+		<h3 tabindex="80">Reveiws</h3>
 		<ul class='reviewsList'>
-			<li class='reviewsListBlock' ng-repeat="review in restaurant.reviews">
+			<li class='reviewsListBlock'
+				tabindex="81" 
+				ng-repeat="review in restaurant.reviews">
 				<div class='reviewerName col-xs-3 col-sm-3 col-md-3' >
 				{{review.name.first}} {{review.name.last}}
 				</div>
