@@ -10,6 +10,7 @@ const INIT = new WeakMap();
 const FRONTENDDATA = new WeakMap();
 //const SERVICE = new WeakMap();
 const STATE = new WeakMap();
+const SCOPE = new WeakMap();
 const LOGGER = new WeakMap();
 const SORTER = new WeakMap();
 
@@ -21,8 +22,8 @@ class AllRestaurantsController {
     //define local services
     LOGGER.set(this, $log);
     STATE.set(this, $state);
+    SCOPE.set(this, $scope);
     FRONTENDDATA.set(this, frontendDataSvc);
-    //SERVICE.set(this, restaurantProfileSvc);
     SORTER.set(this, listSorterSvc)
 
     //define local variables
@@ -33,14 +34,13 @@ class AllRestaurantsController {
 
     //load the sort order
     vm.sortProps.defineSort(vm.order);
+    //SCOPE.get(this).
 
     //init on page load
     INIT.set(this, () => {
 
         //sort it as required
         vm.restaurantList = this.sortBy(vm.allRestaurants, 'restaurant');
-
-        //LOGGER.get(this).log(vm.restaurantList);
 
     });
 
@@ -51,15 +51,26 @@ class AllRestaurantsController {
 
   //sort the list based on the user preference
   sortBy(collection, method, reverse) {
-
+    
     //if reverse is not defined set it to false
     if(typeof reverse == 'undefined') reverse = false;
 
     //sort the model
-    let sorted = SORTER.get(this).selectSort(collection, method);
-
+    let sorted = SORTER.get(this).selectSort(collection, method, reverse);
+    
     //set the view model values
-    return sorted.list;
+    return sorted
+
+  }
+
+  changeSort(category) {
+    let local = this;
+
+    //set the prop values
+    local.sortProps.setActiveSort(category);
+
+    //update the sort
+    local.restaurantList = local.sortBy(local.allRestaurants, category, local.sortProps[category].reverse);
   }
 
   viewRestaurant(key) {

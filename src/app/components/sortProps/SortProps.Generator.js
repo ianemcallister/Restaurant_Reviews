@@ -28,8 +28,7 @@ class SortPropsGenerator {
 	_setAscending(property, trueOrFalse) {
 		let generator = this;
 		let ascending = trueOrFalse || true;
-		console.log(property, 'trueOrFalse:', trueOrFalse);
-
+		
 		if(ascending) {
 			generator[property].class["glyphicon-triangle-bottom"] = true;
 			generator[property].class["glyphicon-triangle-top"] = false;

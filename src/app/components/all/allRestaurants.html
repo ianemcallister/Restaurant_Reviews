@@ -8,25 +8,25 @@
 <!--Results Table-->
 <table class='table table-striped'>
 	<thead class="thead-inverse">
-		<th ng-click='list.sortProps.setActiveSort("restaurant")'>Restaurant
+		<th ng-click='list.changeSort("restaurant")'>Restaurant
 			<span 	ng-class="list.sortProps.restaurant.class" 
 					ng-style='list.sortProps.restaurant.style'
 					>
 			</span>
 		</th>
-		<th ng-click='list.sortProps.setActiveSort("cuisine")'>Cuisine
+		<th ng-click='list.changeSort("cuisine")'>Cuisine
 			<span 	ng-class="list.sortProps.cuisine.class" 
 					ng-style='list.sortProps.cuisine.style'
 					>
 			</span>
 		</th>
-		<th ng-click='list.sortProps.setActiveSort("reviews")'>Reviews
+		<th ng-click='list.changeSort("reviews")'>Reviews
 			<span 	ng-class="list.sortProps.reviews.class" 
 					ng-style='list.sortProps.reviews.style'
 					>
 			</span>
 		</th>
-		<th ng-click='list.sortProps.setActiveSort("rating")'>Rating
+		<th ng-click='list.changeSort("rating")'>Rating
 			<span 	ng-class="list.sortProps.rating.class" 
 					ng-style='list.sortProps.rating.style'
 					>

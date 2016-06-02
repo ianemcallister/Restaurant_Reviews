@@ -36,11 +36,13 @@ class ListSorterService {
 		let i = 0;
 		list.forEach(rest => {
 			reference[i] = rest.id;
+			i++;
 		});
 
 		if (reverse) list.reverse();
 		
-		return {list: list, ref: reference};
+		return list;
+		//return {list: list, ref: reference};
 	}
 
 	_sortByCuisine(collection, reverse) {
@@ -98,15 +100,18 @@ class ListSorterService {
 
 		//convert the collection from an object to a list
 		collection = local._buildArrayFromObject(collection);
-
 		switch (sort) {
 			case 0:
+				//console.log('restaurant sort', reverse);
 				return local._sortByAlpha(collection, reverse);
 			case 1:
+				//console.log('cuisine sort', reverse);
 				return local._sortByCuisine(collection, reverse);
 			case 2:
+				//console.log('reviews sort', reverse);
 				return local._sortByReivews(collection, reverse);
 			case 3:
+				//console.log('rating sort', reverse);
 				return local._sortByRating(collection, reverse);
 		}
 
