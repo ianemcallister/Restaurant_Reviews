@@ -7,6 +7,7 @@
 				id='firstName' 
 				class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
 				name="firstName"
+				tabindex="25" 
 				ng-model='review.firstName'
 				>
 	</label>
@@ -17,6 +18,7 @@
 				id='lastName'
 				class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
 				name="lastName"
+				tabindex="26" 
 				ng-model='review.lastName'
 				>
 	</label>
@@ -27,6 +29,7 @@
 				id='ratingNum' 
 				class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
 				name ='ratingNum'
+				tabindex="27" 
 				ng-model='review.ratingNum'
 				>
 	</label>
@@ -37,6 +40,7 @@
 					id="reviewMessage"
 					class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
 					ng-model='review.reviewMessage'
+					tabindex="28" 
 					cols="30" 
 					rows="10">
 		</textarea>
@@ -49,12 +53,14 @@
 	
 	<!--Submission Button-->
 	<label for="submit">
-		<input 	type="subit" 
+		<input 	type="submit" 
 				class='btn btn-success' 
 				id='submit' 
 				name='submit' 
 				value='Submit'
+				tabindex="29" 
 				ng-click="review.submitForm()"
+				ng-submit="review.submitForm()"
 				>
 	</label>
 </div>

@@ -1,12 +1,14 @@
-<h1>Find your favorite food right here</h1>
+<header tabindex="1">
+	<h1>Find your favorite food right here</h1>
+</header>
 
-<div class="form-group">
+<form class="form-group">
 	<!--Search by name-->
 	<label for="nameInput"></label>
 	<input 	type="text" 
 			class="form-control" 
 			id="nameInput" 
-			placeholder="by name e.g. McDonalds, etc..."
+			placeholder="by name (example McDonalds)"
 			ng-model="landing.seachBy.name">
 	
 	<!--Search by cuisine-->
@@ -14,7 +16,7 @@
 	<input 	type="text" 
 			class="form-control" 
 			id="cuisineInput" 
-			placeholder="by cuisine e.g. Italian, etc..."
+			placeholder="by cuisine (example Italian)"
 			ng-model="landing.seachBy.cuisine">
 
 	<!--Search by location-->
@@ -22,14 +24,14 @@
 	<input 	type="text" 
 			class="form-control" 
 			id="cityInput" 
-			placeholder="by city e.g. Los Angeles, etc..."
+			placeholder="by city (example Los Angeles)"
 			ng-model="landing.seachBy.city">
 
 	<label for="zipInput"></label>
 	<input 	type="text" 
 			class="form-control" 
 			id="zipInput" 
-			placeholder="by zip e.g. 90007, etc..."
+			placeholder="by zip (example 90007)"
 			ng-model="landing.seachBy.zip">
 
 	<!--Submission button-->
@@ -38,5 +40,6 @@
 			type="submit" 
 			id="submit" 
 			value="Submit"
-			ng-click="landing.seachNow(landing.seachBy)">
-</div>
+			ng-click="landing.seachNow(landing.seachBy)"
+			ng-submit="landing.seachNow(landing.seachBy)">
+</form>

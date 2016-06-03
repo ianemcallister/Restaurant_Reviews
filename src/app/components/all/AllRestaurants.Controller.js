@@ -29,6 +29,7 @@ class AllRestaurantsController {
     //define local variables
     vm.state = $state.current.name;
     vm.order = $state.params['sort'];
+    vm.showFilters = false;
     vm.allRestaurants = restaurants;                        //load the restaurants
     vm.sortProps = FRONTENDDATA.get(this).getSortProps();   //define the sort props
 

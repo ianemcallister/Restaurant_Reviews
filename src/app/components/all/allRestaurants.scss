@@ -1,4 +1,99 @@
+.listHeading {
+	padding-top: 20px;
+	background-color: #c6c6ff;
+}
+
+.filterHeading {
+	/*padding-left: 0px;*/
+
+}
+
+.filterBtnSection {
+	padding-top: 15px;
+	/*padding-right: 0px;*/
+	margin-top: 20px;
+}
+
+.filterBtn {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.filtersBox {
+	padding-top: 10px;
+	/*padding-left: 0px;
+	padding-right: 0px;*/
+	padding-bottom: 15px;
+	/*border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: gray;
+	background-color: #e0dbdb;*/
+}
+
+.filtersSection {
+	/*padding-left: 0px;
+	padding-right: 0px;*/
+}
+
+.filtersSection input {
+	margin-right: 0px;
+}
+
+.filterList {
+	list-style-type: none;
+	padding-left: 0px;
+	margin-bottom: 0px;
+}
+
+.filterList .starImg {
+	width:12px;
+}
+
 .listHeader {
 	background-color: #008aff;
 	color: white;
+}
+
+.restaurantsList {
+	padding-top: 20px;
+	/*color: white;*/
+}
+
+/* unvisited link */
+a:link {
+    color: green;
+}
+
+/* visited link */
+a:visited {
+    color: green;
+}
+
+/* mouse over link */
+a:hover {
+    color: blue;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+
+.aRestaurantProfile {
+	padding-top: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 20px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #e0dbdb;
+}
+
+.restElement {
+	padding-left: 0px;
+	padding-right: 0px;	
+}
+
+.restPhoto {
+
 }
