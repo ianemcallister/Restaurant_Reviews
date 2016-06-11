@@ -1,166 +1,121 @@
-<section class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 listHeading">
-<div class="container">
-	<h3 class='col-xs-8 col-sm-8 col-md-8 col-lg-8 filterHeading' tabindex="10"><strong>Best restaurants</strong> <br>in Los Angeles</h3>
+<!--Header row-->
+<section class="row">
+	<div class="container">
+		<!--Page Title // tab-->
+		<h3 class="col-xs-8 col-sm-8 col-md-8 col-lg-8 filterHeading"
+			tabindex="10">
+			<strong>Best restaurants</strong> <br>
+			in Los Angeles
+		</h3>
 
-	<!--Filter Subview Goes Here // tabindex starts at 20-->
-	<div class="filterBtnSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
-		<button class='btn btn-danger filterBtn pull-right'
-				ng-click='list.showFilters = !list.showFilters'
-				tabindex="20">
-			<span class='glyphicon glyphicon-filter'></span>
-			All Filters
-		</button>
-	</div>
-	<div 	class="filtersBox col-xs-12 col-sm-12 col-md-12 col-lg-12"
-			ng-show='list.showFilters'>
-		
-		<!--Filter by Type of Cuisine-->
-		<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			<strong>Category</strong>
-			<ul class='filterList'>
-				<li><input type="checkbox" value='Mexican'/>Mexican</li>
-				<li><input type="checkbox" value='American'/>American</li>
-				<li><input type="checkbox" value='Japanese'/>Japanese</li>
-			</ul>
-			More...
-		</div>
-
-		<!--Filter by # of Reviews-->
-		<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			<strong>Total Reviews</strong>
-			<br>More than...
-			<ul class="filterList">
-				<li><input type="radio" name='totalReviews' value='5+'>5 Reviews</li>
-				<li><input type="radio" name='totalReviews' value='50+'>50 Reviews</li>
-				<li><input type="radio" name='totalReviews' value='500+'>500 Reviews</li>
-			</ul>
+		<!--Filter subview // tabindex starts at 20-->
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+			<button class="btn btn-danger filterBtn pull-right"
+					ng-click='list.showFilters = !list.showFilters'
+					tabindex="20">
+				<span class="glyphicon glyphicon-filter"></span> 
+				All Filters
+			</button>
+			<span class="pull-right" tabindex="21">4 restaurants</span>
 		</div>
 		
-		<!--Filter by star rating-->
-		<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			<strong>Star Rating</strong>
-			<br>At least...
-			<ul class="filterList">
-				<li><input type="radio" name='minimumStars' value='3'><star-panel star-rating='3'></star-panel></li>
-				<li><input type="radio" name='minimumStars' value='4'><star-panel star-rating='4'></star-panel></li>
-				<li><input type="radio" name='minimumStars' value='5'><star-panel star-rating='5'></star-panel></li>
-			</ul>
-		</div>
+		<!--Filter subview // tabindex starts at 30-->
+		<div 	class="filtersBox col-xs-12 col-sm-12 col-md-12 col-lg-12"
+				ng-show='list.showFilters'>
+			
+			<!--Filter by Type of Cuisine-->
+			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<strong tabindex="30">Category</strong>
+				<ul class='filterList'>
+					<li><input type="checkbox" value='Mexican' tabindex="31"/>Mexican</li>
+					<li><input type="checkbox" value='American' tabindex="32"/>American</li>
+					<li><input type="checkbox" value='Japanese' tabindex="33"/>Japanese</li>
+					<li><a href="" tabindex="34">More...</a></li>
+				</ul>
+			</div>
 
+			<!--Filter by # of Reviews-->
+			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<strong tabindex="40">Total Reviews</strong>
+				<br>More than...
+				<ul class="filterList">
+					<li><input type="radio" name='totalReviews' value='5+' tabindex="41">5 Reviews</li>
+					<li><input type="radio" name='totalReviews' value='50+' tabindex="41">50 Reviews</li>
+					<li><input type="radio" name='totalReviews' value='500+' tabindex="41">500 Reviews</li>
+				</ul>
+			</div>
+			
+			<!--Filter by star rating-->
+			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<strong tabindex="50">Star Rating</strong>
+				<br>At least...
+				<ul class="filterList">
+					<li><input type="radio" name='minimumStars' value='3' tabindex="51"><star-panel star-rating='3'></star-panel></li>
+					<li><input type="radio" name='minimumStars' value='4' tabindex="51"><star-panel star-rating='4'></star-panel></li>
+					<li><input type="radio" name='minimumStars' value='5' tabindex="51"><star-panel star-rating='5'></star-panel></li>
+				</ul>
+			</div>
+
+		</div>
 	</div>
+
 	<!--Add sort by filter-->
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<label for="sortOption">
-			<input 	list='sortOption' 
-					name='sortOption' 
-					class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
-					placeholder="Sort by Restaurant"  
-					required=''>
-			<datalist 	name="sortOption" 
-						id="sortOption"
-						class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-						>
-				<option value="Restaurant">Restaurant</option>
-				<option value="No. of Reviews">No. of Reviews</option>
-				<option value="Star Rating">Star Rating</option>
-				<option value="Cuisine">Cuisine</option>
-			</datalist>
-		</label>
+	<div class="container">
+		<div 	class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<label for="sortOption">
+				<input 	list='sortOption' 
+						name='sortOption' 
+						class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
+						placeholder="Sort by Restaurant"
+						tabindex="60"
+						ng-model='list.order.new'
+						required=''>
+				<datalist 	name="sortOption" 
+							id="sortOption"
+							class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
+							>
+					<option ng-repeat='sortOption in list.order.options.available' value="{{sortOption}}">{{sortOption}}</option>
+				</datalist>
+			</label>
+		</div>
 	</div>
-</div>
 </section>
 
-<!--Results Table // tabindex starts at 30-->
-<section class="container restaurantsList">
-	<!--<ol class='col-xs-12 col-sm-12 col-md-12 col-lg-12 aRestaurantProfile'
-		ng-repeat="spot in list.restaurantList track by $index">
-		<li>{{spot.name}} <br>
-			<star-panel star-rating='spot.rating'></star-panel>{{spot.noOfReviews}} <br>
-			{{spot.cuisine}}</li>
-	</ol>-->
+<!--Search Results row-->
+<article class="row">
+	<div class="container">
+		<div 	class='col-xs-12 col-sm-12 col-md-12 col-lg-12 aRestaurantProfile'
+				ng-repeat="spot in list.restaurantList track by $index"
+			 	tabindex="70" 
+			 	ng-model='test'
+			 	ng-click='list.viewRestaurant($index)'
+			 	ng-submit='list.viewRestaurant($index)'>
+			<!--Restaurant Photo-->
+			<div class="col-xs-0 col-sm-0 col-md-3 col-lg-3 restElement" >
+				
+			</div>
 
-	<article class='col-xs-12 col-sm-12 col-md-12 col-lg-12 aRestaurantProfile' ng-repeat="spot in list.restaurantList track by $index">
-		<!--Restaurant Photo-->
-		<div class="col-xs-0 col-sm-0 col-md-3 col-lg-3 restElement" >
+			<!--Restaurant Name, Rating, # of Ratings, and Cuisine-->
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
+				{{$index + 1}}. <a href="">{{spot.name}}</a> <br>
+				<star-panel star-rating='spot.rating'></star-panel>{{spot.noOfReviews}} <br>
+				<a href="">{{spot.cuisine}}</a>
+			</div>
+
+			<!--Restaurant Address & Phone Number-->
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
+				<span class="pull-right">
+				{{spot.address.street1}} <br ng-if='spot.address.street2 !== ""'>
+				{{spot.address.street2}} <br ng-if='spot.address.street3 !== ""'>
+				{{spot.address.street3}} <br ng-if='spot.address.city !== ""'>
+				{{spot.address.city}}, 
+				{{spot.address.state}} 
+				{{spot.address.zip}}
+				<br>
+				(555) 555-5555
+				</span>
+			</div>
 			
 		</div>
-
-		<!--Restaurant Name, Rating, # of Ratings, and Cuisine-->
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
-			{{$index + 1}}. <a href="">{{spot.name}}</a> <br>
-			<star-panel star-rating='spot.rating'></star-panel>{{spot.noOfReviews}} <br>
-			<a href="">{{spot.cuisine}}</a>
-		</div>
-
-		<!--Restaurant Address & Phone Number-->
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
-			<span class="pull-right">
-			{{spot.address.street1}} <br ng-if='spot.address.street2 !== ""'>
-			{{spot.address.street2}} <br ng-if='spot.address.street3 !== ""'>
-			{{spot.address.street3}} <br ng-if='spot.address.city !== ""'>
-			{{spot.address.city}}, 
-			{{spot.address.state}} 
-			{{spot.address.zip}}
-			<br>
-			(555) 555-5555
-			</span>
-		</div>
-		
-	</article>
-</section>
-
-<!--Results Table // tabindex starts at 30-->
-<!--<table class='table table-striped' summary='All restaurants that fit the search parameters provided'>
-	<caption tabindex="30" aria-label='Reviewed Restaurants listed by Name, Cuisine, Reviews, and Rating'>Reviewed Restaurants</caption>
-	<thead class="thead-inverse">
-		<th scope='col'
-			ng-click='list.changeSort("restaurant")'
-			tabindex="31"
-			aria-label='Sort By Restaurant'>Restaurant
-			<span 	
-					ng-class="list.sortProps.restaurant.class" 
-					ng-style='list.sortProps.restaurant.style'
-					>
-			</span>
-		</th>
-		<th scope='col'
-			ng-click='list.changeSort("cuisine")'
-			tabindex="32"
-			aria-label='Sort By Cuisine'>Cuisine
-			<span 	ng-class="list.sortProps.cuisine.class" 
-					ng-style='list.sortProps.cuisine.style'
-					>
-			</span>
-		</th>
-		<th scope='col'
-			ng-click='list.changeSort("reviews")'
-			tabindex="33"
-			aria-label='Sort By Number of Reviews'>Reviews
-			<span 	ng-class="list.sortProps.reviews.class" 
-					ng-style='list.sortProps.reviews.style'
-					>
-			</span>
-		</th>
-		<th title='Sort By Rating'
-			ng-click='list.changeSort("rating")'
-			tabindex="34"
-			aria-label='Sort by Rating'>Rating
-			<span 	ng-class="list.sortProps.rating.class" 
-					ng-style='list.sortProps.rating.style'
-					>
-			</span>
-		</th>
-	</thead>-->
-	<!-- The body of the table // tabindex starts at 40-->
-	<!--<tbody>
-		<tr ng-repeat="spot in list.restaurantList track by $index"
-			tabindex="40" 
-			ng-click='list.viewRestaurant($index)'>
-			<td>{{spot.name}}</td>
-			<td>{{spot.cuisine}}</td>
-			<td>{{spot.noOfReviews}}</td>
-			<td>{{spot.rating}}</td>	
-		</tr>
-	</tbody>
-</table>-->
-
+	</div>
+</article>
