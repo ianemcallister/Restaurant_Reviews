@@ -10,7 +10,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     })
     //
     .state('list', {
-      url: '/list/:sort',
+      url: '/list/:sort?name&city&zip&cuisine&reviews&rating',
       templateUrl: 'app/components/all/allRestaurants.html',
       controller: 'AllRestaurantsController',
       controllerAs: 'list',

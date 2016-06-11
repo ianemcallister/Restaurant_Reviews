@@ -1,45 +1,60 @@
-<header tabindex="1">
-	<h1>Find your favorite food right here</h1>
-</header>
+<div class="row">
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<header tabindex="1">
+				<h1>Find your favorite food right here</h1>
+			</header>
+		</div>
+	</div>
+</div>
 
-<form class="form-group">
-	<!--Search by name-->
-	<label for="nameInput"></label>
-	<input 	type="text" 
-			class="form-control" 
-			id="nameInput" 
-			placeholder="by name (example McDonalds)"
-			ng-model="landing.seachBy.name">
-	
-	<!--Search by cuisine-->
-	<label for="cuisineInput"></label>
-	<input 	type="text" 
-			class="form-control" 
-			id="cuisineInput" 
-			placeholder="by cuisine (example Italian)"
-			ng-model="landing.seachBy.cuisine">
+<div class="row">
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-	<!--Search by location-->
-	<label for="cityInput"></label>
-	<input 	type="text" 
-			class="form-control" 
-			id="cityInput" 
-			placeholder="by city (example Los Angeles)"
-			ng-model="landing.seachBy.city">
+			<form class="form-group">
+				<!--Search by name-->
+				<label for="nameInput"></label>
+				<input 	type="text" 
+						class="form-control" 
+						id="nameInput" 
+						placeholder="by name (example McDonalds)"
+						ng-model="landing.seachBy.name">
+				
+				<!--Search by cuisine-->
+				<label for="cuisineInput"></label>
+				<input 	type="text" 
+						class="form-control" 
+						id="cuisineInput" 
+						placeholder="by cuisine (example Italian)"
+						ng-model="landing.seachBy.cuisine">
 
-	<label for="zipInput"></label>
-	<input 	type="text" 
-			class="form-control" 
-			id="zipInput" 
-			placeholder="by zip (example 90007)"
-			ng-model="landing.seachBy.zip">
+				<!--Search by location-->
+				<label for="cityInput"></label>
+				<input 	type="text" 
+						class="form-control" 
+						id="cityInput" 
+						placeholder="by city (example Los Angeles)"
+						ng-model="landing.seachBy.city">
 
-	<!--Submission button-->
-	<label for="submit"></label>
-	<input 	class="btn btn-success btn-block" 
-			type="submit" 
-			id="submit" 
-			value="Submit"
-			ng-click="landing.seachNow(landing.seachBy)"
-			ng-submit="landing.seachNow(landing.seachBy)">
-</form>
+				<!--Maybe add this later, but too much for right now
+				<label for="zipInput"></label>
+				<input 	type="text" 
+						class="form-control" 
+						id="zipInput" 
+						placeholder="by zip (example 90007)"
+						ng-model="landing.seachBy.zip">-->
+
+				<!--Submission button-->
+				<label for="submit"></label>
+				<input 	class="btn btn-success btn-block" 
+						type="submit" 
+						id="submit" 
+						value="Submit"
+						ng-click="landing.seachNow(landing.seachBy)"
+						ng-submit="landing.seachNow(landing.seachBy)">
+			</form>
+							
+		</div>
+	</div>
+</div>

@@ -22,14 +22,38 @@
 		<!--Filter subview // tabindex starts at 30-->
 		<div 	class="filtersBox col-xs-12 col-sm-12 col-md-12 col-lg-12"
 				ng-show='list.showFilters'>
-			
+	
 			<!--Filter by Type of Cuisine-->
 			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
 				<strong tabindex="30">Category</strong>
 				<ul class='filterList'>
-					<li><input type="checkbox" value='Mexican' tabindex="31"/>Mexican</li>
-					<li><input type="checkbox" value='American' tabindex="32"/>American</li>
-					<li><input type="checkbox" value='Japanese' tabindex="33"/>Japanese</li>
+					<li>
+						<input 	type="checkbox" 
+								ng-model='list.filters.cuisine.Mexican' 
+								tabindex="31"
+								ng-click='list.reFilter()'
+								ng-change='list.reFilter()'
+								/>
+								Mexican
+					</li>
+					<li>
+						<input 	type="checkbox" 
+								ng-model='list.filters.cuisine.American' 
+								tabindex="32"
+								ng-click='list.reFilter()'
+								ng-change='list.reFilter()'
+								/>
+								American
+					</li>
+					<li>
+						<input 	type="checkbox" 
+								ng-model='list.filters.cuisine.Japanese'
+								tabindex="33"
+								ng-click='list.reFilter()'
+								ng-change='list.reFilter()'
+								/>
+								Japanese
+					</li>
 					<li><a href="" tabindex="34">More...</a></li>
 				</ul>
 			</div>
@@ -39,9 +63,9 @@
 				<strong tabindex="40">Total Reviews</strong>
 				<br>More than...
 				<ul class="filterList">
-					<li><input type="radio" name='totalReviews' value='5+' tabindex="41">5 Reviews</li>
-					<li><input type="radio" name='totalReviews' value='50+' tabindex="41">50 Reviews</li>
-					<li><input type="radio" name='totalReviews' value='500+' tabindex="41">500 Reviews</li>
+					<li><input type="radio" ng-model='list.filters.totalReviews' name='totalReviews' value='5+' tabindex="41">5 Reviews</li>
+					<li><input type="radio" ng-model='list.filters.totalReviews' name='totalReviews' value='50+' tabindex="41">50 Reviews</li>
+					<li><input type="radio" ng-model='list.filters.totalReviews' name='totalReviews' value='500+' tabindex="41">500 Reviews</li>
 				</ul>
 			</div>
 			
@@ -50,10 +74,15 @@
 				<strong tabindex="50">Star Rating</strong>
 				<br>At least...
 				<ul class="filterList">
-					<li><input type="radio" name='minimumStars' value='3' tabindex="51"><star-panel star-rating='3'></star-panel></li>
-					<li><input type="radio" name='minimumStars' value='4' tabindex="51"><star-panel star-rating='4'></star-panel></li>
-					<li><input type="radio" name='minimumStars' value='5' tabindex="51"><star-panel star-rating='5'></star-panel></li>
+					<li><input type="radio" name='minimumStars' ng-model='list.filters.starRating' value='3' tabindex="51"><star-panel star-rating='3'></star-panel></li>
+					<li><input type="radio" name='minimumStars' ng-model='list.filters.starRating' value='4' tabindex="51"><star-panel star-rating='4'></star-panel></li>
+					<li><input type="radio" name='minimumStars' ng-model='list.filters.starRating' value='5' tabindex="51"><star-panel star-rating='5'></star-panel></li>
 				</ul>
+			</div>
+
+			<!--Clear all Filters Button-->
+			<div class="filtersSection col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<button ng-submit='list.resetFilters()' ng-click='list.resetFilters()'>Reset Filters</button>
 			</div>
 
 		</div>

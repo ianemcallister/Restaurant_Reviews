@@ -29,10 +29,18 @@ class AllRestaurantsController {
     //define local variables
     let sortFilter = {'restaurant':'Restaurant', 'reviews':'Total Reviews', 'rating':'Star Rating', 'cuisine':'Cuisine'};
     vm.state = $state.current.name;
-    vm.order = {start: sortFilter[$state.params['sort']], new:'', options: {all:{'Restaurant':'restaurant', 'Total Reviews':'reviews', 'Star Rating':'rating', 'Cuisine':'cuisine'}, available:[]} };
+    vm.filters = this.filterDefaults();
+    vm.order = this.sortDefaults(sortFilter[$state.params['sort']]); 
     vm.showFilters = false;
     vm.allRestaurants = restaurants;                        //load the restaurants
     vm.sortProps = FRONTENDDATA.get(this).getSortProps();   //define the sort props
+
+    LOGGER.get(this).log('name', $state.params['name']);
+    LOGGER.get(this).log('city', $state.params['city']);
+    LOGGER.get(this).log('zip', $state.params['zip']);
+    LOGGER.get(this).log('cuisine', $state.params['cuisine']);
+    LOGGER.get(this).log('reviews', $state.params['reviews']);
+    LOGGER.get(this).log('rating', $state.params['rating']);
 
     //load the sort order
     vm.sortProps.defineSort(vm.order.start);
@@ -53,9 +61,10 @@ class AllRestaurantsController {
     INIT.get(this)();
 
     //setup watchers
+    //set up the sort order watchers
     SCOPE.get(vm).$watch(function watchSort() {
             return vm.order.new;
-        }, function(newVal, oldVal) {
+        }, function(newVal/*, oldVal*/) {
         
         //LOGGER.get(vm).log(newVal, oldVal);
 
@@ -129,6 +138,24 @@ class AllRestaurantsController {
     //set the view model values
     return sorted
 
+  }
+
+  filterDefaults() {
+    return {cuisine: {Mexican: true, American: true, Japanese: true}, totalReviews: null, starRating: null };
+  }
+
+  resetFilters() {
+    let vm = this;
+    vm.filters = this.filterDefaults();
+    //SCOPE.get(this).$apply();
+  }
+
+  reFilter() {
+    LOGGER.get(this).log('refiltering');
+  }
+
+  sortDefaults(sort) {
+    return {start: sort, new:'', options: {all:{'Restaurant':'restaurant', 'Total Reviews':'reviews', 'Star Rating':'rating', 'Cuisine':'cuisine'}, available:[]} };
   }
 
   changeSort(category) {

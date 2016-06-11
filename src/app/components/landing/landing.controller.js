@@ -7,6 +7,7 @@
  */
  
 const INIT = new WeakMap();
+const LOGGER = new WeakMap();
 const FRONTENDDATA = new WeakMap();
 const BACKENDDATA = new WeakMap();                        //TAKE THIS OUT LATER
 const STATE = new WeakMap();
@@ -24,6 +25,7 @@ class LandingController {
     
     //setup constants
     STATE.set(this, $state);
+    LOGGER.set(this, $log);
     FRONTENDDATA.set(this, frontendDataSvc);
     BACKENDDATA.set(this, backendDataSvc);                        //TAKE THIS OUT LATER
     INIT.set(this, () => {
@@ -38,12 +40,32 @@ class LandingController {
 
   }
 
-  seachNow(/*terms*/) {
+  buildParams(terms) {
+    let returnObject = {};
+    
+    //set the default sort as restaurant
+    returnObject.sort = 'restaurant';
+    
+    //let routeParams = name&city&zip&cuisine&reviews&rating
+    if(terms.name !== '') returnObject.name = terms.name;
+    if(terms.cuisine !== '') returnObject.cuisine = terms.cuisine;    
+    if(terms.city !== '') returnObject.city = terms.city;
+    if(terms.zip !== '') returnObject.zip = terms.zip;
+
+    return returnObject;
+  }
+
+  seachNow(terms) {
+    LOGGER.get(this).log(terms);
+    
+    //build the paramaters object
+    let parametersObject = this.buildParams(terms);
+
     //pass the values to the service
     //SERVICE.get(this).setSearchCriteria(terms);
     BACKENDDATA.get(this)._apiCall();                        //TAKE THIS OUT LATER
     //move to the list view, default to alpha sort
-    STATE.get(this).go('list', {sort: "restaurant"});
+    STATE.get(this).go('list', parametersObject);
   }
 
 }
