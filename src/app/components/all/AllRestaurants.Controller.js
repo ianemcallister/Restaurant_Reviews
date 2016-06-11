@@ -27,24 +27,26 @@ class AllRestaurantsController {
     SORTER.set(this, listSorterSvc)
 
     //define local variables
+    let sortFilter = {'restaurant':'Restaurant', 'reviews':'Total Reviews', 'rating':'Star Rating', 'cuisine':'Cuisine'};
     vm.state = $state.current.name;
-    vm.order = {start: $state.params['sort'], new:'', options: {all:{'Restaurant':true, 'Total Reviews':true, 'Star Rating':true, 'Cuisine':true}, available:[]} };
+    vm.order = {start: sortFilter[$state.params['sort']], new:'', options: {all:{'Restaurant':'restaurant', 'Total Reviews':'reviews', 'Star Rating':'rating', 'Cuisine':'cuisine'}, available:[]} };
     vm.showFilters = false;
     vm.allRestaurants = restaurants;                        //load the restaurants
     vm.sortProps = FRONTENDDATA.get(this).getSortProps();   //define the sort props
 
     //load the sort order
-    vm.sortProps.defineSort(vm.order);
+    vm.sortProps.defineSort(vm.order.start);
 
     //init on page load
     INIT.set(this, () => {
 
+        //LOGGER.get(vm).log("vm.order.start:", vm.order.start);
         //sort the list of restaurant as required
-        vm.restaurantList = this.sortBy(vm.allRestaurants, vm.order.start);
+        vm.restaurantList = this.sortBy(vm.allRestaurants, vm.order.options.all[vm.order.start]);
 
         //only use the list of options that you need
         vm.order.options.available = vm.consolidateSortOptions(vm.order.start, vm.order.options.all);
-
+        //LOGGER.get(vm).log("vm.order.options.available:", vm.order.options.available);
     });
 
     //run initialization
@@ -63,8 +65,15 @@ class AllRestaurantsController {
             var upperCaseValue = vm.toTitleCase(newVal);
         
             //LOGGER.get(vm).log(vm.order.options.all, upperCaseValue, vm.order.options.all[upperCaseValue]);
+            
             //check if the new value is a valid option
-            if(vm.order.options.all[upperCaseValue]) LOGGER.get(vm).log('found', newVal);
+            if(typeof vm.order.options.all[upperCaseValue] !== 'undefined') {
+
+                //if so, reload the page with the correct state route
+                STATE.get(vm).go('list', {sort: vm.order.options.all[upperCaseValue]});
+
+            } 
+
         }
 
     });
@@ -97,11 +106,12 @@ class AllRestaurantsController {
   }
 
   consolidateSortOptions(current, all) {
-    var returnList = []
+    var local = this;
+    var returnList = [];
 
     Object.keys(all).forEach(function(option) {
         
-        if(option.toLowerCase() !== current) returnList.push(option);
+        if(option.toLowerCase() !== current.toLowerCase()) returnList.push(option);
     });
 
     return returnList;
@@ -109,7 +119,7 @@ class AllRestaurantsController {
 
   //sort the list based on the user preference
   sortBy(collection, method, reverse) {
-    
+    //LOGGER.get(this).log(collection, method, reverse);
     //if reverse is not defined set it to false
     if(typeof reverse == 'undefined') reverse = false;
 
@@ -134,7 +144,7 @@ class AllRestaurantsController {
   viewRestaurant(key) {
     //console.log(key);
     //log the findings
-    LOGGER.get(this).log(this.restaurantList[key].id);
+    //LOGGER.get(this).log(this.restaurantList[key].id);
 
     //redirect to that page
     STATE.get(this).go('restaurant', {id: this.restaurantList[key].id});

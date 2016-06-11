@@ -62,11 +62,12 @@
 	<!--Add sort by filter-->
 	<div class="container">
 		<div 	class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<p>Sort by Restaurant, Total Reviews, Star Rating, or Cuisine</p>
 			<label for="sortOption">
 				<input 	list='sortOption' 
 						name='sortOption' 
 						class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
-						placeholder="Sort by Restaurant"
+						placeholder="{{list.toTitleCase(list.order.start)}}"
 						tabindex="60"
 						ng-model='list.order.new'
 						required=''>
