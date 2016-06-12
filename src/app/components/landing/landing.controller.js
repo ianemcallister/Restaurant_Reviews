@@ -9,11 +9,10 @@
 const INIT = new WeakMap();
 const LOGGER = new WeakMap();
 const FRONTENDDATA = new WeakMap();
-const BACKENDDATA = new WeakMap();                        //TAKE THIS OUT LATER
 const STATE = new WeakMap();
 
 class LandingController {
-  constructor ($log, $state, frontendDataSvc, backendDataSvc) {
+  constructor ($log, $state, frontendDataSvc) {
     'ngInject';
     //declare local variables
     var vm = this;
@@ -26,8 +25,7 @@ class LandingController {
     //setup constants
     STATE.set(this, $state);
     LOGGER.set(this, $log);
-    FRONTENDDATA.set(this, frontendDataSvc);
-    BACKENDDATA.set(this, backendDataSvc);                        //TAKE THIS OUT LATER
+    FRONTENDDATA.set(this, frontendDataSvc);                       
     INIT.set(this, () => {
 
       //load models from the server
@@ -61,9 +59,9 @@ class LandingController {
     //build the paramaters object
     let parametersObject = this.buildParams(terms);
 
-    //pass the values to the service
-    //SERVICE.get(this).setSearchCriteria(terms);
-    BACKENDDATA.get(this)._apiCall();                        //TAKE THIS OUT LATER
+    //prompt the frontend Dataservice to query the server
+    FRONTENDDATA.get(this).loadData(parametersObject);
+
     //move to the list view, default to alpha sort
     STATE.get(this).go('list', parametersObject);
   }

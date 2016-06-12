@@ -35,15 +35,38 @@ class BackendDataService {
 		
 	}
 
+	requestList(params) {
+		let bds = this;
+
+		//return a promise
+		return new Promise(function(resolve, rej) {
+
+			let postPath = '/api/getList';
+			let jsonParams = angular.toJson(params);
+
+			HTTP.get(bds).post(postPath, jsonParams).then(response => {
+
+				//log the results
+				LOGGER.get(bds).log('got this back', response.data);
+				resolve(response.data);
+				
+			}).catch(error => {
+				rej(error);
+			});
+
+		});
+
+	}
+
 	saveNewReview(newReview) {
 		let bds = this;
 
 		//return a promise for async work
 		return new Promise(function(resolve, rej) {
 
-			var postPath = '/api/newReview';
+			let postPath = '/api/newReview';
 
-			var params = angular.toJson(newReview);
+			let params = angular.toJson(newReview);
 
 			HTTP.get(bds).post(postPath, params).then(response => {
 				

@@ -15,8 +15,10 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'AllRestaurantsController',
       controllerAs: 'list',
       resolve: {
-        restaurants: function(frontendDataSvc) {
-          return frontendDataSvc.getData('restaurants');
+        restaurants: function($stateParams, frontendDataSvc) {
+          let searchParams = $stateParams;
+          return frontendDataSvc.loadData(searchParams);
+          //return frontendDataSvc.getData('restaurants');
         }
       }
     })

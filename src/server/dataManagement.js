@@ -10,6 +10,8 @@ var fileTypes = {'review': 0, 'restaurant':1};
 var DataManagement = {
 	_utf8_to_b64:_utf8_to_b64,
 	_buildRecordId:_buildRecordId,
+	_loadJSONFile:_loadJSONFile,
+	returnList:returnList,
 	createFile: createFile
 }
 
@@ -36,6 +38,58 @@ function _buildRecordId(type, data) {
 	}
 
 	return returnRecord;
+}
+
+function _loadJSONFile(directory, name) {
+	var thisPath = path.join(__dirname, directory, name);
+	var returnObject = fs.readFileSync(thisPath);
+	return JSON.parse(returnObject);
+}
+
+function returnList(listParams) {
+	var returnObject = {};
+	
+	//TODO: DELETE THIS LATER
+	console.log('got these list params in dataManagment', listParams);
+
+	//load all restaurants
+	var allRestaurants = this._loadJSONFile('./json/', 'allRestaurants.json');
+
+	console.log('allRestaurants', allRestaurants);
+
+	//check for params
+	if(typeof listParams.city !== 'undefined') {
+
+		//load the hash
+		var byCity = this._loadJSONFile('./json/hashes', 'byCityName.json');
+
+		console.log('byCity', byCity);
+
+		//get records in this city	
+		var inThisCity = byCity[listParams.city];
+
+		if(typeof inThisCity !== 'undefined') {
+			//add all cities in this list to the array	
+			inThisCity.forEach(function(id) {
+				returnObject[id] = allRestaurants[id];
+			});
+		} else {
+			returnObject = allRestaurants;
+			returnObject['error'] = 'No restaurants were found in ' + listParams.city;
+		}
+		
+
+	} else {
+		//if no params were present, return all the restaurants
+		returnObject = allRestaurants;
+	}
+
+	//load hashe
+	//var byZip = this._loadFile('./json/hashes', 'byZip.json');
+
+
+	//return the object
+	return returnObject;
 }
 
 function createFile(type, data) {

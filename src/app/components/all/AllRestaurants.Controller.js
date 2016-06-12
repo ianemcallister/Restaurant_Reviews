@@ -26,7 +26,7 @@ class AllRestaurantsController {
     LOGGER.set(this, $log);
     STATE.set(this, $state);
     SCOPE.set(this, $scope);
-    FRONTENDDATA.set(this, frontendDataSvc);
+    FRONTENDDATA.set(this, frontendDataSvc);           //TODO: remove this
     SORTER.set(this, listSorterSvc)
     INIT.set(this, () => {
 
@@ -104,13 +104,6 @@ class AllRestaurantsController {
 
     });
 
-    /*SCOPE.get(vm).$watch(function filtersBox() {
-        return vm.showExtendedFilters;
-    }, function(newVal) {
-        let currentSort = STATE.get(vm).params.sort;
-        //if the filt box is visible, reflect it in the url
-        STATE.get(vm).go('list', {sort: currentSort, filters: vm.showExtendedFilters});
-    });*/
   }
 
   toggleFiltersBox() {
@@ -121,14 +114,14 @@ class AllRestaurantsController {
     vm.showExtendedFilters = !vm.showExtendedFilters;
 
     //log the current state
-    LOGGER.get(this).log(vm.showExtendedFilters);
+    //LOGGER.get(this).log(vm.showExtendedFilters);
 
     //reload the page to maintain state
     STATE.get(vm).go('list', {sort: currentSort, filters: vm.showExtendedFilters});
   }
 
-  logStateParms(params) {
-    LOGGER.get(this).log(params);
+  logStateParms(/*params*/) {
+    //LOGGER.get(this).log(params);
   }
 
   toTitleCase(newString) {
@@ -191,18 +184,18 @@ class AllRestaurantsController {
     //SCOPE.get(this).$apply();
   }
 
-  buildStateParams(allFilters) {
+  buildStateParams(/*allFilters*/) {
     let vm = this;
     let returnObject = {};
 
-    LOGGER.get(vm).log("allFilters", allFilters);
-    LOGGER.get(vm).log("vm.order", vm.order);
+    //LOGGER.get(vm).log("allFilters", allFilters);
+    //LOGGER.get(vm).log("vm.order", vm.order);
 
     //set the sort property
     if(vm.order.new !== 'undefined') returnObject['sort'] = 'restaurant';//UPDATE THIS LATER vm.order.new;
     else returnObject['sort'] = 'restaurant'; //UPDATE THIS LATER vm.order.start;
 
-    LOGGER.get(vm).log(returnObject);
+    //LOGGER.get(vm).log(returnObject);
 
     return returnObject;
   }

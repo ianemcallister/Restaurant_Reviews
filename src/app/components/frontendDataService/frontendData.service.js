@@ -1,25 +1,43 @@
+
 const LOGGER = new WeakMap();
 const BACKEND = new WeakMap();
+const SORTPROPS = new WeakMap();
+const INIT = new WeakMap();
 
 class FrontendDataService {
 	constructor ($log, backendDataSvc, SortPropsGenerator) {
 		'ngInject';
+
+		//define local variables
+		let frontendData = this;
+
 		//define services
 		LOGGER.set(this, $log);
 		BACKEND.set(this, backendDataSvc);
-		
-		//define local variables
+		SORTPROPS.set(this, SortPropsGenerator);
+		INIT.set(this, () => {
+
+			//set the default objects
+			frontendData._setDefaultObjects();
+
+		});
+
+		//run initialization
+		INIT.get(this)();
+	}
+
+	_setDefaultObjects() {
 		this.allReviews = {};
 		this.allRestaurants = {};
+		this.reviewsByRestaurant = {};
+		//define local variables
 		this.localModels = { 'restaurants':this.allRestaurants, 'reviews':this.allReviews };
 		this.assetsPath = 'api/get/';
 		this.backendModels = {'restaurants':'allRestaurants.json', 'reviews':'allReviews.json' };		
-		this.sortProps = SortPropsGenerator;
-
-		//specalized lists
-		this.reviewsByRestaurant = {};
+		this.sortProps = SORTPROPS.get(this);
 	}
 
+	//local functions
 	_objectLength(object) {
 		let length = 0;
 		for( let key in object ) {
@@ -29,6 +47,7 @@ class FrontendDataService {
 		}
 		return length;
 	}
+
 
 	//GETTER METHODS
 	getSortProps() { return this.sortProps }
@@ -64,6 +83,25 @@ class FrontendDataService {
 			});
 		}
 		
+	}
+
+	loadData(params) {
+		//let vm = this;
+
+		//log the params		TAKE THIS OUT LATER
+		LOGGER.get(this).log('loading these params', params);
+
+		//request the data from the model
+		return new Promise(resolve => {
+			BACKEND.get(this).requestList(params).then(response => {
+
+				resolve(response);
+			}).catch(error => {
+				LOGGER.get(this).log('Error: ', error);
+			});
+
+		});
+
 	}
 
 	loadFrontendModels(models) {
