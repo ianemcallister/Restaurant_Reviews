@@ -11,7 +11,8 @@
 		<!--Filter subview // tabindex starts at 20-->
 		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			<button class="btn btn-danger filterBtn pull-right"
-					ng-click='list.showFilters = !list.showFilters'
+					ng-click='list.toggleFiltersBox()'
+					ng-submit='list.toggleFiltersBox()'
 					tabindex="20">
 				<span class="glyphicon glyphicon-filter"></span> 
 				All Filters
@@ -21,7 +22,7 @@
 		
 		<!--Filter subview // tabindex starts at 30-->
 		<div 	class="filtersBox col-xs-12 col-sm-12 col-md-12 col-lg-12"
-				ng-show='list.showFilters'>
+				ng-show='list.showExtendedFilters'>
 	
 			<!--Filter by Type of Cuisine-->
 			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">

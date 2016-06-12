@@ -7,11 +7,11 @@
  */
 
 const INIT = new WeakMap();
-const FRONTENDDATA = new WeakMap();
-//const SERVICE = new WeakMap();
+const LOGGER = new WeakMap();
 const STATE = new WeakMap();
 const SCOPE = new WeakMap();
-const LOGGER = new WeakMap();
+//const SERVICE = new WeakMap();
+const FRONTENDDATA = new WeakMap();
 const SORTER = new WeakMap();
 
 class AllRestaurantsController {
@@ -19,49 +19,66 @@ class AllRestaurantsController {
     'ngInject';
     let vm = this;
 
+    //define local variables
+    let allPossibleRestaurants = restaurants;       //TODO: this should reach out to the server for a list
+
     //define local services
     LOGGER.set(this, $log);
     STATE.set(this, $state);
     SCOPE.set(this, $scope);
     FRONTENDDATA.set(this, frontendDataSvc);
     SORTER.set(this, listSorterSvc)
-
-    //define local variables
-    let sortFilter = {'restaurant':'Restaurant', 'reviews':'Total Reviews', 'rating':'Star Rating', 'cuisine':'Cuisine'};
-    vm.state = $state.current.name;
-    vm.filters = this.filterDefaults();
-    vm.order = this.sortDefaults(sortFilter[$state.params['sort']]); 
-    vm.showFilters = false;
-    vm.allRestaurants = restaurants;                        //load the restaurants
-    vm.sortProps = FRONTENDDATA.get(this).getSortProps();   //define the sort props
-
-    LOGGER.get(this).log('name', $state.params['name']);
-    LOGGER.get(this).log('city', $state.params['city']);
-    LOGGER.get(this).log('zip', $state.params['zip']);
-    LOGGER.get(this).log('cuisine', $state.params['cuisine']);
-    LOGGER.get(this).log('reviews', $state.params['reviews']);
-    LOGGER.get(this).log('rating', $state.params['rating']);
-
-    //load the sort order
-    vm.sortProps.defineSort(vm.order.start);
-
-    //init on page load
     INIT.set(this, () => {
 
-        //LOGGER.get(vm).log("vm.order.start:", vm.order.start);
+        //setup all the state values
+        vm.setStateValues($state.params);
+
+        //define the filters
+        vm.filters = this.filterDefaults();
+
         //sort the list of restaurant as required
-        vm.restaurantList = this.sortBy(vm.allRestaurants, vm.order.options.all[vm.order.start]);
+        vm.restaurantList = this.sortBy(allPossibleRestaurants, vm.order.options.all[vm.order.start]);
 
         //only use the list of options that you need
         vm.order.options.available = vm.consolidateSortOptions(vm.order.start, vm.order.options.all);
-        //LOGGER.get(vm).log("vm.order.options.available:", vm.order.options.available);
+
+        //setup Watchers
+        vm.setupWatchers();
+
     });
 
     //run initialization
     INIT.get(this)();
 
-    //setup watchers
-    //set up the sort order watchers
+  }
+
+  paramStringToUXString(string) {
+    let stringHash = {'restaurant':'Restaurant', 'reviews':'Total Reviews', 'rating':'Star Rating', 'cuisine':'Cuisine'};
+    return stringHash[string];
+  }
+
+  uxStringToParamString(string) {
+    let stringHash = {'Restaurant':'restaurant', 'Total Reviews':'reviews', 'Star Rating':'rating', 'Cuisine':'cuisine'};
+    return stringHash[string];
+  }
+
+  setStateValues(params) {
+    let vm = this;
+
+    LOGGER.get(vm).log('State Params:', params); //TAKE THIS OUT LATER
+
+    //set the list order
+    vm.order = vm.sortDefaults(this.paramStringToUXString(params.sort));
+
+    //define the filter box state
+    if(params.filters == 'undefined') vm.showExtendedFilters = false;
+    else vm.showExtendedFilters = (params.filters == 'true');
+
+  }
+
+  setupWatchers() {
+    let vm = this;
+
     SCOPE.get(vm).$watch(function watchSort() {
             return vm.order.new;
         }, function(newVal/*, oldVal*/) {
@@ -87,6 +104,31 @@ class AllRestaurantsController {
 
     });
 
+    /*SCOPE.get(vm).$watch(function filtersBox() {
+        return vm.showExtendedFilters;
+    }, function(newVal) {
+        let currentSort = STATE.get(vm).params.sort;
+        //if the filt box is visible, reflect it in the url
+        STATE.get(vm).go('list', {sort: currentSort, filters: vm.showExtendedFilters});
+    });*/
+  }
+
+  toggleFiltersBox() {
+    let vm = this;
+    let currentSort = STATE.get(vm).params.sort;
+
+    //flip the state
+    vm.showExtendedFilters = !vm.showExtendedFilters;
+
+    //log the current state
+    LOGGER.get(this).log(vm.showExtendedFilters);
+
+    //reload the page to maintain state
+    STATE.get(vm).go('list', {sort: currentSort, filters: vm.showExtendedFilters});
+  }
+
+  logStateParms(params) {
+    LOGGER.get(this).log(params);
   }
 
   toTitleCase(newString) {
@@ -115,7 +157,6 @@ class AllRestaurantsController {
   }
 
   consolidateSortOptions(current, all) {
-    var local = this;
     var returnList = [];
 
     Object.keys(all).forEach(function(option) {
@@ -150,22 +191,34 @@ class AllRestaurantsController {
     //SCOPE.get(this).$apply();
   }
 
+  buildStateParams(allFilters) {
+    let vm = this;
+    let returnObject = {};
+
+    LOGGER.get(vm).log("allFilters", allFilters);
+    LOGGER.get(vm).log("vm.order", vm.order);
+
+    //set the sort property
+    if(vm.order.new !== 'undefined') returnObject['sort'] = 'restaurant';//UPDATE THIS LATER vm.order.new;
+    else returnObject['sort'] = 'restaurant'; //UPDATE THIS LATER vm.order.start;
+
+    LOGGER.get(vm).log(returnObject);
+
+    return returnObject;
+  }
+
   reFilter() {
-    LOGGER.get(this).log('refiltering');
+    let vm = this;
+
+    //build the state params from the vm.filter values
+    let stateParams = this.buildStateParams(vm.filters);
+
+    //load the new url to maintain state
+    STATE.get(vm).go('list', stateParams);
   }
 
   sortDefaults(sort) {
     return {start: sort, new:'', options: {all:{'Restaurant':'restaurant', 'Total Reviews':'reviews', 'Star Rating':'rating', 'Cuisine':'cuisine'}, available:[]} };
-  }
-
-  changeSort(category) {
-    let local = this;
-
-    //set the prop values
-    local.sortProps.setActiveSort(category);
-
-    //update the sort
-    local.restaurantList = local.sortBy(local.allRestaurants, category, local.sortProps[category].reverse);
   }
 
   viewRestaurant(key) {
