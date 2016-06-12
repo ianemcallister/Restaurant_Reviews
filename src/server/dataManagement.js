@@ -48,22 +48,15 @@ function _loadJSONFile(directory, name) {
 
 function returnList(listParams) {
 	var returnObject = {};
-	
-	//TODO: DELETE THIS LATER
-	console.log('got these list params in dataManagment', listParams);
 
 	//load all restaurants
 	var allRestaurants = this._loadJSONFile('./json/', 'allRestaurants.json');
-
-	console.log('allRestaurants', allRestaurants);
 
 	//check for params
 	if(typeof listParams.city !== 'undefined') {
 
 		//load the hash
 		var byCity = this._loadJSONFile('./json/hashes', 'byCityName.json');
-
-		console.log('byCity', byCity);
 
 		//get records in this city	
 		var inThisCity = byCity[listParams.city];
@@ -75,7 +68,7 @@ function returnList(listParams) {
 			});
 		} else {
 			returnObject = allRestaurants;
-			returnObject['error'] = 'No restaurants were found in ' + listParams.city;
+			returnObject['error'] = 'No restaurants were found in ' + listParams.city + ". Giving you all restaurants instead.";
 		}
 		
 

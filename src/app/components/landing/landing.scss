@@ -1,0 +1,36 @@
+$bootstrap-xs-break: 768px;
+$bootstrap-sm-break: 992px;
+$bootstrap-md-break: 1200px;
+
+$text-growth: 1.75;
+
+/*$image-width: 414px;
+$image-height: 736px;*/
+
+
+
+.landingContainer {
+	color: white;
+	@media screen and (max-width: $bootstrap-xs-break) {
+		background-image: url('../assets/images/mobileBG_414x736_portrait.jpg');
+		height: 736px;/*image-height;*/
+	}
+}
+
+.landingHeader {
+	padding-top: 40px;
+	padding-left: #{(414/7)}px;
+	font-size: #{$text-growth}em;
+}
+
+.landingInput {
+	margin-top: #{(736 / 7)}px;
+}
+
+#cityInput {
+	font-size: #{$text-growth}em;
+}
+
+#srchSubmit {
+	font-size: #{$text-growth}em;
+}

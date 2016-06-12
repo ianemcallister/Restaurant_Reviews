@@ -36,11 +36,24 @@ class AllRestaurantsController {
         //define the filters
         vm.filters = this.filterDefaults();
 
+        //if an error occured, extract it before submitting the list
+        if(typeof allPossibleRestaurants.error !== 'undefined') {
+
+            //save the error
+            vm.searchError = allPossibleRestaurants.error;
+
+            //remove it from the list
+            delete allPossibleRestaurants.error;
+        }
+
         //sort the list of restaurant as required
         vm.restaurantList = this.sortBy(allPossibleRestaurants, vm.order.options.all[vm.order.start]);
 
         //only use the list of options that you need
         vm.order.options.available = vm.consolidateSortOptions(vm.order.start, vm.order.options.all);
+
+        //count the number of restaurants
+        vm.noOfRestaurants = vm.restaurantList.length;
 
         //setup Watchers
         vm.setupWatchers();
@@ -65,7 +78,10 @@ class AllRestaurantsController {
   setStateValues(params) {
     let vm = this;
 
-    LOGGER.get(vm).log('State Params:', params); //TAKE THIS OUT LATER
+    //LOGGER.get(vm).log('State Params:', params); //TAKE THIS OUT LATER
+
+    //define the city
+    if(params.city !== 'undefined' && typeof vm.searchError !== 'undefined') vm.city = params.city;
 
     //set the list order
     vm.order = vm.sortDefaults(this.paramStringToUXString(params.sort));

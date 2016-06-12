@@ -1,11 +1,18 @@
 <!--Header row-->
-<section class="row">
+<section class="row filterBar">
 	<div class="container">
+
 		<!--Page Title // tab-->
 		<h3 class="col-xs-8 col-sm-8 col-md-8 col-lg-8 filterHeading"
 			tabindex="10">
-			<strong>Best restaurants</strong> <br>
-			in Los Angeles
+			<div>
+				<strong>Best restaurants</strong> 
+				<span ng-if='list.city'>
+					<br>
+					in {{list.city}}
+				</span>	
+			</div>
+			
 		</h3>
 
 		<!--Filter subview // tabindex starts at 20-->
@@ -17,7 +24,9 @@
 				<span class="glyphicon glyphicon-filter"></span> 
 				All Filters
 			</button>
-			<span class="pull-right" tabindex="21">4 restaurants</span>
+			<span class="pull-right" tabindex="21">
+				{{list.noOfRestaurants}} restaurant<span ng-if='list.noOfRestaurants > 1'>s</span>
+			</span>
 		</div>
 		
 		<!--Filter subview // tabindex starts at 30-->
@@ -87,7 +96,14 @@
 			</div>
 
 		</div>
+
+		<!--Error Message-->
+		<div 	class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert-danger"
+				ng-if='list.searchError'>
+			{{list.searchError}}
+		</div>
 	</div>
+
 
 	<!--Add sort by filter-->
 	<div class="container">
@@ -129,7 +145,12 @@
 			<!--Restaurant Name, Rating, # of Ratings, and Cuisine-->
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
 				{{$index + 1}}. <a href="">{{spot.name}}</a> <br>
-				<star-panel star-rating='spot.rating'></star-panel>{{spot.noOfReviews}} <br>
+				<div ng-if='spot.noOfReviews > 0'>
+					<star-panel star-rating='spot.rating'></star-panel>{{spot.noOfReviews}}
+				</div>
+				<div ng-if='!(spot.noOfReviews > 0)'>
+					No reviews yet
+				</div>
 				<a href="">{{spot.cuisine}}</a>
 			</div>
 

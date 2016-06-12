@@ -36,8 +36,6 @@ app.get('/api/set/:file', function(req, res) {
 app.post('/api/getList', function(req, res) {
 	var listParams = req.body;
 
-	console.log('got these params', listParams);
-
 	var returnObject = dataManager.returnList(listParams);
 	
 	res.send(returnObject);
