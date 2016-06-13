@@ -52,6 +52,9 @@ class AllRestaurantsController {
         //sort the list of restaurant as required
         vm.restaurantList = this.sortBy(allPossibleRestaurants, vm.order.options.all[vm.order.start]);
 
+        //filter out restaurants that don't qualify
+        vm.restaurantList = this._filterRestaurants(vm.restaurantList, vm.filters);
+
         //only use the list of options that you need
         vm.order.options.available = vm.consolidateSortOptions(vm.order.start, vm.order.options.all);
 
@@ -123,6 +126,111 @@ class AllRestaurantsController {
 
     });
 
+  }
+
+  _filterCuisine(object, standards) {
+    let vm = this;
+    let returnList = [];
+
+    //loop through standards
+    Object.keys(standards).forEach(function(type) {
+
+      //if we don't want this cuisine explore each restaurant
+      if(!standards[type]) {
+
+        //check each restaurant for that cuisine
+        Object.keys(object).forEach(function(record) {
+          let restaurantCuisine = object[record].data.cuisine;
+
+          if(restaurantCuisine == type) object[record].valid = false;
+        });
+
+      }
+
+    });
+
+    //no that the invalid records have been identified, add only the valid ones to the list
+    Object.keys(object).forEach(function(key) {
+
+      if(object[key].valid) returnList.push(object[key].data);
+
+    });
+
+    return returnList;
+  }
+
+  _buildListObject(list) {
+    let i = 0;
+    let listObject = {};
+
+    list.forEach(function(rest) {
+      listObject[i] = {
+        valid: true,
+        data: rest
+      };
+      i++;
+    });
+
+    return listObject;
+  }
+
+  _checkAgainstStandard(listObject, filter, standard) {
+    let vm = this;
+    let returnList = [];
+
+    if(filter == 'cuisine') {
+      returnList = vm._filterCuisine(listObject, standard)
+      return returnList; 
+    }
+
+    //refine value
+    standard = parseInt(standard);
+
+    if(filter == 'starRating') filter = 'rating';
+    if(filter == 'totalReviews') filter = 'reviews';
+
+    //loop through the entries
+    Object.keys(listObject).forEach(function(entry) {
+
+      //check for valid comparable
+      if(listObject[entry].data[filter] !== null) {
+        let valueToCheck = listObject[entry].data[filter];
+
+        //make sure value is greater than the standard
+        if(valueToCheck > standard)
+        returnList.push(listObject[entry].data);
+      }
+
+    });
+
+    return returnList; 
+  }
+
+  _applyFilter(list, filter, standard) {
+    let vm = this;
+    let listObject = vm._buildListObject(list);
+    let returnList = [];
+
+    //check if restaurants have valid values
+    returnList = vm._checkAgainstStandard(listObject, filter, standard);
+
+    return returnList;
+  }
+
+  _filterRestaurants(list, filters) {
+    let vm = this;
+    let returnList = list;
+
+    //loop through all the filters
+    Object.keys(filters).forEach(function(filter) {
+
+      if(filters[filter] !== null) {
+        returnList = vm._applyFilter(returnList, filter, filters[filter]);
+      }
+
+    });
+
+    return returnList;
   }
 
   toggleFiltersBox() {
@@ -314,8 +422,11 @@ class AllRestaurantsController {
 
   resetFilters() {
     let vm = this;
+    //let stateParams = vm.filters;
     vm.filters = this._filterDefaults();
-    //SCOPE.get(this).$apply();
+
+    //load the new url to maintain state
+    STATE.get(vm).go('list', {name:undefined, city:undefined,zip:undefined, cuisine:undefined, reviews:undefined, rating:undefined, filters:true});
   }
 
   buildStateParams(section, newValue) {
