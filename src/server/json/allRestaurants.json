@@ -1,28 +1,6 @@
 {
-	"941098000":{
-		"id":941098000,
-		"name": "Restaurant Gary Danko",
-		"image": {
-			"Src": "",
-			"title": ""
-		},
-		"address": {
-			"street1": "800 North Point St",
-			"street2": "",
-			"street3": "",
-			"unit": "",
-			"city": "San Francisco",
-			"state": "CA",
-			"zip": "94109"
-		},
-		"cuisine": "French",
-		"hours": [{"open":1050, "close":1320}],
-		"rating": null,
-		"noOfReviews": 0,
-		"reviews": []
-	},
-	"900484800":{
-		"id":900484800,
+	"900484800": {
+		"id": 900484800,
 		"name": "Sushi by H",
 		"image": {
 			"Src": "assets/images/90048480.jpg",
@@ -38,12 +16,50 @@
 			"zip": "90048"
 		},
 		"cuisine": "Japanese",
-		"hours": [{"open":690, "close":870}, {"open":1050, "close":1320}],
+		"hours": [
+			{
+				"open": 690,
+				"close": 870
+			},
+			{
+				"open": 1050,
+				"close": 1320
+			}
+		],
 		"rating": 4.3,
 		"noOfReviews": 145,
-		"reviews": ["900484800SWFuIE1jQWxsaXN0ZXI=7028"]
+		"reviews": [
+			"900484800SWFuIE1jQWxsaXN0ZXI=7028"
+		]
 	},
-	"9004674080":{
+	"941098000": {
+		"id": 941098000,
+		"name": "Restaurant Gary Danko",
+		"image": {
+			"Src": "",
+			"title": ""
+		},
+		"address": {
+			"street1": "800 North Point St",
+			"street2": "",
+			"street3": "",
+			"unit": "",
+			"city": "San Francisco",
+			"state": "CA",
+			"zip": "94109"
+		},
+		"cuisine": "French",
+		"hours": [
+			{
+				"open": 1050,
+				"close": 1320
+			}
+		],
+		"rating": null,
+		"noOfReviews": 0,
+		"reviews": []
+	},
+	"9004674080": {
 		"id": 9004674080,
 		"name": "El Compadre Restaurant",
 		"image": {
@@ -60,12 +76,19 @@
 			"zip": "90046"
 		},
 		"cuisine": "Mexican",
-		"hours": [{"open":690, "close":1560}],
+		"hours": [
+			{
+				"open": 690,
+				"close": 1560
+			}
+		],
 		"rating": 4.5,
 		"noOfReviews": 300,
-		"reviews": ["9004674080SWFuIE1jQWxsaXN0ZXI=7752"]
+		"reviews": [
+			"9004674080SWFuIE1jQWxsaXN0ZXI=7752"
+		]
 	},
-	"9002816080":{
+	"9002816080": {
 		"id": 9002816080,
 		"name": "Kitchen 24",
 		"image": {
@@ -82,12 +105,19 @@
 			"zip": "90028"
 		},
 		"cuisine": "Breakfast",
-		"hours": [{"always":true, "message":"24 Hours"}],
+		"hours": [
+			{
+				"always": true,
+				"message": "24 Hours"
+			}
+		],
 		"rating": 4.1,
 		"noOfReviews": 90,
-		"reviews": ["9002816080SWFuIE1jQWxsaXN0ZXI=7844"]
+		"reviews": [
+			"9002816080SWFuIE1jQWxsaXN0ZXI=7844"
+		]
 	},
-	"9003671680":{
+	"9003671680": {
 		"id": 9003671680,
 		"name": "Bulan Thai Vegetarian Kitchen",
 		"image": {
@@ -104,9 +134,21 @@
 			"zip": "90036"
 		},
 		"cuisine": "Thai",
-		"hours": [{"open":690, "close":930}, {"open":1020, "close":1320}],
+		"hours": [
+			{
+				"open": 690,
+				"close": 930
+			},
+			{
+				"open": 1020,
+				"close": 1320
+			}
+		],
 		"rating": 4.2,
 		"noOfReviews": 190,
-		"reviews": ["9003671680SWFuIE1jQWxsaXN0ZXI=7904"]
+		"reviews": [
+			"9003671680SWFuIE1jQWxsaXN0ZXI=7904",
+			"OTAwMzY3MTY4MDE0NjU4NTk0MzkwMDBTaGVsYnlZb3VuZw=="
+		]
 	}
 }

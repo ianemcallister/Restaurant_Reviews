@@ -11,6 +11,10 @@ var DataManagement = {
 	_utf8_to_b64:_utf8_to_b64,
 	_buildRecordId:_buildRecordId,
 	_loadJSONFile:_loadJSONFile,
+	_writeAFile: _writeAFile,
+	_saveIndividualReview:_saveIndividualReview,
+	_addReviewToAllReviews:_addReviewToAllReviews,
+	_addReviewToRestaurant:_addReviewToRestaurant,
 	returnList:returnList,
 	createFile: createFile
 }
@@ -44,6 +48,61 @@ function _loadJSONFile(directory, name) {
 	var thisPath = path.join(__dirname, directory, name);
 	var returnObject = fs.readFileSync(thisPath);
 	return JSON.parse(returnObject);
+}
+
+function _writeAFile(directory, fileName, data) {
+	//var dataManagment = this;
+	console.log('writing the file');
+	//will save to this location
+	var thisPath = path.join(__dirname, directory, fileName);
+
+	//create a seperate file
+	var writable = fs.createWriteStream(thisPath);
+	
+	if(writable.write(JSON.stringify(data, null, '\t'))) return true;
+	else return false;
+}
+
+function _saveIndividualReview(recordId, data) {
+	var dataManagment = this;
+
+	//create a seperate file
+	if(dataManagment._writeAFile('./json/reviews/',(recordId + '.json'), data))
+		return true;
+	else return false;
+}
+
+function _addReviewToAllReviews(recordId, data) {
+	var dataManagment = this;
+	console.log('getting the reviews file');
+
+	var allReviewsObject = dataManagment._loadJSONFile('./json/', 'allReviews.json');
+
+	//add the record to the file
+	allReviewsObject[recordId] = data;
+
+	//write the file out
+	if(dataManagment._writeAFile('./json/','allReviews.json', allReviewsObject))
+		return true;
+	else return false;	
+}
+
+function _addReviewToRestaurant(restaurantId, recordId) {
+	var dataManagment = this;
+
+	console.log('getting the restaurant file');
+
+	var allRestaurantsObject = dataManagment._loadJSONFile('./json/', 'allRestaurants.json');
+	
+	//add the the recordId to the appropriate restaurant
+	allRestaurantsObject[restaurantId].reviews.push(recordId);
+
+	console.log('with added', allRestaurantsObject[restaurantId].reviews);
+
+	//resave the file
+	if(dataManagment._writeAFile('./json/','allRestaurants.json', allRestaurantsObject))
+		return true;
+	else return false;
 }
 
 function returnList(listParams) {
@@ -99,21 +158,24 @@ function createFile(type, data) {
 				//create a new record id	
 				var recordId = dataManagment._buildRecordId(type, data);
 
-				//TODO: TAKE THIS OUT LATER
-				console.log('new recordId:', recordId);
+				console.log(recordId);
 
-				//will save to this location
-				var thisPath = path.join(__dirname, './json/reviews/', recordId + '.json');
+				//make sure a new individual file was created
+				if(dataManagment._saveIndividualReview(recordId, data)) {
 
-				//create a seperate file
-				var writable = fs.createWriteStream(thisPath);
-				writable.write(JSON.stringify(data, null, '\t'));
+					//add this review to the all reviews list
+					dataManagment._addReviewToAllReviews(recordId, data);
 
-				//TODO: TAKE THIS OUT LATER
-				console.log('Sending this back', {success: true, recordId: recordId});
-
-				//TODO: save to the allReviews Json also.
-				resolve({success: true, recordId: recordId});
+					console.log('writing to the all restaurants list');
+					//add this review to the specific restaurant it's for
+					if(dataManagment._addReviewToRestaurant(data.restaurant, recordId)) 
+						resolve({success: true, recordId: recordId});
+					else 
+						reject({success:false});
+					//resolve({success: true, recordId: recordId});
+				} else {
+					reject({success:false});
+				}
 
 				break;
 			case 1:
