@@ -22,6 +22,9 @@ class AllRestaurantsController {
     //define local variables
     let allPossibleRestaurants = restaurants;       //TODO: this should reach out to the server for a list
 
+    //define global variables
+    vm.allCuisines = ["Mexican", "American", "Japanese"];
+
     //define local services
     LOGGER.set(this, $log);
     STATE.set(this, $state);
@@ -34,7 +37,7 @@ class AllRestaurantsController {
         vm.setStateValues($state.params);
 
         //define the filters
-        vm.filters = this.filterDefaults();
+        vm.filters = this._initializeFilters(); //this.filterDefaults();
 
         //if an error occured, extract it before submitting the list
         if(typeof allPossibleRestaurants.error !== 'undefined') {
@@ -190,13 +193,128 @@ class AllRestaurantsController {
 
   }
 
-  filterDefaults() {
-    return {cuisine: {Mexican: true, American: true, Japanese: true}, totalReviews: null, starRating: null };
+  _rebuildCuisineFilter(string) {
+    let vm = this;
+    let returnObject = {};
+    let prefixes = {'all': 1, 'only': 2, 'except':3, 'none':4 };
+    let segments = string.split('-');
+
+    //clean
+    let i=0;
+    segments.forEach(function(segment) {
+      segments[i] = segment.replace(",","");
+      i++;
+    });
+
+    switch(prefixes[segments[0]]) {
+      case 1: //all
+        //loop through all the types of cuisines and set them to checked
+        vm.allCuisines.forEach(function(type) {
+          returnObject[type] = true;
+        });
+        break;
+      case 2: //only
+        //loop through the filters first
+        segments.forEach(function(key) {
+
+          if(key !=='only') {
+
+            //loop through all possibles
+            vm.allCuisines.forEach(function(type) {
+
+              if(type == key) returnObject[type] = true;
+              else returnObject[type] = false
+                
+            });
+
+          }
+
+        });
+        break;
+      case 3: //except
+        //loop through the filters first
+        segments.forEach(function(key) {
+
+          if(key !=='except') {
+
+            //loop through all possibles
+            vm.allCuisines.forEach(function(type) {
+
+              if(type == key) returnObject[type] = false;
+              else returnObject[type] = true;
+                
+            });
+
+          }
+
+        });
+        break;
+      case 4: //none
+        //loop through all the types of cuisines and set them to checked
+        vm.allCuisines.forEach(function(type) {
+          returnObject[type] = false;
+        });
+        break;
+    }  
+
+    return returnObject;
+  }
+
+  _distilParams() {
+    let vm = this;
+    let allParams = STATE.get(this).params;
+    let returnObject = {};
+    //if we're here then we have to interpet the url params as they apply to the filter
+    
+    //interpret cuisine
+    if(typeof allParams.cuisine !== 'undefined') {
+      returnObject['cuisine'] = vm._rebuildCuisineFilter(allParams.cuisine);
+    }
+
+    //interpret reviews
+    if(typeof allParams.reviews !== 'undefined') {
+      returnObject['totalReviews'] = allParams.reviews;
+    }
+
+    //interpret rating
+    if(typeof allParams.rating !== 'undefined') {
+      returnObject['starRating'] = allParams.rating;
+    } 
+
+    return returnObject;
+  }
+
+  _initializeFilters() {
+    let vm = this;
+    let paramsToCheck = STATE.get(this).params;
+    let foundParam = false;
+
+    //check for any params passed in, except sort
+    if( typeof paramsToCheck.cuisine !== 'undefined' ||
+        typeof paramsToCheck.reviews !== 'undefined' ||
+        typeof paramsToCheck.rating !== 'undefined' ) foundParam = true;
+
+    if(!foundParam) {
+      return this._filterDefaults(); 
+    } else return this._distilParams();
+
+  }
+
+  _filterDefaults() {
+    let vm = this;
+    let cuisines = {};
+
+    //build all cuisines
+    vm.allCuisines.forEach(function(type) {
+      cuisines[type] = true;
+    });
+
+    return {cuisine: cuisines, totalReviews: null, starRating: null };
   }
 
   resetFilters() {
     let vm = this;
-    vm.filters = this.filterDefaults();
+    vm.filters = this._filterDefaults();
     //SCOPE.get(this).$apply();
   }
 
@@ -206,10 +324,10 @@ class AllRestaurantsController {
 
     if(section == 'totalReviews') section = 'reviews';
     if(section == 'starRating') section = 'rating';
+
     
-    console.log('section:', section, "newValue:", newValue);
     //get the current params
-    LOGGER.get(vm).log(STATE.get(vm));
+    //LOGGER.get(vm).log(STATE.get(vm));
     Object.keys(STATE.get(vm).params).forEach(function(param) {
       if(typeof STATE.get(vm).params[param] !== 'undefined')
         returnObject[param] = STATE.get(vm).params[param];
@@ -247,7 +365,7 @@ class AllRestaurantsController {
         notSelected.push(type);
       }
 
-    }); 
+    });
 
     //evaluate the findings
     if((countCuisines.all - countCuisines.selected) == 0) {
@@ -267,6 +385,10 @@ class AllRestaurantsController {
         else cuisineString += (type + ',');
       });
 
+    } else if(selected.length == 0) {
+      //none are selected
+      cuisineString = 'none';
+
     } else if(countCuisines.selected < (countCuisines.all / 2)) {
       //some are selected
       cuisineString = 'only-';
@@ -280,11 +402,7 @@ class AllRestaurantsController {
         else cuisineString += (type + ',');
       });
 
-    } else if(countCuisines.selected == 0) {
-      //none are selected
-      cuisineString = 'none';
-
-    }
+    } 
 
     return cuisineString;
   }
@@ -292,7 +410,7 @@ class AllRestaurantsController {
   reFilter(section, attribute) {
     let vm = this;
     let stateParams = null;
-    console.log(vm.filters);
+    
     //if it has an attribute then it is a cusine, format accordintly
     if(typeof attribute !== 'undefined') {
       
@@ -310,9 +428,6 @@ class AllRestaurantsController {
   }
 
   viewRestaurant(key) {
-    //console.log(key);
-    //log the findings
-    //LOGGER.get(this).log(this.restaurantList[key].id);
 
     //redirect to that page
     STATE.get(this).go('restaurant', {id: this.restaurantList[key].id});
