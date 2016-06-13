@@ -41,8 +41,8 @@
 						<input 	type="checkbox" 
 								ng-model='list.filters.cuisine.Mexican' 
 								tabindex="31"
-								ng-click='list.reFilter()'
-								ng-change='list.reFilter()'
+								ng-click='list.reFilter("cuisine","Mexican")'
+								ng-change='list.reFilter("cuisine","Mexican")'
 								/>
 								Mexican
 					</li>
@@ -50,8 +50,8 @@
 						<input 	type="checkbox" 
 								ng-model='list.filters.cuisine.American' 
 								tabindex="32"
-								ng-click='list.reFilter()'
-								ng-change='list.reFilter()'
+								ng-click='list.reFilter("cuisine","American")'
+								ng-change='list.reFilter("cuisine","American")'
 								/>
 								American
 					</li>
@@ -59,8 +59,8 @@
 						<input 	type="checkbox" 
 								ng-model='list.filters.cuisine.Japanese'
 								tabindex="33"
-								ng-click='list.reFilter()'
-								ng-change='list.reFilter()'
+								ng-click='list.reFilter("cuisine","Japanese")'
+								ng-change='list.reFilter("cuisine","Japanese")'
 								/>
 								Japanese
 					</li>
@@ -73,9 +73,39 @@
 				<strong tabindex="40">Total Reviews</strong>
 				<br>More than...
 				<ul class="filterList">
-					<li><input type="radio" ng-model='list.filters.totalReviews' name='totalReviews' value='5+' tabindex="41">5 Reviews</li>
-					<li><input type="radio" ng-model='list.filters.totalReviews' name='totalReviews' value='50+' tabindex="41">50 Reviews</li>
-					<li><input type="radio" ng-model='list.filters.totalReviews' name='totalReviews' value='500+' tabindex="41">500 Reviews</li>
+					<li>
+						<input 	type="radio" 
+								ng-model='list.filters.totalReviews' 
+								name='totalReviews' 
+								value='5' 
+								tabindex="41"
+								ng-click='list.reFilter("totalReviews")'
+								ng-change='list.reFilter("totalReviews")'
+								>
+								5 Reviews
+					</li>
+					<li>
+						<input 	type="radio" 
+								ng-model='list.filters.totalReviews' 
+								name='totalReviews' 
+								value='50' 
+								tabindex="41"
+								ng-click='list.reFilter("totalReviews")'
+								ng-change='list.reFilter("totalReviews")'
+								>
+								50 Reviews
+					</li>
+					<li>
+						<input 	type="radio" 
+								ng-model='list.filters.totalReviews' 
+								name='totalReviews' 
+								value='500' 
+								tabindex="41"
+								ng-click='list.reFilter("totalReviews")'
+								ng-change='list.reFilter("totalReviews")'
+								>
+								500 Reviews
+					</li>
 				</ul>
 			</div>
 			
@@ -84,9 +114,36 @@
 				<strong tabindex="50">Star Rating</strong>
 				<br>At least...
 				<ul class="filterList">
-					<li><input type="radio" name='minimumStars' ng-model='list.filters.starRating' value='3' tabindex="51"><star-panel star-rating='3'></star-panel></li>
-					<li><input type="radio" name='minimumStars' ng-model='list.filters.starRating' value='4' tabindex="51"><star-panel star-rating='4'></star-panel></li>
-					<li><input type="radio" name='minimumStars' ng-model='list.filters.starRating' value='5' tabindex="51"><star-panel star-rating='5'></star-panel></li>
+					<li>
+						<input 	type="radio" 
+								name='minimumStars' 
+								ng-model='list.filters.starRating' 
+								value='3' 
+								tabindex="51"
+								ng-click='list.reFilter("starRating")'
+								ng-change='list.reFilter("starRating")'>
+						<star-panel star-rating='3'></star-panel>
+					</li>
+					<li>
+						<input 	type="radio" 
+								name='minimumStars' 
+								ng-model='list.filters.starRating' 
+								value='4' 
+								tabindex="51"
+								ng-click='list.reFilter("starRating")'
+								ng-change='list.reFilter("starRating")'>
+						<star-panel star-rating='4'></star-panel>
+					</li>
+					<li>
+						<input 	type="radio" 
+								name='minimumStars' 
+								ng-model='list.filters.starRating' 
+								value='5' 
+								tabindex="51"
+								ng-click='list.reFilter("starRating")'
+								ng-change='list.reFilter("starRating")'>
+						<star-panel star-rating='5'></star-panel>
+					</li>
 				</ul>
 			</div>
 

@@ -200,27 +200,106 @@ class AllRestaurantsController {
     //SCOPE.get(this).$apply();
   }
 
-  buildStateParams(/*allFilters*/) {
+  buildStateParams(section, newValue) {
     let vm = this;
     let returnObject = {};
 
-    //LOGGER.get(vm).log("allFilters", allFilters);
-    //LOGGER.get(vm).log("vm.order", vm.order);
+    if(section == 'totalReviews') section = 'reviews';
+    if(section == 'starRating') section = 'rating';
+    
+    console.log('section:', section, "newValue:", newValue);
+    //get the current params
+    LOGGER.get(vm).log(STATE.get(vm));
+    Object.keys(STATE.get(vm).params).forEach(function(param) {
+      if(typeof STATE.get(vm).params[param] !== 'undefined')
+        returnObject[param] = STATE.get(vm).params[param];
+    });
 
-    //set the sort property
-    if(vm.order.new !== 'undefined') returnObject['sort'] = 'restaurant';//UPDATE THIS LATER vm.order.new;
-    else returnObject['sort'] = 'restaurant'; //UPDATE THIS LATER vm.order.start;
-
-    //LOGGER.get(vm).log(returnObject);
+    //then add the new param
+    returnObject[section] = newValue;
 
     return returnObject;
   }
 
-  reFilter() {
+  _buildCuisineFilterString() {
     let vm = this;
+    let cuisineString = '';
+    let countCuisines = {all: 0, selected: 0};
+    let selected = [];
+    let notSelected = [];
 
-    //build the state params from the vm.filter values
-    let stateParams = this.buildStateParams(vm.filters);
+    //can be all, only (if less than half selected), execpt (if more than half)
+    Object.keys(vm.filters.cuisine).forEach(function(type) {
+      //count this cuisine
+      countCuisines.all++;
+
+      //if this is true
+      if(vm.filters.cuisine[type] == true) { 
+        
+        //update selected counter
+        countCuisines.selected++;
+
+        //add it to the the selected hash
+        selected.push(type);
+      } else {
+
+        //if not add it to the notSelected hash
+        notSelected.push(type);
+      }
+
+    }); 
+
+    //evaluate the findings
+    if((countCuisines.all - countCuisines.selected) == 0) {
+      //all are selected   
+      cuisineString = 'all';
+
+    } else if(countCuisines.selected > (countCuisines.all / 2)) {
+      //most are selected
+      cuisineString = 'except-';
+
+      let totalNotSelected = notSelected.length;
+      let i = 0;
+
+      notSelected.forEach(function(type) {
+        i++
+        if(i<totalNotSelected) cuisineString += (type + ',');
+        else cuisineString += (type + ',');
+      });
+
+    } else if(countCuisines.selected < (countCuisines.all / 2)) {
+      //some are selected
+      cuisineString = 'only-';
+
+      let totalSelected = selected.length;
+      let i = 0;
+
+      selected.forEach(function(type) {
+        i++
+        if(i<totalSelected) cuisineString += (type + ',');
+        else cuisineString += (type + ',');
+      });
+
+    } else if(countCuisines.selected == 0) {
+      //none are selected
+      cuisineString = 'none';
+
+    }
+
+    return cuisineString;
+  }
+
+  reFilter(section, attribute) {
+    let vm = this;
+    let stateParams = null;
+    console.log(vm.filters);
+    //if it has an attribute then it is a cusine, format accordintly
+    if(typeof attribute !== 'undefined') {
+      
+      //build the params
+      stateParams = this.buildStateParams(section, vm._buildCuisineFilterString()); 
+
+    } else stateParams = this.buildStateParams(section, vm.filters[section]);
 
     //load the new url to maintain state
     STATE.get(vm).go('list', stateParams);
