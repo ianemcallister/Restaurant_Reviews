@@ -1,0 +1,19 @@
+#yellowBox {
+	display: inline-block;
+	margin: auto;
+}
+#newReview {
+	margin-top: 10px;
+	color: black;
+	background-color: yellow;
+}
+
+#newReview label {
+	display: block;
+	text-align: left;
+}
+
+#newReviewSubmit {
+	width:100%;
+	margin-top: 15px;
+}

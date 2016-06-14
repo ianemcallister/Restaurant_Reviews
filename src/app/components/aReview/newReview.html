@@ -1,66 +1,91 @@
-<div class="form-group">
+<div class="form-group" >
+	
 	<!--Heading-->
-	<h4>New Review</h4>
+	<div class="row">
+		<div class="container">
+			<h4>New Review</h4>
+		</div>
+	</div>
+	
 	<!--First Name-->
-	<label for="firstName">First Name:
-		<input 	type="text" 
-				id='firstName' 
-				class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-				name="firstName"
-				tabindex="25" 
-				ng-model='review.firstName'
-				>
-	</label>
+	<div class="row">
+		<div class="container">
+			<label for="firstName">First Name:
+				<input 	type="text" 
+						id='firstName' 
+						class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
+						name="firstName"
+						autofocus 
+						tabindex="70" 
+						ng-model='review.firstName'
+						>
+			</label>	
+		</div>
+	</div>
 	
 	<!--Last Name-->
-	<label for="lastName">Last Name:
-		<input 	type="text" 
-				id='lastName'
-				class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
-				name="lastName"
-				tabindex="26" 
-				ng-model='review.lastName'
-				>
-	</label>
+	<div class="row">
+		<div class="container">
+			<label for="lastName">Last Name:
+				<input 	type="text" 
+						id='lastName'
+						class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
+						name="lastName"
+						tabindex="71" 
+						ng-model='review.lastName'
+						>
+			</label>			
+		</div>
+	</div>
+
 	
 	<!--Rating-->
-	<label for="ratingNum">Rating:
-		<input 	type="number" 
-				id='ratingNum' 
-				class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-				name ='ratingNum'
-				tabindex="27" 
-				ng-model='review.ratingNum'
-				>
-	</label>
+	<div class="row">
+		<div class="container">
+			<label for="ratingNum">Rating:
+				<input 	type="number" 
+						id='ratingNum' 
+						class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
+						name ='ratingNum'
+						tabindex="72" 
+						ng-model='review.ratingNum'
+						>
+			</label>			
+		</div>
+	</div>
 	
 	<!--Review-->
-	<label for="reviewMessage">Review:
-		<textarea 	name="reviewMessage" 
-					id="reviewMessage"
-					class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
-					ng-model='review.reviewMessage'
-					tabindex="28" 
-					cols="30" 
-					rows="10">
-		</textarea>
-		<!--<input 	type="text" 
-				id='reviewMessage' 
-				name='reviewMessage'
-				
-				>-->
-	</label>
+	<div class="row">
+		<div class="container">
+			<label for="reviewMessage">Review:
+				<textarea 	name="reviewMessage" 
+							id="reviewMessage"
+							class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
+							ng-model='review.reviewMessage'
+							tabindex="73" 
+							cols="30" 
+							rows="5">
+				</textarea>
+			</label>			
+		</div>
+	</div>
 	
 	<!--Submission Button-->
-	<label for="submit">
-		<input 	type="submit" 
-				class='btn btn-success' 
-				id='submit' 
-				name='submit' 
-				value='Submit'
-				tabindex="29" 
-				ng-click="review.submitForm()"
-				ng-submit="review.submitForm()"
-				>
-	</label>
+	<div class="row">
+		<div class="container">
+			<label for="newReviewSubmit">
+				<button class='btn btn-success' 
+						id='newReviewSubmit' 
+						name='submit' 
+						value='Submit'
+						tabindex="74" 
+						ng-click="review.submitForm()"
+						ng-submit="review.submitForm()"
+						>
+					Submit
+				</button>
+			</label>			
+		</div>
+	</div>
+
 </div>

@@ -1,104 +1,136 @@
-
-<!--Resturant Name // tabindex starts at 20-->
-<div class="row" id="header">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<H1 class="restName col-xs-7 col-sm-7 col-md-7 col-lg-7"
-			tabindex=20>{{restaurant.shop.name}}</H1>
-		<div class="newReviewBtn col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			<input 	type='submit'	
-					value='Add a new Review'
-					class="btn btn-danger pull-right"
-					tabindex="21" 
-					ng-click='restaurant.writeReview()'
-					ng-submit="restaurant.writeReview()"/>
+<!--Back Button-->
+<div class="row">
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<button class='btn btn-primary' 
+					id='backBtn' 
+					ng-click=""
+					ng-submit=""
+					tabindex="20" 
+					>
+				<span class='glyphicon glyphicon-arrow-left'></span>
+				Back to List
+			</button>
 		</div>
 	</div>
 </div>
 
-<!--Rating & Number of Reviews  // tabindex starts at 30-->
+<!--Resturant Name // tabindex starts at 20-->
 <div class="row">
-	<div class="ratingAndReviews col-xs-12 col-sm-12 col-md-8 col-lg-8">
-		<star-panel star-rating='restaurant.shop.rating'
-					tabindex='30'
-					aria-label='4 out of five stars'></star-panel>
-		<span 	class='noOfReviews'
-				tabindex="31">{{restaurant.shop.noOfReviews}} reviews</span>
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			
+			<!--Restaurant Name-->
+			<H1 class="restName col-xs-7 col-sm-7 col-md-7 col-lg-7"
+			tabindex=21>{{restaurant.shop.name}}</H1>
+			
+			<!--Add A Review Button-->
+			<div class="newReviewBtn col-xs-5 col-sm-5 col-md-5 col-lg-5">
+			<input 	type='submit'	
+					value='Add a New Review'
+					class="btn btn-danger pull-right"
+					tabindex="22" 
+					ng-click='restaurant.writeReview()'
+					ng-submit="restaurant.writeReview()"/>
+		</div>
+		</div>
+	</div>
+</div>
+
+<!--Rating & Number of Reviews  // tabindex starts at 30 -->
+<div class="row">
+	<div class="container">		<!--maybe re add .ratingAndReviews -->
+		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+			<star-panel star-rating='restaurant.shop.rating'
+						tabindex='30'
+						aria-label='4 out of five stars'></star-panel>
+			<span 	class='noOfReviews'
+					tabindex="31">{{restaurant.shop.noOfReviews}} reviews</span>			
+		</div>
 	</div>
 </div>
 
 <!--Type of cuisine // tabindex starts at 40-->
-<div class="row" id="cuisine">
-	<div class="cuisineBlock col-xs-12 col-sm-12 col-md-4 col-lg-4">
-		<h5 tabindex="40">{{restaurant.shop.cuisine}}</h5>
-	</div>	
+<div class="row">
+	<div class="container">		<!--maybe re add .cuisineBlock -->
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<h5 tabindex="40">{{restaurant.shop.cuisine}}</h5>
+		</div>
+	</div>
 </div>
 
 <!--Location, Hours & Images // tabindex starts at 50-->
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-		
-		<!--Address & Hours-->
-		<div class=" addressAndHours col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<!--Address-->
-			<div tabindex="50"><strong>
-				{{restaurant.shop.address.street1}} <br ng-if='restaurant.shop.address.street2 !== ""'>
-				{{restaurant.shop.address.street2}} <br ng-if='restaurant.shop.address.street3 !== ""'>
-				{{restaurant.shop.address.street3}} <br ng-if='restaurant.shop.address.city !== ""'>
-				{{restaurant.shop.address.city}}, 
-				{{restaurant.shop.address.state}} 
-				{{restaurant.shop.address.zip}}				
-			</strong></div>
-			<br>
-			<!--Hours of Opperation-->
-			<div>
-				<span tabindex="55">Hours of operation:</span>
-				<div 	ng-repeat='service in restaurant.shop.hours'
-						tabindex="56">
-					<span ng-if='service.always !== undefined'>{{service.message}}</span>
-					<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			
+			<!--Address & Hours-->
+			<div class=" addressAndHours col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<!--Address-->
+				<div tabindex="50"><strong>
+					{{restaurant.shop.address.street1}} <br ng-if='restaurant.shop.address.street2 !== ""'>
+					{{restaurant.shop.address.street2}} <br ng-if='restaurant.shop.address.street3 !== ""'>
+					{{restaurant.shop.address.street3}} <br ng-if='restaurant.shop.address.city !== ""'>
+					{{restaurant.shop.address.city}}, 
+					{{restaurant.shop.address.state}} 
+					{{restaurant.shop.address.zip}}				
+				</strong></div>
+				<br>
+				<!--Hours of Opperation-->
+				<div>
+					<span tabindex="55">Hours of operation:</span>
+					<div 	ng-repeat='service in restaurant.shop.hours'
+							tabindex="56">
+						<span ng-if='service.always !== undefined'>{{service.message}}</span>
+						<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
+					</div>
 				</div>
-			</div>
-		</div>	
+			</div>	
 		
-		<!--Images-->
-		<div class="imageBlock col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<img 	class='heroImage' 
-					ng-src='{{restaurant.shop.image.Src}}'
-					tabindex="60" 
-					title="{{restaurant.shop.image.title}}"></img>
+			<!--Images-->
+			<div class="imageBlock col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<img 	class='heroImage' 
+						ng-src='{{restaurant.shop.image.Src}}'
+						tabindex="60" 
+						title="{{restaurant.shop.image.title}}"></img>
+			</div>
 		</div>
 	</div>
 </div>
 
 <!--Add a review    // tabindex starts at 70-->
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-		<div ui-view></div>
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<div ui-view id='newReview' class='btn btn-warning'></div>
+		</div>
 	</div>
 </div>
 
 <!--List of Reviews // tabindex starts at 80-->
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-		<h3 tabindex="80">Reviews</h3>
-		<ul class='reviewsList'>
-			<li class='reviewsListBlock'
-				tabindex="81" 
-				ng-repeat="review in restaurant.reviews">
-				<div class='reviewerName col-xs-3 col-sm-3 col-md-3' >
-				{{review.name.first}} {{review.name.last}}
-				</div>
-				<div class='starsAndReview col-xs-9 col-sm-9 col-md-9' >
-					<p>
-						<star-panel star-rating='review.rating'></star-panel>
-						<span class='reviewDate'>{{review.date | date: 'M/d/yy'}}</span>
-					</p>
-					<p>
-						{{review.comments}}	
-					</p>
-				</div>
-			</li>
-		</ul>
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<h3 tabindex="80">Reviews</h3>
+			<ul class='reviewsList'>
+				<li class='reviewsListBlock'
+					tabindex="81" 
+					ng-repeat="review in restaurant.reviews">
+					<div class='reviewerName col-xs-3 col-sm-3 col-md-3' >
+					{{review.name.first}} {{review.name.last}}
+					</div>
+					<div class='starsAndReview col-xs-9 col-sm-9 col-md-9' >
+						<p>
+							<star-panel star-rating='review.rating'></star-panel>
+							<span class='reviewDate'>{{review.date | date: 'M/d/yy'}}</span>
+						</p>
+						<p>
+							{{review.comments}}	
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
 

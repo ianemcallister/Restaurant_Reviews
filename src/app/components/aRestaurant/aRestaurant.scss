@@ -7,6 +7,7 @@
 }
 
 .newReviewBtn {
+	margin-top: 15px;
 	padding-right: 0px;
 }
 
@@ -35,9 +36,9 @@
 	border-top-color: #e5e5e1;*/
 }
 
-.cuisineBlock {
+/*.cuisineBlock {
 	padding-left: 0px;
-}
+}*/
 
 .noOfReviews {
 	padding-left: 10px;
@@ -51,10 +52,10 @@
 	padding-right: 0px;
 }
 
-.ratingAndReviews {
+/*.ratingAndReviews {
 	margin-top: 5px;
 	margin-bottom: 5px;
-}
+}*/
 
 .aReview {
 	padding-top: 10px;
@@ -76,4 +77,11 @@
 #cuisine {
 	margin: 0px;
 	color: blue;
+}
+
+#backBtn {
+	margin-top: 8px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 0px;
 }

@@ -142,10 +142,11 @@
 				"message": "24 Hours"
 			}
 		],
-		"rating": 4.1,
-		"noOfReviews": 90,
+		"rating": "4.00",
+		"noOfReviews": 2,
 		"reviews": [
-			"9002816080SWFuIE1jQWxsaXN0ZXI=7844"
+			"9002816080SWFuIE1jQWxsaXN0ZXI=7844",
+			"OTAwMjgxNjA4MDE0NjU4NzQ2ODcwMDBSaWNoYXJkQnJvd24="
 		]
 	},
 	"9003671680": {
