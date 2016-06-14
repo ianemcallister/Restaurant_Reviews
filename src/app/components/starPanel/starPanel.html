@@ -3,10 +3,10 @@
 	<li class="star" 
 		ng-repeat="star in vm.starsArray track by $index"
 		>
-			<img class='starImg' ng-if="star == 'full'" src='assets/images/FullStar_50_48.png'>
-			<img class='starImg' ng-if="star == 'threeQuarter' " src='assets/images/3_4_Star_50_48_gray.png'>
-			<img class='starImg' ng-if="star == 'half'" src='assets/images/1_2_Star_50_48_gray.png'>
-			<img class='starImg' ng-if="star == 'oneQuarter'" src='assets/images/1_4_Star_50_48_gray.png'>
-			<img class='starImg' ng-if="star == 'sliver'" src='assets/images/sliver_Star_50_48_gray.png'>
+			<img class='starImg' ng-if="star == 'full'" src='assets/images/FullStar_50_48.png' aria-hidden="true">
+			<img class='starImg' ng-if="star == 'threeQuarter' " src='assets/images/3_4_Star_50_48_gray.png' aria-hidden="true">
+			<img class='starImg' ng-if="star == 'half'" src='assets/images/1_2_Star_50_48_gray.png' aria-hidden="true">
+			<img class='starImg' ng-if="star == 'oneQuarter'" src='assets/images/1_4_Star_50_48_gray.png' aria-hidden="true">
+			<img class='starImg' ng-if="star == 'sliver'" src='assets/images/sliver_Star_50_48_gray.png' aria-hidden="true">
 	</li>
 </ul>

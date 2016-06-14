@@ -15,6 +15,7 @@
 			"state": "CA",
 			"zip": "90048"
 		},
+		"phone": "(323) 782-0547",
 		"cuisine": "Japanese",
 		"hours": [
 			{
@@ -48,6 +49,7 @@
 			"state": "CA",
 			"zip": "94109"
 		},
+		"phone": "(415) 749-2060",
 		"cuisine": "French",
 		"hours": [
 			{
@@ -55,9 +57,11 @@
 				"close": 1320
 			}
 		],
-		"rating": null,
-		"noOfReviews": 0,
-		"reviews": []
+		"rating": "4.00",
+		"noOfReviews": 1,
+		"reviews": [
+			"OTQxMDk4MDAwMTQ2NTg2OTMzMDAwMElhbk1jQWxsaXN0ZXI="
+		]
 	},
 	"9004674080": {
 		"id": 9004674080,
@@ -75,6 +79,7 @@
 			"state": "CA",
 			"zip": "90046"
 		},
+		"phone": "(323) 874-7924",
 		"cuisine": "Mexican",
 		"hours": [
 			{
@@ -129,6 +134,7 @@
 			"state": "CA",
 			"zip": "90028"
 		},
+		"phone": "(323) 465-2424",
 		"cuisine": "Breakfast",
 		"hours": [
 			{
@@ -158,6 +164,7 @@
 			"state": "CA",
 			"zip": "90036"
 		},
+		"phone": "(323) 857-1882",
 		"cuisine": "Thai",
 		"hours": [
 			{

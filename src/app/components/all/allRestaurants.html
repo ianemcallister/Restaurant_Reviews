@@ -6,7 +6,7 @@
 		<h3 class="col-xs-8 col-sm-8 col-md-8 col-lg-8 filterHeading"
 			tabindex="10">
 			<div>
-				<strong>Best restaurants</strong> 
+				<strong autofocus>Best restaurants</strong> 
 				<span ng-if='list.city'>
 					<br>
 					in {{list.city}}
@@ -25,82 +25,108 @@
 				All Filters
 			</button>
 			<span class="pull-right" tabindex="21">
-				{{list.noOfRestaurants}} restaurant<span ng-if='list.noOfRestaurants > 1'>s</span>
+				{{list.noOfRestaurants}} restaurant<span ng-if='list.noOfRestaurants > 1'>s Found</span>
 			</span>
 		</div>
 		
-		<!--Filter subview // tabindex starts at 30-->
+		<!--Filter subview // tabindex starts at 22-->
 		<div 	class="filtersBox col-xs-12 col-sm-12 col-md-12 col-lg-12"
 				ng-show='list.showExtendedFilters'>
 	
 			<!--Filter by Type of Cuisine-->
 			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<strong tabindex="30">Category</strong>
+				<label 	for="foodCategoryFilter" 
+						class='screenReaderOnly'>Filter By Types Of Food</label>
+				<strong tabindex="22" id='foodCategoryFilter'>Category</strong>
 				<ul class='filterList'>
 					<li>
+						<label 	for="categoryMexican" 
+								class='screenReaderOnly'>Mexican</label>
 						<input 	type="checkbox" 
 								ng-model='list.filters.cuisine.Mexican' 
-								tabindex="31"
+								tabindex="23"
+								name='categoryMexican'
+								autofocus 
+								id='categoryMexican'
 								ng-click='list.reFilter("cuisine","Mexican")'
 								ng-change='list.reFilter("cuisine","Mexican")'
 								/>
 								Mexican
 					</li>
 					<li>
+						<label 	for="categoryAmerican" 
+								class='screenReaderOnly'>American</label>
 						<input 	type="checkbox" 
 								ng-model='list.filters.cuisine.American' 
-								tabindex="32"
+								tabindex="24"
+								name='categoryAmerican'
+								id='categoryAmerican'
 								ng-click='list.reFilter("cuisine","American")'
 								ng-change='list.reFilter("cuisine","American")'
 								/>
 								American
 					</li>
 					<li>
+						<label 	for="categoryJapanese" 
+								class='screenReaderOnly'>Japanese</label>
 						<input 	type="checkbox" 
 								ng-model='list.filters.cuisine.Japanese'
-								tabindex="33"
+								tabindex="25"
+								name='categoryJapanese'
+								id='categoryJapanese'
 								ng-click='list.reFilter("cuisine","Japanese")'
 								ng-change='list.reFilter("cuisine","Japanese")'
 								/>
 								Japanese
 					</li>
-					<li><a href="" tabindex="34">More...</a></li>
+					<!--<li><a href="" tabindex="26">More...</a></li>-->
 				</ul>
 			</div>
 
-			<!--Filter by # of Reviews-->
+			<!--Filter by # of Reviews // tab index starts at 40-->
 			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<strong tabindex="40">Total Reviews</strong>
+				<label 	for="totalReviewsFilter" 
+						class='screenReaderOnly'>Filter By Total Number Of Reviews</label>
+				<strong tabindex="40" id='totalReviewsFilter'>Total Reviews</strong>
 				<br>More than...
 				<ul class="filterList">
 					<li>
+						<label 	for="greaterThanFive" 
+								class='screenReaderOnly'>More than 5 Reviews	</label>
 						<input 	type="radio" 
 								ng-model='list.filters.totalReviews' 
-								name='totalReviews' 
 								value='5' 
 								tabindex="41"
+								name='greaterThanFive'
+								id='greaterThanFive'
 								ng-click='list.reFilter("totalReviews")'
 								ng-change='list.reFilter("totalReviews")'
 								>
 								5 Reviews
 					</li>
 					<li>
+						<label 	for="greaterThanFifity" 
+								class='screenReaderOnly'>More than 50 Reviews	</label>
 						<input 	type="radio" 
-								ng-model='list.filters.totalReviews' 
-								name='totalReviews' 
+								ng-model='list.filters.totalReviews'  
 								value='50' 
-								tabindex="41"
+								tabindex="42"
+								name='greaterThanFifity'
+								id='greaterThanFifity'
 								ng-click='list.reFilter("totalReviews")'
 								ng-change='list.reFilter("totalReviews")'
 								>
 								50 Reviews
 					</li>
 					<li>
+						<label 	for="greaterThanFiveHundred" 
+								class='screenReaderOnly'>More than 500 Reviews	</label>
 						<input 	type="radio" 
-								ng-model='list.filters.totalReviews' 
-								name='totalReviews' 
+								ng-model='list.filters.totalReviews'	
 								value='500' 
-								tabindex="41"
+								tabindex="43"
+								name='greaterThanFiveHundred'
+								id='greaterThanFiveHundred'
 								ng-click='list.reFilter("totalReviews")'
 								ng-change='list.reFilter("totalReviews")'
 								>
@@ -111,12 +137,17 @@
 			
 			<!--Filter by star rating-->
 			<div class="filtersSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<strong tabindex="50">Star Rating</strong>
+				<label 	for="averageRatingFilter" 
+						class='screenReaderOnly'>Filter By Number of Stars</label>
+				<strong tabindex="50" id='averageRatingFilter'>Star Rating</strong>
 				<br>At least...
 				<ul class="filterList">
 					<li>
+						<label 	for="threeStarsOrMore" 
+								class='screenReaderOnly'>3 Stars Or More</label>
 						<input 	type="radio" 
-								name='minimumStars' 
+								name='threeStarsOrMore' 
+								id='threeStarsOrMore'
 								ng-model='list.filters.starRating' 
 								value='3' 
 								tabindex="51"
@@ -125,21 +156,27 @@
 						<star-panel star-rating='3'></star-panel>
 					</li>
 					<li>
+						<label 	for="fourStarsOrMore" 
+								class='screenReaderOnly'>4 Stars Or More</label>
 						<input 	type="radio" 
-								name='minimumStars' 
+								name='fourStarsOrMore' 
+								id='fourStarsOrMore'
 								ng-model='list.filters.starRating' 
 								value='4' 
-								tabindex="51"
+								tabindex="52"
 								ng-click='list.reFilter("starRating")'
 								ng-change='list.reFilter("starRating")'>
 						<star-panel star-rating='4'></star-panel>
 					</li>
 					<li>
+						<label 	for="fiveStars" 
+								class='screenReaderOnly'>At Least 5 Stars</label>
 						<input 	type="radio" 
-								name='minimumStars' 
+								name='fiveStars'
+								id='fiveStars' 
 								ng-model='list.filters.starRating' 
 								value='5' 
-								tabindex="51"
+								tabindex="53"
 								ng-click='list.reFilter("starRating")'
 								ng-change='list.reFilter("starRating")'>
 						<star-panel star-rating='5'></star-panel>
@@ -149,7 +186,12 @@
 
 			<!--Clear all Filters Button-->
 			<div class="filtersSection col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label 	for="resetAllFilters"
+						class='screenReaderOnly'>Reset all filters</label>
 				<button class='btn btn-warning col-xs-12 col-sm-12 col-md-12 col-lg-12'
+						name='resetAllFilters'
+						id='resetAllFilters'
+						tabindex="58"
 						ng-submit='list.resetFilters()' 
 						ng-click='list.resetFilters()'
 						>
@@ -170,22 +212,23 @@
 	<!--Add sort by filter-->
 	<div class="container">
 		<div 	class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<p>Sort by Restaurant, Total Reviews, Star Rating, or Cuisine</p>
-			<label for="sortOption">
+			<p tabindex="61">Sort by Restaurant, Total Reviews, Star Rating, or Cuisine</p>
+			<label for="sortOptionInput	" class='screenReaderOnly'>
+				Sort by list</label>	
 				<input 	list='sortOption' 
-						name='sortOption' 
+						name='sortOptionInput'
+						id='sortOptionInput' 
 						class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
 						placeholder="{{list.toTitleCase(list.order.start)}}"
-						tabindex="60"
+						tabindex="61"
 						ng-model='list.order.new'
-						required=''>
+						>
 				<datalist 	name="sortOption" 
 							id="sortOption"
 							class='col-xs-12 col-sm-12 col-md-12 col-lg-12'
 							>
 					<option ng-repeat='sortOption in list.order.options.available' value="{{sortOption}}">{{sortOption}}</option>
 				</datalist>
-			</label>
 		</div>
 	</div>
 </section>
@@ -206,14 +249,27 @@
 
 			<!--Restaurant Name, Rating, # of Ratings, and Cuisine-->
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
-				{{$index + 1}}. <a href="">{{spot.name}}</a> <br>
-				<div ng-if='spot.noOfReviews > 0'>
-					<star-panel star-rating='spot.rating'></star-panel>{{spot.noOfReviews}}
+				
+				<span aria-hidden="true">{{$index + 1}}.</span> 
+				<a href="">{{spot.name}}</a> 
+				<br>
+				
+				<label for="hasStarRating" class='screenReaderOnly'>
+					{{spot.rating}} stars from {{spot.noOfReviews}} reviews
+				</label>
+				<div ng-if='spot.noOfReviews > 0' id='hasStarRating'>
+					<label for="thisStarRating" class='screenReaderOnly'>{{spot.rating}} stars</label>
+					<star-panel star-rating='spot.rating' id='thisStarRating'></star-panel>{{spot.noOfReviews}}
 				</div>
+				
 				<div ng-if='!(spot.noOfReviews > 0)'>
 					No reviews yet
 				</div>
-				<a href="">{{spot.cuisine}}</a>
+				
+				<label for="cuisineIdentity" class='screenReaderOnly'>
+					Cuisine is
+				</label>
+				<a href="" id='cuisineIdentity'>{{spot.cuisine}}</a>
 			</div>
 
 			<!--Restaurant Address & Phone Number-->
@@ -226,7 +282,7 @@
 				{{spot.address.state}} 
 				{{spot.address.zip}}
 				<br>
-				(555) 555-5555
+				{{spot.phone}}
 				</span>
 			</div>
 			

@@ -42,6 +42,10 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 	padding-right: 30px;
 }
 
+.screenReaderOnly {
+  display:none;
+}
+
 body {
   /*background-color: #000098;*/
   /*background-color: #c4c4d9;*/
