@@ -29,6 +29,7 @@ class ReviewController {
 		rc.time = $state.params['time'];
 		rc.parentReviews = SCOPE.get(rc).restaurant.reviews;
 		rc.parentRestaurant = SCOPE.get(rc).restaurant.shop;
+		rc.parentReviewBox = SCOPE.get(rc).restaurant.aNewReview;
 		//this.test = 1;
 		LOGGER.get(this).log('the parent restaurant is...',rc.parentRestaurant);
 		//log required states
@@ -83,6 +84,13 @@ class ReviewController {
 			//save the new values that came through
 			rc.parentRestaurant.rating = response.rating;
 			rc.parentRestaurant.noOfReviews = response.noOfReviews;
+
+			LOGGER.get(rc).log('rc.parentReviewBox', rc.parentReviewBox);
+
+			//hide the box again
+			rc.parentReviewBox = false;
+
+			LOGGER.get(rc).log('rc.parentReviewBox', rc.parentReviewBox);
 
 			//reload the page
 			STATE.get(rc).go('restaurant', {id: rc.restaurantId});

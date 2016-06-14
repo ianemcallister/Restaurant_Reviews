@@ -20,8 +20,12 @@ class RestaurantController {
     let vm = this;
     //let id = $stateParams.id;
 
+    //local variable
+    let aNewReview = $state.params['time'];
+
     //view model variables
     vm.id = $state.params['id'];
+    vm.aNewReview = false;
     vm.shop = restaurant;
     vm.reviews = reviews;
 
@@ -36,8 +40,12 @@ class RestaurantController {
         //format the reviews
         vm.reviews = REVIEWSSVC.get(this).pullSelects(vm.reviews, vm.shop.reviews);
 
+        //
+        if(typeof aNewReview !== 'undefined') vm.aNewReview = true;
+        
         LOGGER.get(this).log(vm.shop);
         LOGGER.get(this).log(vm.reviews);
+        LOGGER.get(this).log('vm.aNewReview', vm.aNewReview);
     });
 
     INIT.get(this)();
@@ -94,15 +102,27 @@ class RestaurantController {
   }
 
   writeReview () {
-    //let vm = this;
+    let vm = this;
     
-    //as long as we're not already in the review section add a new review
-    //TODO: TEST FOR STATE
-    
-    //calculate a review id
-    let reviewTime = REVIEWSSVC.get(this).buildTempRecordId();
+    if(!vm.aNewReview) {
+      //turn on the box
+      vm.aNewReview = true;
+      
+      //calculate a review id
+      let reviewTime = REVIEWSSVC.get(this).buildTempRecordId();
 
-    STATE.get(this).go('.newReview', {time: reviewTime});
+      STATE.get(this).go('.newReview', {time: reviewTime});      
+    } else {
+      //turn off the box
+      vm.aNewReview = false;
+      //go back to the state without the review
+      STATE.get(this).go('restaurant', {id: vm.id});
+    }
+
+  }
+
+  backToList() {
+    STATE.get(this).go('list', {sort:'restaurant'});
   }
 
 }

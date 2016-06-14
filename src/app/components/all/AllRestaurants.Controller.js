@@ -84,10 +84,11 @@ class AllRestaurantsController {
   setStateValues(params) {
     let vm = this;
 
-    //LOGGER.get(vm).log('State Params:', params); //TAKE THIS OUT LATER
+    LOGGER.get(vm).log('State Params:', params, params.city, vm.searchError); //TAKE THIS OUT LATER
 
     //define the city
-    if(params.city !== 'undefined' && typeof vm.searchError !== 'undefined') vm.city = params.city;
+    if(params.city !== 'undefined' && typeof vm.searchError == 'undefined') 
+      vm.city = params.city;
 
     //set the list order
     vm.order = vm.sortDefaults(this.paramStringToUXString(params.sort));

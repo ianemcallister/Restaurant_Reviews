@@ -4,8 +4,8 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<button class='btn btn-primary' 
 					id='backBtn' 
-					ng-click=""
-					ng-submit=""
+					ng-click="restaurant.backToList()"
+					ng-submit="restaurant.backToList()"
 					tabindex="20" 
 					>
 				<span class='glyphicon glyphicon-arrow-left'></span>
@@ -22,7 +22,7 @@
 			
 			<!--Restaurant Name-->
 			<H1 class="restName col-xs-7 col-sm-7 col-md-7 col-lg-7"
-			tabindex=21>{{restaurant.shop.name}}</H1>
+			tabindex=21 aria-label='Restaurant Name: {{restaurant.shop.name}}'>{{restaurant.shop.name}}</H1>
 			
 			<!--Add A Review Button-->
 			<div class="newReviewBtn col-xs-5 col-sm-5 col-md-5 col-lg-5">
@@ -43,7 +43,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 			<star-panel star-rating='restaurant.shop.rating'
 						tabindex='30'
-						aria-label='4 out of five stars'></star-panel>
+						aria-label='{{restaurant.shop.rating}} stars, out of five'></star-panel>
 			<span 	class='noOfReviews'
 					tabindex="31">{{restaurant.shop.noOfReviews}} reviews</span>			
 		</div>
@@ -54,7 +54,7 @@
 <div class="row">
 	<div class="container">		<!--maybe re add .cuisineBlock -->
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-			<h5 tabindex="40">{{restaurant.shop.cuisine}}</h5>
+			<h5 tabindex="40" aria-label='cuisine {{restaurant.shop.cuisine}}		'>{{restaurant.shop.cuisine}}</h5>
 		</div>
 	</div>
 </div>
@@ -67,7 +67,10 @@
 			<!--Address & Hours-->
 			<div class=" addressAndHours col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<!--Address-->
-				<div tabindex="50"><strong>
+				<div 	tabindex="50" 
+						aria-label='street address {{restaurant.shop.address.street1}}.
+						{{restaurant.shop.address.city}}.
+						zipcode {{restaurant.shop.address.zip}}'><strong>
 					{{restaurant.shop.address.street1}} <br ng-if='restaurant.shop.address.street2 !== ""'>
 					{{restaurant.shop.address.street2}} <br ng-if='restaurant.shop.address.street3 !== ""'>
 					{{restaurant.shop.address.street3}} <br ng-if='restaurant.shop.address.city !== ""'>
@@ -75,6 +78,10 @@
 					{{restaurant.shop.address.state}} 
 					{{restaurant.shop.address.zip}}				
 				</strong></div>
+
+				<div tabindex="52" aria-label='phone number {{restaurant.shop.phone}}'>
+					{{restaurant.shop.phone}}
+				</div>
 				<br>
 				<!--Hours of Opperation-->
 				<div>
@@ -82,7 +89,7 @@
 					<div 	ng-repeat='service in restaurant.shop.hours'
 							tabindex="56">
 						<span ng-if='service.always !== undefined'>{{service.message}}</span>
-						<span ng-if='service.always == undefined'>{{service.open}} - {{service.close}}</span>
+						<span ng-if='service.always == undefined' aria-label='{{service.open}} to, {{service.close}}'>{{service.open}} - {{service.close}}</span>
 					</div>
 				</div>
 			</div>	
@@ -102,7 +109,7 @@
 <div class="row">
 	<div class="container">
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-			<div ui-view id='newReview' class='btn btn-warning'></div>
+			<div ui-view id='newReview' ng-show='restaurant.aNewReview' class='btn btn-warning'></div>
 		</div>
 	</div>
 </div>
@@ -113,22 +120,33 @@
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 			<h3 tabindex="80">Reviews</h3>
 			<ul class='reviewsList'>
+				
 				<li class='reviewsListBlock'
 					tabindex="81" 
 					ng-repeat="review in restaurant.reviews">
-					<div class='reviewerName col-xs-3 col-sm-3 col-md-3' >
+					
+					<div 	class='reviewerName col-xs-3 col-sm-3 col-md-3'
+							aria-label='reviewed by {{review.name.first}} {{review.name.last}}.' >
+					
 					{{review.name.first}} {{review.name.last}}
+					
 					</div>
+					
 					<div class='starsAndReview col-xs-9 col-sm-9 col-md-9' >
 						<p>
-							<star-panel star-rating='review.rating'></star-panel>
-							<span class='reviewDate'>{{review.date | date: 'M/d/yy'}}</span>
+							<star-panel star-rating='review.rating'
+									aria-label='{{review.rating}} stars, out of five.'>			
+							</star-panel>
+							<span aria-label='review written on,'></span>
+							<span class='reviewDate' >{{review.date | date: 'M/d/yy'}}</span>
 						</p>
 						<p>
 							{{review.comments}}	
 						</p>
 					</div>
+
 				</li>
+
 			</ul>
 		</div>
 	</div>

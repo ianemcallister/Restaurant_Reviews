@@ -212,15 +212,17 @@
 	<!--Add sort by filter-->
 	<div class="container">
 		<div 	class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<p tabindex="61">Sort by Restaurant, Total Reviews, Star Rating, or Cuisine</p>
+			<p>Sort by Restaurant, Total Reviews, Star Rating, or Cuisine</p>
 			<label for="sortOptionInput	" class='screenReaderOnly'>
 				Sort by list</label>	
 				<input 	list='sortOption' 
 						name='sortOptionInput'
 						id='sortOptionInput' 
 						class='col-xs-12 col-sm-12 col-md-12 col-lg-12' 
-						placeholder="{{list.toTitleCase(list.order.start)}}"
+						placeholder="Currently Sorted by {{list.toTitleCase(list.order.start)}}"
 						tabindex="61"
+						autofocus 
+						aria-label='Sort this list of restaurants by one of the following. Restaurant, Total Reviews, Star Rating, or Cuisine.'
 						ng-model='list.order.new'
 						>
 				<datalist 	name="sortOption" 
@@ -254,10 +256,7 @@
 				<a href="">{{spot.name}}</a> 
 				<br>
 				
-				<label for="hasStarRating" class='screenReaderOnly'>
-					{{spot.rating}} stars from {{spot.noOfReviews}} reviews
-				</label>
-				<div ng-if='spot.noOfReviews > 0' id='hasStarRating'>
+				<div ng-if='spot.noOfReviews > 0' id='hasStarRating' aria-label='{{spot.rating}} stars, from {{spot.noOfReviews}} reviews.'>
 					<label for="thisStarRating" class='screenReaderOnly'>{{spot.rating}} stars</label>
 					<star-panel star-rating='spot.rating' id='thisStarRating'></star-panel>{{spot.noOfReviews}}
 				</div>
@@ -266,15 +265,13 @@
 					No reviews yet
 				</div>
 				
-				<label for="cuisineIdentity" class='screenReaderOnly'>
-					Cuisine is
-				</label>
-				<a href="" id='cuisineIdentity'>{{spot.cuisine}}</a>
+				<a href="" id='cuisineIdentity' aria-label='{{spot.cuisine}} cuisine.'>{{spot.cuisine}}</a>
 			</div>
 
 			<!--Restaurant Address & Phone Number-->
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
-				<span class="pull-right">
+				<span class="pull-right" 
+				aria-label='street address {{spot.address.street1}} {{spot.address.city}}, zipcode {{spot.address.zip}}. phone number {{spot.phone}}.'>
 				{{spot.address.street1}} <br ng-if='spot.address.street2 !== ""'>
 				{{spot.address.street2}} <br ng-if='spot.address.street3 !== ""'>
 				{{spot.address.street3}} <br ng-if='spot.address.city !== ""'>
@@ -282,7 +279,7 @@
 				{{spot.address.state}} 
 				{{spot.address.zip}}
 				<br>
-				{{spot.phone}}
+				<span>{{spot.phone}}</span>
 				</span>
 			</div>
 			

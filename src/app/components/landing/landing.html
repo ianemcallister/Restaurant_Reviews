@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<header tabindex="1">
-					<h1>Find your favorite food...</h1>
+					<h1 aria-label='find your favorite food here'>Find your favorite food...</h1>
 				</header>
 			</div>
 		</div>
@@ -39,8 +39,10 @@
 					<input 	type="text" 
 							class="form-control" 
 							id="cityInput" 
-							placeholder="by city...Los Angeles, San Francisco, etc"
-							ng-model="landing.seachBy.city">
+							placeholder="Enter a city to search by"
+							ng-model="landing.seachBy.city"
+							autofocus 
+							>
 
 					<!--Maybe add this later, but too much for right now
 					<label for="zipInput"></label>
