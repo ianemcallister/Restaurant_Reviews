@@ -13,7 +13,7 @@ This is restaurant reviews application that collects reviews from users and prov
 	All content-related images include appropriate alternate text.
 
 2. **Focus**
-	Focus is appropriately managed allowing users to noticeably tab through each of the important elements of the page. Modal or interstitial windows appropriately lock focus.
+	Focus is appropriately managed allowing users to noticeably tab through each of the important elements of the page.
 
 3. **Elements**
 	Elements on the page use the appropriate semantic elements. For those elements in which a semantic element is not available, appropriate `ARIA roles` are defined.
@@ -28,17 +28,25 @@ This is restaurant reviews application that collects reviews from users and prov
 
 ## Instructions
 
-TODO: Add this later.
+1. **Clone the repository**
+
+	`git clone <git@github.com:ianemcallister/Restaurant_Reviews.git>`
+
+2. **Install the dependencies**
+
+	To install the required dependencies call `npm install` from the root directory.
+
+4. **Launch the server and run the client site**
+
+	Run `gulp serve` to serve the project up. The site is served on port 3000 and utilizes a proxy to access a server hosted on port 5000.
 
 ## Dependencies
 
-TODO: Add this later.
+This project utilizes a number of dependencies that can be thorougly expored in the package.json file. 
 
 ## Credits
 
 Thank you to [Swiip](https://github.com/Swiip) and the [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) team.  I enjoyed using the angular-gulp generator to get my project up and running.
-
-TODO: Add more later.
 
 ## License
 

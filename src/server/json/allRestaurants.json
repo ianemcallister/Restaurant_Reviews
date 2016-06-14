@@ -43,8 +43,8 @@
 		"id": 941098000,
 		"name": "Restaurant Gary Danko",
 		"image": {
-			"Src": "",
-			"title": ""
+			"Src": "assets/images/941098000.jpg",
+			"title": "Exterior image of Restaurant Gary Danko."
 		},
 		"address": {
 			"street1": "800 North Point St",
