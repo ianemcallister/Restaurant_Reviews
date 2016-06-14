@@ -9,11 +9,13 @@ var fileTypes = {'review': 0, 'restaurant':1};
 //define the object
 var DataManagement = {
 	_utf8_to_b64:_utf8_to_b64,
+	_meanAverage:_meanAverage,
 	_buildRecordId:_buildRecordId,
 	_loadJSONFile:_loadJSONFile,
 	_writeAFile: _writeAFile,
 	_saveIndividualReview:_saveIndividualReview,
 	_addReviewToAllReviews:_addReviewToAllReviews,
+	_calculateRating:_calculateRating,
 	_addReviewToRestaurant:_addReviewToRestaurant,
 	returnList:returnList,
 	createFile: createFile
@@ -22,6 +24,18 @@ var DataManagement = {
 function _utf8_to_b64(str) {
 	var newString = new Buffer(str).toString('base64');
 	return newString;
+}
+
+function _meanAverage(arrayOfNumbers) {
+	var sum = 0;
+
+	//sum the numbers
+	arrayOfNumbers.forEach(function(num) {
+		sum += num;
+	});
+
+	//divide by the number of numbers
+	return (sum / arrayOfNumbers.length).toFixed(2);
 }
 
 function _buildRecordId(type, data) {
@@ -46,13 +60,16 @@ function _buildRecordId(type, data) {
 
 function _loadJSONFile(directory, name) {
 	var thisPath = path.join(__dirname, directory, name);
+	console.log('loading at this path', thisPath);
 	var returnObject = fs.readFileSync(thisPath);
+	console.log('got this back', returnObject);
+	console.log('parsing it',JSON.parse(returnObject) );
 	return JSON.parse(returnObject);
 }
 
 function _writeAFile(directory, fileName, data) {
 	//var dataManagment = this;
-	console.log('writing the file');
+	console.log('writing the file:', fileName);
 	//will save to this location
 	var thisPath = path.join(__dirname, directory, fileName);
 
@@ -74,6 +91,11 @@ function _saveIndividualReview(recordId, data) {
 
 function _addReviewToAllReviews(recordId, data) {
 	var dataManagment = this;
+	
+	//save the restaurantId for later
+	var restaurantId = data.restaurant;
+	var starRatings = [];
+
 	console.log('getting the reviews file');
 
 	var allReviewsObject = dataManagment._loadJSONFile('./json/', 'allReviews.json');
@@ -81,23 +103,45 @@ function _addReviewToAllReviews(recordId, data) {
 	//add the record to the file
 	allReviewsObject[recordId] = data;
 
+	//get the ratings off of all restaurants with the same restaurantId
+	Object.keys(allReviewsObject).forEach(function(review) {
+
+		//check the restaurantId
+		if(allReviewsObject[review].restaurant == restaurantId) 
+			starRatings.push(allReviewsObject[review].rating);
+	});
+
+	console.log('mean avarage:', dataManagment._meanAverage(starRatings));
+
 	//write the file out
 	if(dataManagment._writeAFile('./json/','allReviews.json', allReviewsObject))
-		return true;
+		return {average: dataManagment._meanAverage(starRatings), totalReviews: starRatings.length};
 	else return false;	
 }
 
-function _addReviewToRestaurant(restaurantId, recordId) {
+function _addReviewToRestaurant(restaurantId, recordId, newCalculations) {
 	var dataManagment = this;
 
-	console.log('getting the restaurant file');
+	console.log('into the AddReviewToRestaurant method');
 
 	var allRestaurantsObject = dataManagment._loadJSONFile('./json/', 'allRestaurants.json');
-	
+		
+	console.log('object:', allRestaurantsObject[restaurantId], recordId);
+
 	//add the the recordId to the appropriate restaurant
 	allRestaurantsObject[restaurantId].reviews.push(recordId);
 
-	console.log('with added', allRestaurantsObject[restaurantId].reviews);
+	console.log('with the new review', allRestaurantsObject[restaurantId].reviews);
+
+	//recalculate the number of reviews
+	allRestaurantsObject[restaurantId].noOfReviews = newCalculations.totalReviews;
+
+	console.log('with the new sum', allRestaurantsObject[restaurantId].noOfReviews);
+
+	//recalculate the star rating
+	allRestaurantsObject[restaurantId].rating = newCalculations.average;
+	
+	console.log('built this', allRestaurantsObject[restaurantId]);
 
 	//resave the file
 	if(dataManagment._writeAFile('./json/','allRestaurants.json', allRestaurantsObject))
@@ -164,11 +208,12 @@ function createFile(type, data) {
 				if(dataManagment._saveIndividualReview(recordId, data)) {
 
 					//add this review to the all reviews list
-					dataManagment._addReviewToAllReviews(recordId, data);
+					var newCalculations = dataManagment._addReviewToAllReviews(recordId, data);
 
 					console.log('writing to the all restaurants list');
+
 					//add this review to the specific restaurant it's for
-					if(dataManagment._addReviewToRestaurant(data.restaurant, recordId)) 
+					if(dataManagment._addReviewToRestaurant(data.restaurant, recordId, newCalculations)) 
 						resolve({success: true, recordId: recordId});
 					else 
 						reject({success:false});
