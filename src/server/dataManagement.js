@@ -15,7 +15,6 @@ var DataManagement = {
 	_writeAFile: _writeAFile,
 	_saveIndividualReview:_saveIndividualReview,
 	_addReviewToAllReviews:_addReviewToAllReviews,
-	_calculateRating:_calculateRating,
 	_addReviewToRestaurant:_addReviewToRestaurant,
 	returnList:returnList,
 	createFile: createFile
@@ -110,6 +109,9 @@ function _addReviewToAllReviews(recordId, data) {
 		if(allReviewsObject[review].restaurant == restaurantId) 
 			starRatings.push(allReviewsObject[review].rating);
 	});
+
+	//add this review
+	starRatings.push(data.rating);
 
 	console.log('mean avarage:', dataManagment._meanAverage(starRatings));
 
@@ -214,7 +216,7 @@ function createFile(type, data) {
 
 					//add this review to the specific restaurant it's for
 					if(dataManagment._addReviewToRestaurant(data.restaurant, recordId, newCalculations)) 
-						resolve({success: true, recordId: recordId});
+						resolve({success: true, recordId: recordId, total: newCalculations});
 					else 
 						reject({success:false});
 					//resolve({success: true, recordId: recordId});

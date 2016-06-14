@@ -121,23 +121,29 @@ class FrontendDataService {
 	setNewRemoteReview(newReview) {
 		let fds = this;
 
+		//let restaurantId = newReview.restaurant;
+
 		//return a promise for async work
 		return new Promise(function(resolve, reject) {
 
 			//pass it the the server and return the respone
 			BACKEND.get(fds).saveNewReview(newReview).then(function(response) {
 				let newReviewId = response.recordId;
+				//let newTotals = response.total;
 				let returnObject = {};
+
+				LOGGER.get(fds).log('in FDS, setNewRemoteReview', response);
+
 				returnObject[newReviewId] = newReview;
-				//let restaurantId = newReview.restaurant;
 
-				//add the new review to the local model to reflect it now
-				//fds.localModels.reviews[newReviewId] = newReview;
-
+				LOGGER.get(fds).log('in FDS2', returnObject);
 				
+				//add the new totals to the approprite record
+				returnObject['allRating'] = response.total.average;
+				returnObject['noOfReviews'] = response.total.totalReviews;
 
-				//fds.localModels.restaurants[restaurantId].reviews.push(newReviewId);
-
+				LOGGER.get(fds).log('sending this back to aReview', returnObject);
+				
 				//pass the response back
 				resolve(returnObject);
 			
@@ -154,10 +160,12 @@ class FrontendDataService {
 		let restaurantId = null;
 		let reviewId = null;
 
-		Object.keys(newReview).forEach(function(key) {
-			reviewId = key;
-			restaurantId = newReview[key].restaurant;
-		});
+		LOGGER.get(this).log(newReview);
+
+		reviewId = newReview.id;
+		restaurantId = newReview.data.restaurant;
+	
+		LOGGER.get(this).log('new values', reviewId, restaurantId);
 
 		//add the new review to the allreviews object
 		this.localModels.reviews[reviewId] = newReview;

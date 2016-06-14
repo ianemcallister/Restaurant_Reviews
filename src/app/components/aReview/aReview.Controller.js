@@ -28,8 +28,9 @@ class ReviewController {
 		rc.restaurantId = $state.params['id'];
 		rc.time = $state.params['time'];
 		rc.parentReviews = SCOPE.get(rc).restaurant.reviews;
+		rc.parentRestaurant = SCOPE.get(rc).restaurant.shop;
 		//this.test = 1;
-
+		LOGGER.get(this).log('the parent restaurant is...',rc.parentRestaurant);
 		//log required states
 		LOGGER.get(this).log(rc.restaurantId, rc.time);
 		//LOGGER.get(this).log(SCOPE.get(rc));
@@ -38,12 +39,16 @@ class ReviewController {
 
 	_distillResponse(response) {
 		let reviewId = null;
+		let rc = this;
 
 		Object.keys(response).forEach(function(key) {
-			reviewId = key;
+			LOGGER.get(rc).log(key);
+			if(key !=='allRating' && key !== 'noOfReviews') reviewId = key;
 		});
 
-		return response[reviewId];
+		LOGGER.get(this).log(response[reviewId]);
+
+		return {id: reviewId, data: response[reviewId]};
 	}
 
 	submitForm() {
@@ -66,11 +71,18 @@ class ReviewController {
 
 			let newReview = rc._distillResponse(response);
 
+			LOGGER.get(rc).log('the new review is', newReview);
+
 			//add the new review to the local model
-			FRONTENDDATA.get(rc).setNewLocalReview(response);
+			FRONTENDDATA.get(rc).setNewLocalReview(newReview);
 
 			//update the value in the parent scope
-			rc.parentReviews.push(newReview);
+			rc.parentReviews.push(newReview.data);
+
+			LOGGER.get(this).log('in aReview This was the response', response);
+			//save the new values that came through
+			rc.parentRestaurant.rating = response.rating;
+			rc.parentRestaurant.noOfReviews = response.noOfReviews;
 
 			//reload the page
 			STATE.get(rc).go('restaurant', {id: rc.restaurantId});
