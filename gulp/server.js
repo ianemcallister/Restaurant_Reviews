@@ -66,6 +66,16 @@ gulp.task('serve:e2e-dist', ['build'], function () {
   browserSyncInit(conf.paths.dist, []);
 });
 
+gulp.task('serve:production', ['build', 'watch'], function() {
+  var called = false;
+  return nodemon({script: './src/server/production.js'}).on('start', function () {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  });  
+});
+
 gulp.task('nodemon', function (cb) {
   var called = false;
   return nodemon({script: './src/server/app.js'}).on('start', function () {
