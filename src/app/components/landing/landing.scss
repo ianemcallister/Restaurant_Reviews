@@ -7,14 +7,43 @@ $text-growth: 1.75;
 /*$image-width: 414px;
 $image-height: 736px;*/
 
+@media screen and (max-width: $bootstrap-xs-break) {
+	.landingContainer {
+		background-image: url('../assets/images/mobileBG_414x736_portrait.jpg');
+		height: 736px;/*image-height;*/
+	}
+};
+
+@media screen and (min-width: $bootstrap-xs-break + 1) and (max-width: $bootstrap-sm-break) {
+	.landingContainer {
+		background-image: url('../assets/images/mobileBG_992x667_portrait.jpg');
+		height: 667px;/*image-height;*/
+	}
+	
+	#cityInput {
+		height: 130%;
+	}
+};
+
+@media screen and (min-width: $bootstrap-sm-break + 1) and (max-width: $bootstrap-md-break) {
+	
+	.landingContainer {
+		background-image: url('../assets/images/mobileBG_1200x1080_portrait.jpg');
+		height: 1080px;/*image-height;*/
+	}
+
+	.landingInput {
+		margin-top: #{(1080 / 7)}px;
+	}
+
+	#cityInput {
+		height: 130%;
+	}
+};
 
 
 .landingContainer {
 	color: white;
-	@media screen and (max-width: $bootstrap-xs-break) {
-		background-image: url('../assets/images/mobileBG_414x736_portrait.jpg');
-		height: 736px;/*image-height;*/
-	}
 }
 
 .landingHeader {

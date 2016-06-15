@@ -24,12 +24,12 @@ class BackendDataService {
 
 	_apiCall() {
 		/*HTTP.get(this).get('/api/set/1234').then(response => {
-			LOGGER.get(this).log(response.data);
+			//LOGGER.get(this).log(response.data);
 		});*/
 	}
 
 	loadAModel(path, file) { /*'assets/json/restaurantList.json'*/
-		//LOGGER.get(this).log(path, file);
+		////LOGGER.get(this).log(path, file);
 		//use the local methods to pass back the value
 		return this._getJSON(path + file);
 		
@@ -47,7 +47,7 @@ class BackendDataService {
 			HTTP.get(bds).post(postPath, jsonParams).then(response => {
 
 				//log the results
-				LOGGER.get(bds).log('got this back', response.data);
+				//LOGGER.get(bds).log('got this back', response.data);
 				resolve(response.data);
 				
 			}).catch(error => {
@@ -71,7 +71,7 @@ class BackendDataService {
 			HTTP.get(bds).post(postPath, params).then(response => {
 				
 				//log and return
-				LOGGER.get(bds).log('got this back', response.data);
+				//LOGGER.get(bds).log('got this back', response.data);
 				resolve(response.data);
 			
 			}).catch(error => {

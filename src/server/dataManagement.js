@@ -59,16 +59,16 @@ function _buildRecordId(type, data) {
 
 function _loadJSONFile(directory, name) {
 	var thisPath = path.join(__dirname, directory, name);
-	console.log('loading at this path', thisPath);
+	//console.log('loading at this path', thisPath);
 	var returnObject = fs.readFileSync(thisPath);
-	console.log('got this back', returnObject);
-	console.log('parsing it',JSON.parse(returnObject) );
+	//console.log('got this back', returnObject);
+	//console.log('parsing it',JSON.parse(returnObject) );
 	return JSON.parse(returnObject);
 }
 
 function _writeAFile(directory, fileName, data) {
 	//var dataManagment = this;
-	console.log('writing the file:', fileName);
+	//console.log('writing the file:', fileName);
 	//will save to this location
 	var thisPath = path.join(__dirname, directory, fileName);
 
@@ -95,7 +95,7 @@ function _addReviewToAllReviews(recordId, data) {
 	var restaurantId = data.restaurant;
 	var starRatings = [];
 
-	console.log('getting the reviews file');
+	//console.log('getting the reviews file');
 
 	var allReviewsObject = dataManagment._loadJSONFile('./json/', 'allReviews.json');
 
@@ -113,7 +113,7 @@ function _addReviewToAllReviews(recordId, data) {
 	//add this review
 	starRatings.push(data.rating);
 
-	console.log('mean avarage:', dataManagment._meanAverage(starRatings));
+	//console.log('mean avarage:', dataManagment._meanAverage(starRatings));
 
 	//write the file out
 	if(dataManagment._writeAFile('./json/','allReviews.json', allReviewsObject))
@@ -124,26 +124,26 @@ function _addReviewToAllReviews(recordId, data) {
 function _addReviewToRestaurant(restaurantId, recordId, newCalculations) {
 	var dataManagment = this;
 
-	console.log('into the AddReviewToRestaurant method');
+	//console.log('into the AddReviewToRestaurant method');
 
 	var allRestaurantsObject = dataManagment._loadJSONFile('./json/', 'allRestaurants.json');
 		
-	console.log('object:', allRestaurantsObject[restaurantId], recordId);
+	//console.log('object:', allRestaurantsObject[restaurantId], recordId);
 
 	//add the the recordId to the appropriate restaurant
 	allRestaurantsObject[restaurantId].reviews.push(recordId);
 
-	console.log('with the new review', allRestaurantsObject[restaurantId].reviews);
+	//console.log('with the new review', allRestaurantsObject[restaurantId].reviews);
 
 	//recalculate the number of reviews
 	allRestaurantsObject[restaurantId].noOfReviews = newCalculations.totalReviews;
 
-	console.log('with the new sum', allRestaurantsObject[restaurantId].noOfReviews);
+	//console.log('with the new sum', allRestaurantsObject[restaurantId].noOfReviews);
 
 	//recalculate the star rating
 	allRestaurantsObject[restaurantId].rating = newCalculations.average;
 	
-	console.log('built this', allRestaurantsObject[restaurantId]);
+	//console.log('built this', allRestaurantsObject[restaurantId]);
 
 	//resave the file
 	if(dataManagment._writeAFile('./json/','allRestaurants.json', allRestaurantsObject))
@@ -193,7 +193,7 @@ function returnList(listParams) {
 function createFile(type, data) {
 	var dataManagment = this;
 
-	console.log(data);
+	//console.log(data);
 
 	//async work, so return as a promise
 	return new Promise(function(resolve, reject) {
@@ -204,7 +204,7 @@ function createFile(type, data) {
 				//create a new record id	
 				var recordId = dataManagment._buildRecordId(type, data);
 
-				console.log(recordId);
+				//console.log(recordId);
 
 				//make sure a new individual file was created
 				if(dataManagment._saveIndividualReview(recordId, data)) {
@@ -212,7 +212,7 @@ function createFile(type, data) {
 					//add this review to the all reviews list
 					var newCalculations = dataManagment._addReviewToAllReviews(recordId, data);
 
-					console.log('writing to the all restaurants list');
+					//console.log('writing to the all restaurants list');
 
 					//add this review to the specific restaurant it's for
 					if(dataManagment._addReviewToRestaurant(data.restaurant, recordId, newCalculations)) 

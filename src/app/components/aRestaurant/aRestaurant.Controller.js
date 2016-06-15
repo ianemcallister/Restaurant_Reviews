@@ -43,14 +43,14 @@ class RestaurantController {
         //
         if(typeof aNewReview !== 'undefined') vm.aNewReview = true;
         
-        LOGGER.get(this).log(vm.shop);
-        LOGGER.get(this).log(vm.reviews);
-        LOGGER.get(this).log('vm.aNewReview', vm.aNewReview);
+        //LOGGER.get(this).log(vm.shop);
+        //LOGGER.get(this).log(vm.reviews);
+        //LOGGER.get(this).log('vm.aNewReview', vm.aNewReview);
     });
 
     INIT.get(this)();
     
-    //LOGGER.get(this).log(REVIEWSSVC.get(this).buildRecordId(9003671680, 'Ian McAllister'));
+    ////LOGGER.get(this).log(REVIEWSSVC.get(this).buildRecordId(9003671680, 'Ian McAllister'));
   }
 
   _formatTime(minutes) {

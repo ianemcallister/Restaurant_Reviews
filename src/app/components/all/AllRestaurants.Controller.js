@@ -84,7 +84,7 @@ class AllRestaurantsController {
   setStateValues(params) {
     let vm = this;
 
-    LOGGER.get(vm).log('State Params:', params, params.city, vm.searchError); //TAKE THIS OUT LATER
+    //LOGGER.get(vm).log('State Params:', params, params.city, vm.searchError); //TAKE THIS OUT LATER
 
     //define the city
     if(params.city !== 'undefined' && typeof vm.searchError == 'undefined') 
@@ -106,14 +106,14 @@ class AllRestaurantsController {
             return vm.order.new;
         }, function(newVal/*, oldVal*/) {
         
-        //LOGGER.get(vm).log(newVal, oldVal);
+        ////LOGGER.get(vm).log(newVal, oldVal);
 
         if(typeof newVal !== 'undefined' && newVal !== '') {
 
             //convert text to title case 
             var upperCaseValue = vm.toTitleCase(newVal);
         
-            //LOGGER.get(vm).log(vm.order.options.all, upperCaseValue, vm.order.options.all[upperCaseValue]);
+            ////LOGGER.get(vm).log(vm.order.options.all, upperCaseValue, vm.order.options.all[upperCaseValue]);
             
             //check if the new value is a valid option
             if(typeof vm.order.options.all[upperCaseValue] !== 'undefined') {
@@ -130,7 +130,7 @@ class AllRestaurantsController {
   }
 
   _filterCuisine(object, standards) {
-    let vm = this;
+    //let vm = this;
     let returnList = [];
 
     //loop through standards
@@ -242,14 +242,14 @@ class AllRestaurantsController {
     vm.showExtendedFilters = !vm.showExtendedFilters;
 
     //log the current state
-    //LOGGER.get(this).log(vm.showExtendedFilters);
+    ////LOGGER.get(this).log(vm.showExtendedFilters);
 
     //reload the page to maintain state
     STATE.get(vm).go('list', {sort: currentSort, filters: vm.showExtendedFilters});
   }
 
   logStateParms(/*params*/) {
-    //LOGGER.get(this).log(params);
+    ////LOGGER.get(this).log(params);
   }
 
   toTitleCase(newString) {
@@ -258,7 +258,7 @@ class AllRestaurantsController {
     //if it is multiple words, split on spaces
     var wordsArray = newString.split(' ');
 
-    //LOGGER.get(this).log('number of words:', wordsArray.length);
+    ////LOGGER.get(this).log('number of words:', wordsArray.length);
 
     //then change the first letter of each word;
     var wordNumber = 0;
@@ -272,7 +272,7 @@ class AllRestaurantsController {
         if(wordNumber < wordsArray.length) returnString = returnString + ' ';
     });
 
-    //LOGGER.get(this).log('returnign this uppercase: ', returnString);
+    ////LOGGER.get(this).log('returnign this uppercase: ', returnString);
 
     return returnString;
   }
@@ -290,7 +290,7 @@ class AllRestaurantsController {
 
   //sort the list based on the user preference
   sortBy(collection, method, reverse) {
-    //LOGGER.get(this).log(collection, method, reverse);
+    ////LOGGER.get(this).log(collection, method, reverse);
     //if reverse is not defined set it to false
     if(typeof reverse == 'undefined') reverse = false;
 
@@ -394,7 +394,7 @@ class AllRestaurantsController {
   }
 
   _initializeFilters() {
-    let vm = this;
+    //let vm = this;
     let paramsToCheck = STATE.get(this).params;
     let foundParam = false;
 
@@ -439,7 +439,7 @@ class AllRestaurantsController {
 
     
     //get the current params
-    //LOGGER.get(vm).log(STATE.get(vm));
+    ////LOGGER.get(vm).log(STATE.get(vm));
     Object.keys(STATE.get(vm).params).forEach(function(param) {
       if(typeof STATE.get(vm).params[param] !== 'undefined')
         returnObject[param] = STATE.get(vm).params[param];

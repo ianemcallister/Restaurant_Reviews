@@ -9,7 +9,7 @@ class ListFilterController {
 		LOGGER.set(this, $log);
 		INIT.set(this, () => {});
 
-		LOGGER.get(this).log('in the List Filter Controller');
+		//LOGGER.get(this).log('in the List Filter Controller');
 	}
 }
 

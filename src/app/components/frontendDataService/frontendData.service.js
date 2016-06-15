@@ -69,7 +69,7 @@ class FrontendDataService {
 				BACKEND.get(this).loadAModel(this.assetsPath, this.backendModels[model])
 				.then(response => {
 					//notify the user of the record found
-					//LOGGER.get(this).log(response);
+					////LOGGER.get(this).log(response);
 
 					//add it to the local model
 					fdService.localModels[model] = response;
@@ -89,7 +89,7 @@ class FrontendDataService {
 		//let vm = this;
 
 		//log the params		TAKE THIS OUT LATER
-		LOGGER.get(this).log('loading these params', params);
+		//LOGGER.get(this).log('loading these params', params);
 
 		//request the data from the model
 		return new Promise(resolve => {
@@ -114,7 +114,7 @@ class FrontendDataService {
 			});
 
 		});
-		//LOGGER.get(this).log('this was loaded', this.localModels);
+		////LOGGER.get(this).log('this was loaded', this.localModels);
 	}
 
 	//SETTER METHODS
@@ -132,17 +132,17 @@ class FrontendDataService {
 				//let newTotals = response.total;
 				let returnObject = {};
 
-				LOGGER.get(fds).log('in FDS, setNewRemoteReview', response);
+				//LOGGER.get(fds).log('in FDS, setNewRemoteReview', response);
 
 				returnObject[newReviewId] = newReview;
 
-				LOGGER.get(fds).log('in FDS2', returnObject);
+				//LOGGER.get(fds).log('in FDS2', returnObject);
 				
 				//add the new totals to the approprite record
 				returnObject['allRating'] = response.total.average;
 				returnObject['noOfReviews'] = response.total.totalReviews;
 
-				LOGGER.get(fds).log('sending this back to aReview', returnObject);
+				//LOGGER.get(fds).log('sending this back to aReview', returnObject);
 				
 				//pass the response back
 				resolve(returnObject);
@@ -160,12 +160,12 @@ class FrontendDataService {
 		let restaurantId = null;
 		let reviewId = null;
 
-		LOGGER.get(this).log(newReview);
+		//LOGGER.get(this).log(newReview);
 
 		reviewId = newReview.id;
 		restaurantId = newReview.data.restaurant;
 	
-		LOGGER.get(this).log('new values', reviewId, restaurantId);
+		//LOGGER.get(this).log('new values', reviewId, restaurantId);
 
 		//add the new review to the allreviews object
 		this.localModels.reviews[reviewId] = newReview;
@@ -174,9 +174,9 @@ class FrontendDataService {
 		this.localModels.restaurants[restaurantId].reviews.push(reviewId);
 
 		//log the results
-		//LOGGER.get(this).log(restaurantId);
-		//LOGGER.get(this).log(this.localModels.restaurants);
-		//LOGGER.get(this).log(this.localModels.reviews);
+		////LOGGER.get(this).log(restaurantId);
+		////LOGGER.get(this).log(this.localModels.restaurants);
+		////LOGGER.get(this).log(this.localModels.reviews);
 	}
 
 }

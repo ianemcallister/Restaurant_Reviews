@@ -54,7 +54,7 @@ class LandingController {
   }
 
   seachNow(terms) {
-    LOGGER.get(this).log(terms);
+    //LOGGER.get(this).log(terms);
     
     //build the paramaters object
     let parametersObject = this.buildParams(terms);

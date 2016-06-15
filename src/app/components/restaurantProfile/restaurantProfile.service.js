@@ -50,10 +50,10 @@ class RestaurantProfileService {
 
 	loadModel() {
 		//HTTP.get(this).get('assets/json/restaurantList.json').then(response => {
-		//	console.log(response.data);
+		//	//console.log(response.data);
 		//	this.restaurantList = response.data;
 		//})
-		//.catch(e => { console.log('there was an error: ' + e); });
+		//.catch(e => { //console.log('there was an error: ' + e); });
 	}
 }
 

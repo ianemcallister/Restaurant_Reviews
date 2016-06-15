@@ -5,10 +5,11 @@ var path = require('path');
 	
 //var test = path.join(__dirname, 'something', 'something else');
 
-//console.log(test);
+////console.log(test);
 
 //define the express server
 var app = express.createServer();
+var port = process.env.PORT || 5000;
 
 //define our body parsers
 app.use(bodyParser.json()); // for parsing application/json
@@ -27,7 +28,7 @@ app.get('/api/get/:file', function(req, res) {
 });
 
 app.get('/api/set/:file', function(req, res) {
-	console.log(req.params.file, 'sent over');
+	//console.log(req.params.file, 'sent over');
 
 	//when we 
 	res.send({'setTest':'good test'});
@@ -55,10 +56,12 @@ app.post('/api/newReview', function(req, res) {
 });
 
 app.get('/api/test', function(req, res) {
-	console.log('sending a response');
+	//console.log('sending a response');
 	res.send({'testTest':'good test'});
 	//res.sendfile();
 });
 
 //start listening
-app.listen(5000);
+app.listen(port, function(){
+	console.log('Express server is up on port ' + port);
+});

@@ -13,7 +13,7 @@ class ListSorterService {
 
 	sortByAlpha(collection) {
 		Object.keys(collection).forEach(function(key) {
-			LOGGER.get(this).log(key);
+			//LOGGER.get(this).log(key);
 		});
 	}
 

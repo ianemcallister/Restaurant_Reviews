@@ -6,7 +6,8 @@
     "gulp-nodemon": "^2.0.7"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "gulp serve"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",

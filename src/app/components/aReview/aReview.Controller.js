@@ -31,23 +31,23 @@ class ReviewController {
 		rc.parentRestaurant = SCOPE.get(rc).restaurant.shop;
 		rc.parentReviewBox = SCOPE.get(rc).restaurant.aNewReview;
 		//this.test = 1;
-		LOGGER.get(this).log('the parent restaurant is...',rc.parentRestaurant);
+		//LOGGER.get(this).log('the parent restaurant is...',rc.parentRestaurant);
 		//log required states
-		LOGGER.get(this).log(rc.restaurantId, rc.time);
-		//LOGGER.get(this).log(SCOPE.get(rc));
-		//LOGGER.get(this).log(SCOPE.get(rc).restaurant.reviews);
+		//LOGGER.get(this).log(rc.restaurantId, rc.time);
+		////LOGGER.get(this).log(SCOPE.get(rc));
+		////LOGGER.get(this).log(SCOPE.get(rc).restaurant.reviews);
 	}
 
 	_distillResponse(response) {
 		let reviewId = null;
-		let rc = this;
+		//let rc = this;
 
 		Object.keys(response).forEach(function(key) {
-			LOGGER.get(rc).log(key);
+			//LOGGER.get(rc).log(key);
 			if(key !=='allRating' && key !== 'noOfReviews') reviewId = key;
 		});
 
-		LOGGER.get(this).log(response[reviewId]);
+		//LOGGER.get(this).log(response[reviewId]);
 
 		return {id: reviewId, data: response[reviewId]};
 	}
@@ -72,7 +72,7 @@ class ReviewController {
 
 			let newReview = rc._distillResponse(response);
 
-			LOGGER.get(rc).log('the new review is', newReview);
+			//LOGGER.get(rc).log('the new review is', newReview);
 
 			//add the new review to the local model
 			FRONTENDDATA.get(rc).setNewLocalReview(newReview);
@@ -80,17 +80,17 @@ class ReviewController {
 			//update the value in the parent scope
 			rc.parentReviews.push(newReview.data);
 
-			LOGGER.get(this).log('in aReview This was the response', response);
+			//LOGGER.get(this).log('in aReview This was the response', response);
 			//save the new values that came through
 			rc.parentRestaurant.rating = response.rating;
 			rc.parentRestaurant.noOfReviews = response.noOfReviews;
 
-			LOGGER.get(rc).log('rc.parentReviewBox', rc.parentReviewBox);
+			//LOGGER.get(rc).log('rc.parentReviewBox', rc.parentReviewBox);
 
 			//hide the box again
 			rc.parentReviewBox = false;
 
-			LOGGER.get(rc).log('rc.parentReviewBox', rc.parentReviewBox);
+			//LOGGER.get(rc).log('rc.parentReviewBox', rc.parentReviewBox);
 
 			//reload the page
 			STATE.get(rc).go('restaurant', {id: rc.restaurantId});

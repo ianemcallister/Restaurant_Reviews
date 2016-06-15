@@ -102,16 +102,16 @@ class ListSorterService {
 		collection = local._buildArrayFromObject(collection);
 		switch (sort) {
 			case 0:
-				//console.log('restaurant sort', reverse);
+				////console.log('restaurant sort', reverse);
 				return local._sortByAlpha(collection, reverse);
 			case 1:
-				//console.log('cuisine sort', reverse);
+				////console.log('cuisine sort', reverse);
 				return local._sortByCuisine(collection, reverse);
 			case 2:
-				//console.log('reviews sort', reverse);
+				////console.log('reviews sort', reverse);
 				return local._sortByReivews(collection, reverse);
 			case 3:
-				//console.log('rating sort', reverse);
+				////console.log('rating sort', reverse);
 				return local._sortByRating(collection, reverse);
 		}
 
