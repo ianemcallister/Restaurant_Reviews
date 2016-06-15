@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "gulp test",
-    "start": "node src/server/production"
+    "start": "gulp serve:production"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",
