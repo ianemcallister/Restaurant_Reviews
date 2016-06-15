@@ -38,7 +38,7 @@ This is restaurant reviews application that collects reviews from users and prov
 
 4. **Launch the server and run the client site**
 
-	Run `gulp serve` or `npm start` to serve the project up. The server will start listening on port 3000.  
+	Run `gulp serve:production` or `npm start` to serve the project up. The server will start listening on port 3000.  
 
 	In your browser navicate to `localhost:3000`.
 
