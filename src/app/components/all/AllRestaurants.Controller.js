@@ -93,6 +93,7 @@ class AllRestaurantsController {
     //set the list order
     vm.order = vm.sortDefaults(this.paramStringToUXString(params.sort));
 
+    LOGGER.get(vm).log(params.filters);
     //define the filter box state
     if(params.filters == 'undefined') vm.showExtendedFilters = false;
     else vm.showExtendedFilters = (params.filters == 'true');

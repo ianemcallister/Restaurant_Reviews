@@ -13,7 +13,7 @@ const FRONTENDDATA = new WeakMap();
 const REVIEWSSVC = new WeakMap();
 
 class ReviewController {
-	constructor ($state, $log, $scope, frontendDataSvc, reviewsSvc) {
+	constructor ($state, $log, $scope, $document, frontendDataSvc, reviewsSvc) {
 		'ngInject';
 		let rc = this;
 
@@ -36,6 +36,7 @@ class ReviewController {
 		//LOGGER.get(this).log(rc.restaurantId, rc.time);
 		////LOGGER.get(this).log(SCOPE.get(rc));
 		////LOGGER.get(this).log(SCOPE.get(rc).restaurant.reviews);
+
 	}
 
 	_distillResponse(response) {
@@ -101,6 +102,6 @@ class ReviewController {
 
 }
 
-ReviewController.$inject = ['$state', '$log', '$scope', 'frontendDataSvc', 'reviewsSvc'];
+ReviewController.$inject = ['$state', '$log', '$scope', '$document', 'frontendDataSvc', 'reviewsSvc'];
 
 export { ReviewController };

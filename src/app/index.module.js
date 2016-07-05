@@ -19,6 +19,7 @@ import { ReviewManager } from '../app/components/reviewManager/reviewManager.ser
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 import { StarPanelDirective } from '../app/components/starPanel/starPanel.directive';
+import { FocusMeDirective } from '../app/components/focusMe/focusMe.directive.js';
 
 angular.module('chowpal', ['ngAnimate', 'ngTouch', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr'])
   .constant('malarkey', malarkey)
@@ -41,4 +42,5 @@ angular.module('chowpal', ['ngAnimate', 'ngTouch', 'ngAria', 'ngResource', 'ui.r
   .controller('ReviewController', ReviewController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective)
-  .directive('starPanel', StarPanelDirective);
+  .directive('starPanel', StarPanelDirective)
+  .directive('focusMe', FocusMeDirective);

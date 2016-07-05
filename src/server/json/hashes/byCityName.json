@@ -1,4 +1,6 @@
 {
 	"Los Angeles":[900484800,9004674080,9002816080,9003671680],
-	"San Francisco":[941098000]
+	"San Francisco":[941098000],
+	"London":["W112AQ127", "SW177EG2"],
+	"Melbourne":["VIC300055"]
 }

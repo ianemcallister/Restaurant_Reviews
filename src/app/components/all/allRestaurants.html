@@ -4,7 +4,7 @@
 
 		<!--Page Title // tab-->
 		<h3 class="col-xs-8 col-sm-8 col-md-8 col-lg-8 filterHeading"
-			tabindex="10">
+			tabindex="2">
 			<div>
 				<strong autofocus>Best restaurants</strong> 
 				<span ng-if='list.city'>
@@ -203,7 +203,8 @@
 
 		<!--Error Message-->
 		<div 	class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert-danger"
-				ng-if='list.searchError'>
+				ng-if='list.searchError'
+				tabindex="1">
 			{{list.searchError}}
 		</div>
 	</div>
@@ -240,7 +241,7 @@
 	<div class="container">
 		<div 	class='col-xs-12 col-sm-12 col-md-12 col-lg-12 aRestaurantProfile'
 				ng-repeat="spot in list.restaurantList track by $index"
-			 	tabindex="70" 
+			 	tabindex="{{($index * 10) + 70}}" 
 			 	ng-model='test'
 			 	ng-click='list.viewRestaurant($index)'
 			 	ng-submit='list.viewRestaurant($index)'>
@@ -253,25 +254,27 @@
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
 				
 				<span aria-hidden="true">{{$index + 1}}.</span> 
-				<a href="">{{spot.name}}</a> 
+				<a 	href="" tabindex="{{(($index * 10) + 70)+1}}" 
+					aria-owns>{{spot.name}}</a> 
 				<br>
 				
-				<div ng-if='spot.noOfReviews > 0' id='hasStarRating' aria-label='{{spot.rating}} stars, from {{spot.noOfReviews}} reviews.'>
-					<label for="thisStarRating" class='screenReaderOnly'>{{spot.rating}} stars</label>
-					<star-panel star-rating='spot.rating' id='thisStarRating'></star-panel>{{spot.noOfReviews}}
+				<div ng-if='spot.noOfReviews > 0' id='hasStarRating{{$index}}' >
+					<label for="thisStarRating" class='screenReaderOnly' >{{spot.rating}} stars</label>
+					<star-panel star-rating='spot.rating' id='thisStarRating' tabindex="{{(($index * 10) + 70)+2}}" aria-label='{{spot.rating}} stars, from {{spot.noOfReviews}} reviews.'></star-panel>{{spot.noOfReviews}}
 				</div>
 				
 				<div ng-if='!(spot.noOfReviews > 0)'>
 					No reviews yet
 				</div>
 				
-				<a href="" id='cuisineIdentity' aria-label='{{spot.cuisine}} cuisine.'>{{spot.cuisine}}</a>
+				<a href="" id='cuisineIdentity' aria-label='{{spot.cuisine}} cuisine' tabindex="{{(($index * 10) + 70)+3}}">{{spot.cuisine}}</a>
 			</div>
 
 			<!--Restaurant Address & Phone Number-->
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 restElement">
 				<span class="pull-right" 
-				aria-label='street address {{spot.address.street1}} {{spot.address.city}}, zipcode {{spot.address.zip}}. phone number {{spot.phone}}.'>
+				aria-label='street address {{spot.address.street1}} {{spot.address.city}}, zipcode {{spot.address.zip}}. phone number {{spot.phone}}.'
+				tabindex="{{(($index * 10) + 70)+4}}">
 				{{spot.address.street1}} <br ng-if='spot.address.street2 !== ""'>
 				{{spot.address.street2}} <br ng-if='spot.address.street3 !== ""'>
 				{{spot.address.street3}} <br ng-if='spot.address.city !== ""'>

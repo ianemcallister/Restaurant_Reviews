@@ -122,11 +122,11 @@
 			<ul class='reviewsList'>
 				
 				<li class='reviewsListBlock'
-					tabindex="81" 
-					ng-repeat="review in restaurant.reviews">
+					tabindex="-1" 
+					ng-repeat="review in restaurant.reviews track by $index">
 					
 					<div 	class='reviewerName col-xs-3 col-sm-3 col-md-3'
-							aria-label='reviewed by {{review.name.first}} {{review.name.last}}.' >
+							aria-label='reviewed by {{review.name.first}} {{review.name.last}}.' tabindex="{{($index * 10) + 81}}">
 					
 					{{review.name.first}} {{review.name.last}}
 					
@@ -135,12 +135,13 @@
 					<div class='starsAndReview col-xs-9 col-sm-9 col-md-9' >
 						<p>
 							<star-panel star-rating='review.rating'
-									aria-label='{{review.rating}} stars, out of five.'>			
+									aria-label='{{review.rating}} stars, out of five.'
+									tabindex="{{($index * 10) + 82}}">			
 							</star-panel>
 							<span aria-label='review written on,'></span>
 							<span class='reviewDate' >{{review.date | date: 'M/d/yy'}}</span>
 						</p>
-						<p>
+						<p tabindex="{{($index * 10) + 83}}">
 							{{review.comments}}	
 						</p>
 					</div>
